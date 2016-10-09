@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 15:44:23 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 16:17:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void					mat4_init_rotation_z(t_mat4 *mat, double angle);
 t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
 void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
 void					render_resize(t_render *render, int width, int height);
+void					render_render(t_render *render);
 
 struct					s_color
 {
@@ -79,7 +80,7 @@ struct					s_render
 {
 	double				*z_index;
 	float				*colors;
-	short				*vertex;
+	GLuint				texture;
 	int					width;
 	int					height;
 };

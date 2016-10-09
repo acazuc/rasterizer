@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 15:46:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 16:19:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,27 @@ t_env	*g_env = NULL;
 
 static void		draw_elements(t_env *env)
 {
-	env->render.colors[0] = 1;
+	int		coords[4 * 2];
+	int		vertex[4 * 2];
+
+	ft_memset(coords, 0, sizeof(coords));
+	coords[2] = 1;
+	coords[4] = 1;
+	coords[5] = 1;
+	coords[7] = 1;
+	ft_memset(vertex, 0, sizeof(vertex));
+	vertex[2] = env->render.width;
+	vertex[4] = env->render.width;
+	vertex[5] = env->render.height;
+	vertex[7] = env->render.height;
+	glBindTexture(GL_TEXTURE_2D, env->render.texture);
 	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glColorPointer(3, GL_FLOAT, 0, env->render.colors);
-	glVertexPointer(2, GL_INT, 0, env->render.vertex);
-	glDrawArrays(GL_POINTS, 0, env->render.width * env->render.height);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glVertexPointer(2, GL_INT, 0, vertex);
+	glTexCoordPointer(2, GL_INT, 0, coords);
+	glDrawArrays(GL_QUADS, 0, 4);
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 int				main()
