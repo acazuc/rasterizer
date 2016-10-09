@@ -1,0 +1,5 @@
+glfw
+obj
+*.swp
+rasterizer
+libft
