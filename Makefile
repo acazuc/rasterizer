@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/09 11:37:00 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/09 12:13:41 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,12 @@ SRCS_NAME = main.c \
 			window_create.c \
 			window_update_context.c \
 			window_listener_resize.c \
+			mat4_clear.c \
 			mat4_init_identity.c \
 			mat4_init_translation.c \
-			mat4_init_rotation.c \
+			mat4_init_rotations.c \
 			mat4_init_projection.c \
+			mat4_mult.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
