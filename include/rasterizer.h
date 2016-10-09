@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 16:52:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 16:58:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void					mat4_init_rotation_y(t_mat4 *mat, double angle);
 void					mat4_init_rotation_z(t_mat4 *mat, double angle);
 t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
 void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
+t_mat4					mat4_reverse(t_mat4 *mat);
 void					render_resize(t_render *render, int width, int height);
 void					render_render(t_render *render);
 void					render_set_pixel(t_render *render, int x, int y, t_color *color);

@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/09 16:52:52 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/09 16:58:51 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS_NAME = main.c \
 			mat4_init_projection.c \
 			mat4_mult.c \
 			mat4_transform_vec4.c \
+			mat4_reverse.c \
 			render_resize.c \
 			render_render.c \
 			render_set_pixel.c \

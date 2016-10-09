@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_set_rotation.c                              :+:      :+:    :+:   */
+/*   mat4_reverse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/09 16:32:44 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 16:55:42 by acazuc           ###   ########.fr       */
+/*   Created: 2016/10/09 16:55:46 by acazuc            #+#    #+#             */
+/*   Updated: 2016/10/09 16:58:29 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rasterizer.h"
 
-void	camera_set_rotation(t_camera *camera, double x, double y, double z)
+t_mat4		mat4_reverse(t_mat4 *mat)
 {
-	t_mat4	rx;
-	t_mat4	ry;
-	t_mat4	rz;
+	t_mat4	new;
+	int		x;
+	int		y;
 
-	mat4_clear(&rx);
-	mat4_clear(&ry);
-	mat4_clear(&rz);
-	mat4_init_rotation_x(&rx, x);
-	mat4_init_rotation_y(&ry, y);
-	mat4_init_rotation_z(&rz, z);
-	rx = mat4_mult(&rx, &ry);
-	rx = mat4_mult(&rx, &rz);
-	camera->rotation = mat4_reverse(&rx);
+	y = 0;
+	while (y < 4)
+	{
+		x = 0;
+		while (x < 4)
+		{
+			new.value[y][x] = mat->value[x][y];
+			x++;
+		}
+		y++;
+	}
+	return (new);
 }
