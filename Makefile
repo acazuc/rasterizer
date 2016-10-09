@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/09 16:17:24 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/09 16:52:52 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,13 @@ SRCS_NAME = main.c \
 			mat4_transform_vec4.c \
 			render_resize.c \
 			render_render.c \
+			render_set_pixel.c \
+			render_render_vertex.c \
+			render_set_zindex.c \
+			render_get_zindex.c \
+			camera_watch_vec4.c \
+			camera_set_position.c \
+			camera_set_rotation.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

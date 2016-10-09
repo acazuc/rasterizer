@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 16:17:16 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 16:52:43 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/include/libft.h"
 # include "../glfw/include/GLFW/glfw3.h"
-# include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 
@@ -43,6 +42,13 @@ t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
 void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
 void					render_resize(t_render *render, int width, int height);
 void					render_render(t_render *render);
+void					render_set_pixel(t_render *render, int x, int y, t_color *color);
+void					render_set_zindex(t_render *render, int x, int y, double z);
+double					render_get_zindex(t_render *render, int x, int y);
+void					render_render_vertex(t_render *render, t_vec4 *vec);
+void					camera_watch_vec4(t_camera *camera, t_vec4 *vec);
+void					camera_set_position(t_camera *camera, double x, double y, double z);
+void					camera_set_rotation(t_camera *camera, double x, double y, double z);
 
 struct					s_color
 {
@@ -69,7 +75,7 @@ struct					s_mat4
 struct					s_camera
 {
 	t_mat4				projection;
-	t_mat4				translation;
+	t_mat4				position;
 	t_mat4				rotation;
 	t_vec4				origin;
 	int					width;
