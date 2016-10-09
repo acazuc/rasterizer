@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 11:28:32 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 11:31:00 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 13:39:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	window_listener_resize(GLFWwindow *window, int width, int height)
 {
 	g_env->window_width = width;
 	g_env->window_height = height;
+	render_resize(&g_env->render, width, height);
+	g_env->camera.width = width;
+	g_env->camera.height = height;
 	window_update_context(g_env);
 	(void)window;
 }

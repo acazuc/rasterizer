@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 12:26:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 13:31:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void					mat4_init_rotation_x(t_mat4 *mat, double angle);
 void					mat4_init_rotation_y(t_mat4 *mat, double angle);
 void					mat4_init_rotation_z(t_mat4 *mat, double angle);
 t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
+void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
+void					render_resize(t_render *render, int width, int height);
 
 struct					s_color
 {
@@ -67,13 +69,17 @@ struct					s_camera
 	t_mat4				projection;
 	t_mat4				trans_rot;
 	t_vec4				origin;
+	int					width;
+	int					height;
 };
 
 struct					s_render
 {
-	double				**z_index;
+	double				*z_index;
 	double				*colors;
 	double				*vertex;
+	int					width;
+	int					height;
 };
 
 struct					s_env
@@ -83,6 +89,7 @@ struct					s_env
 	int					window_width;
 	int					window_height;
 	t_render			render;
+	t_camera			camera;
 };
 
 #endif
