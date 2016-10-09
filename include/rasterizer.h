@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 12:09:01 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 12:22:37 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void					error_quit(char *str, char *file, int line);
 void					window_create(t_env *env);
 void					window_update_context(t_env *env);
 void					window_listener_resize(GLFWwindow *window, int width, int height);
+t_color					color_add(t_color *c1, t_color *c2);
+t_color					color_mult(t_color *color, double factor);
 void					mat4_clear(t_mat4 *mat);
 void					mat4_init_identity(t_mat4 *mat);
 void					mat4_init_translation(t_mat4 *mat, double x, double y, double z);
