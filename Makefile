@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/09 12:22:49 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/09 12:26:14 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS_NAME = main.c \
 			window_update_context.c \
 			window_listener_resize.c \
 			color_add.c \
+			color_sub.c \
 			color_mult.c \
 			mat4_clear.c \
 			mat4_init_identity.c \
