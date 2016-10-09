@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 13:31:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 15:44:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/include/libft.h"
 # include "../glfw/include/GLFW/glfw3.h"
+# include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 
@@ -67,7 +68,8 @@ struct					s_mat4
 struct					s_camera
 {
 	t_mat4				projection;
-	t_mat4				trans_rot;
+	t_mat4				translation;
+	t_mat4				rotation;
 	t_vec4				origin;
 	int					width;
 	int					height;
@@ -76,8 +78,8 @@ struct					s_camera
 struct					s_render
 {
 	double				*z_index;
-	double				*colors;
-	double				*vertex;
+	float				*colors;
+	short				*vertex;
 	int					width;
 	int					height;
 };

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 11:20:46 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 11:31:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/09 15:17:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	window_create(t_env *env)
 	glfwSwapInterval(1);
 	glfwMakeContextCurrent(env->window);
 	glfwSetFramebufferSizeCallback(env->window, window_listener_resize);
+	window_listener_resize(env->window, env->window_width, env->window_height);
 	window_update_context(env);
 }
