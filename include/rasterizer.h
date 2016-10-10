@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 16:58:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/10 11:53:20 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_color					color_sub(t_color *c1, t_color *c2);
 t_color					color_mult(t_color *color, double factor);
 void					mat4_clear(t_mat4 *mat);
 void					mat4_init_identity(t_mat4 *mat);
+void					mat4_init_projection(t_mat4 *mat, double sfov, double ratio, double ranges[2]);
 void					mat4_init_translation(t_mat4 *mat, double x, double y, double z);
 void					mat4_init_rotation_x(t_mat4 *mat, double angle);
 void					mat4_init_rotation_y(t_mat4 *mat, double angle);
@@ -50,6 +51,7 @@ void					render_render_vertex(t_render *render, t_vec4 *vec);
 void					camera_watch_vec4(t_camera *camera, t_vec4 *vec);
 void					camera_set_position(t_camera *camera, double x, double y, double z);
 void					camera_set_rotation(t_camera *camera, double x, double y, double z);
+void					camera_set_projection(t_camera *camera, t_mat4 *mat);
 
 struct					s_color
 {

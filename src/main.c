@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 16:19:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/10 11:55:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ static void		draw_elements(t_env *env)
 
 int				main()
 {
+	t_mat4	proj;
 	t_env	env;
+	double ranges[2] = {0, 1000};
 
+	mat4_init_projection(&proj, 90, 16./9., ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
 	window_create(&env);
+	camera_set_position(&env.camera, 0, 0, -1);
+	camera_set_rotation(&env.camera, 0, ft_toradians(45), 0);
+	camera_set_projection(&env.camera, &proj);
 	while (!glfwWindowShouldClose(env.window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
