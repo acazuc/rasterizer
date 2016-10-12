@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/10 11:53:20 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 13:57:08 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/include/libft.h"
 # include "../glfw/include/GLFW/glfw3.h"
+# include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 
@@ -33,12 +34,14 @@ t_color					color_add(t_color *c1, t_color *c2);
 t_color					color_sub(t_color *c1, t_color *c2);
 t_color					color_mult(t_color *color, double factor);
 void					mat4_clear(t_mat4 *mat);
+void					mat4_init_scale(t_mat4 *mat, double x, double y, double z);
 void					mat4_init_identity(t_mat4 *mat);
 void					mat4_init_projection(t_mat4 *mat, double sfov, double ratio, double ranges[2]);
 void					mat4_init_translation(t_mat4 *mat, double x, double y, double z);
 void					mat4_init_rotation_x(t_mat4 *mat, double angle);
 void					mat4_init_rotation_y(t_mat4 *mat, double angle);
 void					mat4_init_rotation_z(t_mat4 *mat, double angle);
+void					mat4_dump(t_mat4 *mat);
 t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
 void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
 t_mat4					mat4_reverse(t_mat4 *mat);
@@ -80,6 +83,7 @@ struct					s_camera
 	t_mat4				projection;
 	t_mat4				position;
 	t_mat4				rotation;
+	t_mat4				view;
 	t_vec4				origin;
 	int					width;
 	int					height;

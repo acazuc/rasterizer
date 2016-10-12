@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/10 11:55:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 13:59:55 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,74 @@ static void		draw_elements(t_env *env)
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
+void test()
+{
+	t_mat4 t;
+	t_mat4 rx;
+	t_mat4 ry;
+	t_mat4 rz;
+	t_mat4 p;
+	t_mat4 s;
+	t_vec4 v;
+	double ranges[2] = {1, -50};
+
+	mat4_init_translation(&t, 20, 20, 0);
+	ft_putendl("translation:");
+	mat4_dump(&t);
+	mat4_init_rotation_x(&rx, M_PI / 4);
+	ft_putendl("roation x:");
+	mat4_dump(&rx);
+	mat4_init_rotation_y(&ry, M_PI / 2);
+	ft_putendl("rotation y:");
+	mat4_dump(&ry);
+	mat4_init_rotation_z(&rz, M_PI * 2);
+	ft_putendl("rotation z");
+	mat4_dump(&rz);
+	mat4_init_projection(&p, 60, 640/480., ranges);
+	ft_putendl("projection: ");
+	mat4_dump(&p);
+	mat4_init_scale(&s, 10, 10, 10);
+	ft_putendl("scale: ");
+	mat4_dump(&s);
+	t = mat4_mult(&t, &rx);
+	t = mat4_mult(&t, &ry);
+	t = mat4_mult(&t, &s);
+	ft_putendl("final:");
+	mat4_dump(&t);
+	ft_memset(&v, 0, sizeof(v));
+	v.x = 1;
+	v.y = 1;
+	v.w = 1;
+	mat4_transform_vec4(&t, &v);
+	printf("x: %f, y: %f, z: %f, w: %f\n", v.x, v.y, v.z, v.w);
+}
+
 int				main()
 {
 	t_mat4	proj;
 	t_env	env;
 	double ranges[2] = {0, 1000};
 
+	test();
 	mat4_init_projection(&proj, 90, 16./9., ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	window_create(&env);
+	//window_create(&env);
 	camera_set_position(&env.camera, 0, 0, -1);
 	camera_set_rotation(&env.camera, 0, ft_toradians(45), 0);
 	camera_set_projection(&env.camera, &proj);
+	window_create(&env);
+	double i = 0;
 	while (!glfwWindowShouldClose(env.window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
+		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i), 0);
+		//render_resize(&env.render, env.render.width, env.render.height);
+		i++;
 		glfwPollEvents();
 	}
 	glfwTerminate();

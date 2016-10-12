@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat4_init_projection.c                             :+:      :+:    :+:   */
+/*   mat4_init_scale.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/09 11:58:02 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:41:31 by acazuc           ###   ########.fr       */
+/*   Created: 2016/10/12 13:57:45 by acazuc            #+#    #+#             */
+/*   Updated: 2016/10/12 14:01:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rasterizer.h"
 
-void	mat4_init_projection(t_mat4 *mat, double sfov, double ratio
-		, double ranges[2])
+void	mat4_init_scale(t_mat4 *mat, double x, double y, double z)
 {
-	double	fov;
-
 	mat4_clear(mat);
-	fov = 1. / tan(ft_toradians(sfov / 2));
-	mat->value[0][0] = fov / ratio;
-	mat->value[1][1] = fov;
-	mat->value[2][2] = -(ranges[1] + ranges[0]) / (ranges[1] - ranges[0]);
-	mat->value[3][2] = -1;
-	mat->value[2][3] = (2 * ranges[0] * ranges[1]) / (ranges[0] - ranges[1]);
+	mat->value[0][0] = x;
+	mat->value[1][1] = y;
+	mat->value[2][2] = z;
+	mat->value[3][3] = 1;
 }

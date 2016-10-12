@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/10 11:52:19 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/12 13:57:17 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS_NAME = main.c \
 			color_sub.c \
 			color_mult.c \
 			mat4_clear.c \
+			mat4_init_scale.c \
 			mat4_init_identity.c \
 			mat4_init_translation.c \
 			mat4_init_rotations.c \
@@ -36,6 +37,7 @@ SRCS_NAME = main.c \
 			mat4_mult.c \
 			mat4_transform_vec4.c \
 			mat4_reverse.c \
+			mat4_dump.c \
 			render_resize.c \
 			render_render.c \
 			render_set_pixel.c \
