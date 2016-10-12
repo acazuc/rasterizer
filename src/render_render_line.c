@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 14:35:01 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 16:13:51 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 16:31:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		loop_intern(t_render *render, t_vec4 *vec)
 {
 	double	zind;
 
-	if (vec->z <= 0)
+	if (vec->z <= 0.1)
 		return ;
 	zind = render_get_zindex(render, vec->x, vec->y);
 	if (zind == 0 || vec->z < zind)

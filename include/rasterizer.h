@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 16:03:55 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 16:18:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/include/libft.h"
 # include "../glfw/include/GLFW/glfw3.h"
+# include <sys/time.h>
 # include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
@@ -56,6 +57,7 @@ void					camera_watch_vec4(t_camera *camera, t_vec4 *vec);
 void					camera_set_position(t_camera *camera, double x, double y, double z);
 void					camera_set_rotation(t_camera *camera, double x, double y, double z);
 void					camera_set_projection(t_camera *camera, t_mat4 *mat);
+long					epoch_millis();
 
 struct					s_color
 {

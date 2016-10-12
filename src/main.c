@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 15:57:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 16:32:32 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void test()
 	t_mat4 p;
 	t_mat4 s;
 	t_vec4 v;
-	double ranges[2] = {1, -50};
+	double ranges[2] = {0.1, 1000};
 
 	mat4_init_translation(&t, 20, 20, 0);
 	ft_putendl("translation:");
@@ -86,7 +86,7 @@ int				main()
 {
 	t_mat4	proj;
 	t_env	env;
-	double ranges[2] = {1, 1000};
+	double ranges[2] = {0.1, 1000};
 
 	//test();
 	mat4_init_projection(&proj, 60, 1280./720, ranges);
@@ -94,7 +94,7 @@ int				main()
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	camera_set_position(&env.camera, 0, 0, 10);
+	camera_set_position(&env.camera, 0, 0, 2);
 	camera_set_rotation(&env.camera, 0, ft_toradians(0), 0);
 	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
@@ -102,14 +102,13 @@ int				main()
 	while (!glfwWindowShouldClose(env.window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		long start = epoch_millis();
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		camera_set_rotation(&env.camera, 0, ft_toradians(i), 0);
 		render_resize(&env.render, env.render.width, env.render.height);
-		ft_putstr("i: ");
-		ft_putnbr(i);
-		ft_putchar('\n');
 		i++;
+		printf("%ld\n", epoch_millis() - start);
 		glfwPollEvents();
 	}
 	glfwTerminate();

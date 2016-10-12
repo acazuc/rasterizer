@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/12 15:30:12 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/12 16:16:28 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS_NAME = main.c \
 			camera_set_position.c \
 			camera_set_rotation.c \
 			camera_set_projection.c \
+			epoch_millis.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
