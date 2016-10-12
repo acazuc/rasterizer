@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:39:31 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:26:12 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 14:39:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,12 @@ void	render_render_vertex(t_render *render, t_vec4 *vec)
 	double	y;
 	double	z;
 
-	x = vec->x;// * render->width / 2 + render->width / 2;
-	y = vec->y;// * render->height / 2 + render->height / 2;
-	ft_putstr("x: ");
-	ft_putnbr(x);
-	ft_putstr(", y: ");
-	ft_putnbr(y);
-	ft_putchar('\n');
+	x = (vec->x + 1) * render->width / 2 / (vec->z / 1000);
+	y = (vec->y + 1) * render->height / 2 / (vec->z / 1000);
 	z = render_get_zindex(render, x, y);
-	//if (z != 0 && vec->z < z)
-	//{
+	if (z == 0 || vec->z < z)
+	{
 		render_set_zindex(render, x, y, vec->z);
 		render_set_pixel(render, x, y, &vec->color);
-	//}
+	}
 }

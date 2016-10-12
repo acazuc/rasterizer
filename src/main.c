@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:59:55 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 14:31:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,16 @@ int				main()
 {
 	t_mat4	proj;
 	t_env	env;
-	double ranges[2] = {0, 1000};
+	double ranges[2] = {1, 1000};
 
-	test();
-	mat4_init_projection(&proj, 90, 16./9., ranges);
+	//test();
+	mat4_init_projection(&proj, 60, 1280./720, ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	//window_create(&env);
-	camera_set_position(&env.camera, 0, 0, -1);
-	camera_set_rotation(&env.camera, 0, ft_toradians(45), 0);
+	camera_set_position(&env.camera, 15, 15, 80);
+	camera_set_rotation(&env.camera, 0, ft_toradians(90), 0);
 	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
 	double i = 0;
@@ -105,9 +104,9 @@ int				main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
-		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i), 0);
-		//render_resize(&env.render, env.render.width, env.render.height);
-		i++;
+		camera_set_rotation(&env.camera, 0, ft_toradians(i), 0);
+		render_resize(&env.render, env.render.width, env.render.height);
+		i+=4;
 		glfwPollEvents();
 	}
 	glfwTerminate();

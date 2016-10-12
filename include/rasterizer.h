@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:57:08 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 14:48:22 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void					render_set_pixel(t_render *render, int x, int y, t_color *color);
 void					render_set_zindex(t_render *render, int x, int y, double z);
 double					render_get_zindex(t_render *render, int x, int y);
 void					render_render_vertex(t_render *render, t_vec4 *vec);
+void					render_render_line(t_render *render, t_vec4 *v1, t_vec4 *v2);
 void					camera_watch_vec4(t_camera *camera, t_vec4 *vec);
 void					camera_set_position(t_camera *camera, double x, double y, double z);
 void					camera_set_rotation(t_camera *camera, double x, double y, double z);

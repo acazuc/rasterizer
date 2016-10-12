@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:16:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:25:12 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 14:29:35 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void	render_render_do(t_env *env)
 	vec.x = 0;
 	vec.y = 0;
 	vec.z = 0;
+	vec.w = 1;
 	vec.color.red = 1;
-	vec.color.green = 0;
+	vec.color.green = 1;
 	vec.color.blue = 0;
 	camera_watch_vec4(&env->camera, &vec);
 	vec.x = vec.x / (env->render.width / 2) - 1;

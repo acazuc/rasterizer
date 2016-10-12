@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/12 13:57:17 by acazuc           ###   ########.fr        #
+#    Updated: 2016/10/12 14:48:06 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS_NAME = main.c \
 			render_render.c \
 			render_set_pixel.c \
 			render_render_vertex.c \
+			render_render_line.c \
 			render_set_zindex.c \
 			render_get_zindex.c \
 			camera_watch_vec4.c \
