@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 14:31:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/10/12 15:57:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int				main()
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	camera_set_position(&env.camera, 15, 15, 80);
-	camera_set_rotation(&env.camera, 0, ft_toradians(90), 0);
+	camera_set_position(&env.camera, 0, 0, 10);
+	camera_set_rotation(&env.camera, 0, ft_toradians(0), 0);
 	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
 	double i = 0;
@@ -106,7 +106,10 @@ int				main()
 		glfwSwapBuffers(env.window);
 		camera_set_rotation(&env.camera, 0, ft_toradians(i), 0);
 		render_resize(&env.render, env.render.width, env.render.height);
-		i+=4;
+		ft_putstr("i: ");
+		ft_putnbr(i);
+		ft_putchar('\n');
+		i++;
 		glfwPollEvents();
 	}
 	glfwTerminate();
