@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:03:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:24:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 # define MAX(x, y) (x < y ? y : x)
 # define MIN(x, y) (x < y ? x : y)
+
+# define Z_MIN 0.01
+# define Z_MAX 1000
 
 typedef struct s_mat4	t_mat4;
 typedef struct s_vec4	t_vec4;
@@ -53,6 +56,7 @@ void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
 t_mat4					mat4_reverse(t_mat4 *mat);
 void					render_resize(t_render *render, int width, int height);
 void					render_render(t_render *render);
+void					render_put_pixel(t_render *render, int x, int y, double z, t_color *color);
 void					render_set_pixel(t_render *render, int x, int y, t_color *color);
 void					render_set_zindex(t_render *render, int x, int y, double z);
 double					render_get_zindex(t_render *render, int x, int y);

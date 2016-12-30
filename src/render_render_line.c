@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 14:35:01 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 14:56:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:29:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,6 @@ static void		calc_diff(t_vec4 *v1, t_vec4 *v2, t_vec4 *dif)
 	dif->y = v2->y - v1->y;
 	dif->z = v2->z - v1->z;
 	dif->color = color_sub(&v2->color, &v1->color);
-}
-
-static void		loop_intern(t_render *render, t_vec4 *vec)
-{
-	double	zind;
-
-	if (vec->z <= 0.1)
-		return ;
-	zind = render_get_zindex(render, vec->x, vec->y);
-	if (zind == 0 || vec->z < zind)
-	{
-		render_set_zindex(render, vec->x, vec->y, vec->z);
-		render_set_pixel(render, vec->x, vec->y, &vec->color);
-	}
 }
 
 static void		do_draw(t_render *render, t_vec4 *start, t_vec4 *dif)
@@ -51,7 +37,7 @@ static void		do_draw(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.red = start->color.red + dif->color.red * iter;
 		tmp.color.green = start->color.green + dif->color.green * iter;
 		tmp.color.blue = start->color.blue + dif->color.blue * iter;
-		loop_intern(render, &tmp);
+		render_put_pixel(render, tmp.x, tmp.y, tmp.z, &tmp.color);
 		if (iter == 1)
 			break;
 		iter += 1 / len;

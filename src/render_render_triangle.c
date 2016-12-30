@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 12:02:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:10:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:29:33 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,9 @@ static void		_render_span(t_render *render, t_triangle_span *span, double y)
 	while (x < span->x2)
 	{
 		z = span->z1 + dif.z * factor;
-		if (!render_get_zindex(render, x, y) || z < render_get_zindex(render, x, y))
-		{
-			tmp = color_mult(&dif.color, factor);
-			color = color_add(&span->c1, &tmp);
-			render_set_pixel(render, x, y, &color);
-			render_set_zindex(render, x, y, z);
-		}
+		tmp = color_mult(&dif.color, factor);
+		color = color_add(&span->c1, &tmp);
+		render_put_pixel(render, x, y, z, &color);
 		factor += factor_step;
 		++x;
 	}

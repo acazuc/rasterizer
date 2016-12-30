@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:16:34 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:22:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,58 +40,13 @@ static void		draw_elements(t_env *env)
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
-void test()
-{
-	t_mat4 t;
-	t_mat4 rx;
-	t_mat4 ry;
-	t_mat4 rz;
-	t_mat4 r;
-	t_mat4 p;
-	t_mat4 s;
-	t_vec4 v;
-	double ranges[2] = {0.1, 1000};
-
-	mat4_init_translation(&t, 20, 20, 0);
-	ft_putendl("translation:");
-	mat4_dump(&t);
-	mat4_init_rotation_x(&rx, M_PI / 4);
-	ft_putendl("roation x:");
-	mat4_dump(&rx);
-	mat4_init_rotation_y(&ry, M_PI / 2);
-	ft_putendl("rotation y:");
-	mat4_dump(&ry);
-	mat4_init_rotation_z(&rz, M_PI * 2);
-	ft_putendl("rotation z");
-	mat4_dump(&rz);
-	mat4_init_projection(&p, 60, 640/480., ranges);
-	ft_putendl("projection: ");
-	mat4_dump(&p);
-	mat4_init_scale(&s, 1, 1, 1);
-	ft_putendl("scale: ");
-	mat4_dump(&s);
-	r = mat4_mult(&rx, &ry);
-	r = mat4_mult(&r, &rz);
-	s = mat4_mult(&s, &r);
-	t = mat4_mult(&t, &s);
-	ft_putendl("final:");
-	mat4_dump(&t);
-	ft_memset(&v, 0, sizeof(v));
-	v.x = 1;
-	v.y = 1;
-	v.w = 1;
-	mat4_transform_vec4(&t, &v);
-	printf("x: %f, y: %f, z: %f, w: %f\n", v.x, v.y, v.z, v.w);
-}
-
 int				main()
 {
 	t_mat4	proj;
 	t_env	env;
-	double ranges[2] = {0.1, 100};
+	double ranges[2] = {Z_MIN, Z_MAX};
 
-	//test();
-	mat4_init_projection(&proj, 60, 1280./720, ranges);
+	mat4_init_projection(&proj, 60, 1280. / 720, ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())

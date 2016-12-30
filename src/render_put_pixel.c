@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_render_vertex.c                             :+:      :+:    :+:   */
+/*   render_put_pixel.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/09 16:39:31 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:28:02 by acazuc           ###   ########.fr       */
+/*   Created: 2016/12/30 15:25:02 by acazuc            #+#    #+#             */
+/*   Updated: 2016/12/30 15:27:32 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rasterizer.h"
 
-void	render_render_vertex(t_render *render, t_vec4 *vec)
+void	render_put_pixel(t_render *render, int x, int y, double z, t_color *color)
 {
-	double	x;
-	double	y;
+	double	current_z;
 
-	x = vec->x * render->width / 2  + render->width / 2;
-	y = vec->y * render->height / 2 + render->height / 2;
-	render_put_pixel(render, x, y, vec->z, &vec->color);
+	if (x < 0 || x >= render->width || y < 0 || y >= render->height
+			|| z < Z_MIN || z > Z_MAX)
+		return ;
+	current_z = render_get_zindex(render, x, y);
+	if (current_z && z >= current_z)
+		return ;
+	render_set_pixel(render, x, y, color);
+	render_set_zindex(render, x, y, z);
 }
