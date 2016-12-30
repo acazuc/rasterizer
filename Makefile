@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/12/30 15:27:26 by acazuc           ###   ########.fr        #
+#    Updated: 2016/12/30 18:10:43 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = rasterizer
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -g -march=native -flto -mtune=native
+CFLAGS = -Wall -Wextra -Werror -Ofast -g -march=native -flto -mtune=native -funroll-loops
 
 INCLUDES_PATH = include/
 
@@ -64,21 +64,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-FRAMEWORK = -framework OpenGL
-FRAMEWORK+= -framework AppKit
-FRAMEWORK+= -framework IOKit
-FRAMEWORK+= -framework CoreVideo
+#FRAMEWORK = -framework OpenGL
+#FRAMEWORK+= -framework AppKit
+#FRAMEWORK+= -framework IOKit
+#FRAMEWORK+= -framework CoreVideo
 
-#FRAMEWORK = -lGL
-#FRAMEWORK+= -lX11
-#FRAMEWORK+= -lXrandr
-#FRAMEWORK+= -lXinerama
-#FRAMEWORK+= -lXcursor
-#FRAMEWORK+= -lXxf86vm
-#FRAMEWORK+= -ldl
-#FRAMEWORK+= -lrt
-#FRAMEWORK+= -lm
-#FRAMEWORK+= -lpthread
+FRAMEWORK = -lGL
+FRAMEWORK+= -lX11
+FRAMEWORK+= -lXrandr
+FRAMEWORK+= -lXinerama
+FRAMEWORK+= -lXcursor
+FRAMEWORK+= -lXxf86vm
+FRAMEWORK+= -ldl
+FRAMEWORK+= -lrt
+FRAMEWORK+= -lm
+FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 16:16:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 18:06:48 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int				main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
-		camera_set_rotation(&env.camera, 0/*ft_toradians(i)*/, 0/*ft_toradians(i)*/, ft_toradians(i));
-		render_resize(&env.render, env.render.width, env.render.height);
+		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i), ft_toradians(i));
+		//render_resize(&env.render, env.render.width, env.render.height);
+		render_render(&env.render);
 		++i;
 		glfwPollEvents();
 	}

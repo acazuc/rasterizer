@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 12:02:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 16:40:52 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 17:56:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void			render_render_triangle(t_render *render, t_triangle *triangle)
 	i = 0;
 	length = 0;
 	long_edge = 0;
+	max_length = 0;
 	while (i < 3)
 	{
 		edges[i].x1 = render->width / 2 + edges[i].x1 * render->width / 2;

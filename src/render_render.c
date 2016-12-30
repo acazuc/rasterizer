@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:16:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 16:04:24 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 18:10:33 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,14 @@ static void	render_render_do(t_env *env)
 
 void		render_render(t_render *render)
 {
-	if (render->texture)
-		glDeleteTextures(1, &render->texture);
-	glGenTextures(1, &render->texture);
-	ft_memset(render->colors, 0, render->width * render->height * 3 * sizeof(float));
+	if (!render->texture)
+		glGenTextures(1, &render->texture);
+	ft_memset(render->colors, 0, render->width * render->height * 3 * sizeof(*render->colors));
+	ft_memset(render->z_index, 0, render->width * render->height * sizeof(*render->z_index));
 	render_render_do(g_env);
 	glBindTexture(GL_TEXTURE_2D, render->texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, render->width, render->height
 			, 0, GL_RGB, GL_FLOAT, render->colors);
-	glColorPointer(3, GL_FLOAT, 0, render->colors);
 }
