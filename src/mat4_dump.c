@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 12:15:45 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:39:41 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 12:27:16 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	print_value(double val, int x)
 		ft_putchar(' ');
 }
 
-void	mat4_dump(t_mat4 *mat)
+void		mat4_dump(t_mat4 *mat)
 {
 	int		x;
 	int		y;

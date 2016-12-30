@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 13:19:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 15:41:17 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 12:27:58 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	do_copy(char **dst, int width, int height, int mult)
 	ft_memset(*dst, 0, width * height * mult);
 }
 
-void	render_resize(t_render *render, int width, int height)
+void		render_resize(t_render *render, int width, int height)
 {
 	double			*z_index;
 	float			*colors;

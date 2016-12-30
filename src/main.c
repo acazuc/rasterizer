@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 16:32:32 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:16:34 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void test()
 	t_mat4 rx;
 	t_mat4 ry;
 	t_mat4 rz;
+	t_mat4 r;
 	t_mat4 p;
 	t_mat4 s;
 	t_vec4 v;
@@ -66,11 +67,12 @@ void test()
 	mat4_init_projection(&p, 60, 640/480., ranges);
 	ft_putendl("projection: ");
 	mat4_dump(&p);
-	mat4_init_scale(&s, 10, 10, 10);
+	mat4_init_scale(&s, 1, 1, 1);
 	ft_putendl("scale: ");
 	mat4_dump(&s);
-	t = mat4_mult(&t, &rx);
-	t = mat4_mult(&t, &ry);
+	r = mat4_mult(&rx, &ry);
+	r = mat4_mult(&r, &rz);
+	s = mat4_mult(&s, &r);
 	t = mat4_mult(&t, &s);
 	ft_putendl("final:");
 	mat4_dump(&t);
@@ -86,7 +88,7 @@ int				main()
 {
 	t_mat4	proj;
 	t_env	env;
-	double ranges[2] = {0.1, 1000};
+	double ranges[2] = {0.1, 100};
 
 	//test();
 	mat4_init_projection(&proj, 60, 1280./720, ranges);
@@ -94,7 +96,7 @@ int				main()
 	ft_memset(&env, 0, sizeof(env));
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	camera_set_position(&env.camera, 0, 0, 2);
+	camera_set_position(&env.camera, 0, 0, -10);
 	camera_set_rotation(&env.camera, 0, ft_toradians(0), 0);
 	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
@@ -102,13 +104,11 @@ int				main()
 	while (!glfwWindowShouldClose(env.window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		long start = epoch_millis();
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
-		camera_set_rotation(&env.camera, 0, ft_toradians(i), 0);
+		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i), ft_toradians(i));
 		render_resize(&env.render, env.render.width, env.render.height);
-		i++;
-		printf("%ld\n", epoch_millis() - start);
+		++i;
 		glfwPollEvents();
 	}
 	glfwTerminate();

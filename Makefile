@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/10/12 16:16:28 by acazuc           ###   ########.fr        #
+#    Updated: 2016/12/30 12:02:14 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = rasterizer
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -g
+CFLAGS = -Wall -Wextra -Werror -Ofast -g -march=native -flto -mtune=native
 
 INCLUDES_PATH = include/
 
@@ -43,6 +43,7 @@ SRCS_NAME = main.c \
 			render_set_pixel.c \
 			render_render_vertex.c \
 			render_render_line.c \
+			render_render_triangle.c \
 			render_set_zindex.c \
 			render_get_zindex.c \
 			camera_watch_vec4.c \
@@ -62,21 +63,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-#FRAMEWORK = -framework OpenGL
-#FRAMEWORK+= -framework AppKit
-#FRAMEWORK+= -framework IOKit
-#FRAMEWORK+= -framework CoreVideo
+FRAMEWORK = -framework OpenGL
+FRAMEWORK+= -framework AppKit
+FRAMEWORK+= -framework IOKit
+FRAMEWORK+= -framework CoreVideo
 
-FRAMEWORK = -lGL
-FRAMEWORK+= -lX11
-FRAMEWORK+= -lXrandr
-FRAMEWORK+= -lXinerama
-FRAMEWORK+= -lXcursor
-FRAMEWORK+= -lXxf86vm
-FRAMEWORK+= -ldl
-FRAMEWORK+= -lrt
-FRAMEWORK+= -lm
-FRAMEWORK+= -lpthread
+#FRAMEWORK = -lGL
+#FRAMEWORK+= -lX11
+#FRAMEWORK+= -lXrandr
+#FRAMEWORK+= -lXinerama
+#FRAMEWORK+= -lXcursor
+#FRAMEWORK+= -lXxf86vm
+#FRAMEWORK+= -ldl
+#FRAMEWORK+= -lrt
+#FRAMEWORK+= -lm
+#FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:16:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 16:20:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:14:39 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	render_render_do(t_env *env)
 	vec.x = vec.x / (env->render.width / 2) - 1;
 	vec.y = vec.y / (env->render.height / 2) - 1;
 	render_render_vertex(&env->render, &vec);*/
+	t_triangle triangle;
 	t_vec4 orgo;
 	t_vec4 orgx;
 	t_vec4 orgy;
@@ -42,8 +43,6 @@ static void	render_render_do(t_env *env)
 	orgo.color.green = 1;
 	orgo.color.blue = 1;
 	camera_watch_vec4(&env->camera, &orgo);
-	orgo.x = orgo.x / (env->render.width / 2) - 1;
-	orgo.y = orgo.y / (env->render.height / 2) - 1;
 	orgx.x = 1;
 	orgx.y = 0;
 	orgx.z = 0;
@@ -52,8 +51,6 @@ static void	render_render_do(t_env *env)
 	orgx.color.green = 0;
 	orgx.color.blue = 0;
 	camera_watch_vec4(&env->camera, &orgx);
-	orgx.x = orgx.x / (env->render.width / 2) - 1;
-	orgx.y = orgx.y / (env->render.height / 2) - 1;
 	orgy.x = 0;
 	orgy.y = 1;
 	orgy.z = 0;
@@ -62,8 +59,6 @@ static void	render_render_do(t_env *env)
 	orgy.color.green = 1;
 	orgy.color.blue = 0;
 	camera_watch_vec4(&env->camera, &orgy);
-	orgy.x = orgy.x / (env->render.width / 2) - 1;
-	orgy.y = orgy.y / (env->render.height / 2) - 1;
 	orgz.x = 0;
 	orgz.y = 0;
 	orgz.z = 1;
@@ -72,11 +67,13 @@ static void	render_render_do(t_env *env)
 	orgz.color.green = 0;
 	orgz.color.blue = 1;
 	camera_watch_vec4(&env->camera, &orgz);
-	orgz.x = orgz.x / (env->render.width / 2) - 1;
-	orgz.y = orgz.y / (env->render.height / 2) - 1;
 	render_render_line(&env->render, &orgo, &orgx);
 	render_render_line(&env->render, &orgo, &orgy);
 	render_render_line(&env->render, &orgo, &orgz);
+	triangle.v1 = orgx;
+	triangle.v2 = orgy;
+	triangle.v3 = orgz;
+	render_render_triangle(&env->render, &triangle);
 }
 
 void		render_render(t_render *render)

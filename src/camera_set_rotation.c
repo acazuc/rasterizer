@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:32:44 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 13:19:04 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 11:27:36 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ void	camera_set_rotation(t_camera *camera, double x, double y, double z)
 	mat4_init_rotation_z(&rz, z);
 	rx = mat4_mult(&rx, &ry);
 	rx = mat4_mult(&rx, &rz);
-	rx = mat4_reverse(&rx);
 	ft_memcpy(&camera->rotation.value, &rx.value, sizeof(rx.value));
-	camera->view = mat4_mult(&camera->rotation, &camera->position);
 }

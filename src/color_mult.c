@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 12:16:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 12:23:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:06:43 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	check_range(double *val)
 {
-	if (*val < 0)
-		*val = 0;
+	if (*val < -1)
+		*val = -1;
 	else if (*val > 1)
 		*val = 1;
 }

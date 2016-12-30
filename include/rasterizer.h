@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/12 16:18:06 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:03:21 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,14 @@
 # include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
+# define MAX(x, y) (x < y ? y : x)
+# define MIN(x, y) (x < y ? x : y)
 
 typedef struct s_mat4	t_mat4;
 typedef struct s_vec4	t_vec4;
+typedef struct s_triangle t_triangle;
+typedef struct s_triangle_edge t_triangle_edge;
+typedef struct s_triangle_span t_triangle_span;
 typedef struct s_color	t_color;
 typedef struct s_camera	t_camera;
 typedef struct s_render	t_render;
@@ -53,6 +58,7 @@ void					render_set_zindex(t_render *render, int x, int y, double z);
 double					render_get_zindex(t_render *render, int x, int y);
 void					render_render_vertex(t_render *render, t_vec4 *vec);
 void					render_render_line(t_render *render, t_vec4 *v1, t_vec4 *v2);
+void					render_render_triangle(t_render *render, t_triangle *triangle);
 void					camera_watch_vec4(t_camera *camera, t_vec4 *vec);
 void					camera_set_position(t_camera *camera, double x, double y, double z);
 void					camera_set_rotation(t_camera *camera, double x, double y, double z);
@@ -74,6 +80,35 @@ struct					s_vec4
 	double				y;
 	double				z;
 	double				w;
+};
+
+struct					s_triangle_edge
+{
+	t_color				c1;
+	double				x1;
+	double				y1;
+	double				z1;
+	t_color				c2;
+	double				x2;
+	double				y2;
+	double				z2;
+};
+
+struct					s_triangle_span
+{
+	t_color				c1;
+	double				x1;
+	double				z1;
+	t_color				c2;
+	double				x2;
+	double				z2;
+};
+
+struct					s_triangle
+{
+	t_vec4				v1;
+	t_vec4				v2;
+	t_vec4				v3;
 };
 
 struct					s_mat4
