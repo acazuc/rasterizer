@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/30 12:02:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:29:33 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:49:25 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void		_render_span_edges(t_render *render, t_triangle_edge *e1
 		span.z1 = e1->z1 + e1_dif.z * factors[0];
 		tmp = color_mult(&e2_dif.color, factors[2]);
 		span.c2 = color_add(&e2->c1, &tmp);
-		span.x2 = e1->x1 + e2_dif.x * factors[2];
+		span.x2 = e2->x1 + e2_dif.x * factors[2];
 		span.z2 = e2->z1 + e2_dif.z * factors[2];
 		_render_span(render, &span, y);
 		factors[0] += factors[1];

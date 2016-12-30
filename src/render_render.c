@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 16:16:18 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:14:39 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 16:04:24 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,6 @@ t_env	*g_env;
 
 static void	render_render_do(t_env *env)
 {
-	/*t_vec4 vec;
-
-	vec.x = 0;
-	vec.y = 0;
-	vec.z = 0;
-	vec.w = 1;
-	vec.color.red = 1;
-	vec.color.green = 1;
-	vec.color.blue = 0;
-	camera_watch_vec4(&env->camera, &vec);
-	vec.x = vec.x / (env->render.width / 2) - 1;
-	vec.y = vec.y / (env->render.height / 2) - 1;
-	render_render_vertex(&env->render, &vec);*/
 	t_triangle triangle;
 	t_vec4 orgo;
 	t_vec4 orgx;
@@ -42,6 +29,7 @@ static void	render_render_do(t_env *env)
 	orgo.color.red = 1;
 	orgo.color.green = 1;
 	orgo.color.blue = 1;
+	orgo.color.alpha = 1;
 	camera_watch_vec4(&env->camera, &orgo);
 	orgx.x = 1;
 	orgx.y = 0;
@@ -50,6 +38,7 @@ static void	render_render_do(t_env *env)
 	orgx.color.red = 1;
 	orgx.color.green = 0;
 	orgx.color.blue = 0;
+	orgx.color.alpha = 1;
 	camera_watch_vec4(&env->camera, &orgx);
 	orgy.x = 0;
 	orgy.y = 1;
@@ -58,6 +47,7 @@ static void	render_render_do(t_env *env)
 	orgy.color.red = 0;
 	orgy.color.green = 1;
 	orgy.color.blue = 0;
+	orgy.color.alpha = 1;
 	camera_watch_vec4(&env->camera, &orgy);
 	orgz.x = 0;
 	orgz.y = 0;
@@ -66,6 +56,7 @@ static void	render_render_do(t_env *env)
 	orgz.color.red = 0;
 	orgz.color.green = 0;
 	orgz.color.blue = 1;
+	orgz.color.alpha = 1;
 	camera_watch_vec4(&env->camera, &orgz);
 	render_render_line(&env->render, &orgo, &orgx);
 	render_render_line(&env->render, &orgo, &orgy);

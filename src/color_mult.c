@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 12:16:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:06:43 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 16:02:19 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ t_color		color_mult(t_color *color, double factor)
 	check_range(&new.green);
 	new.blue = color->blue * factor;
 	check_range(&new.blue);
+	new.alpha = color->alpha * factor;
+	check_range(&new.alpha);
 	return (new);
 }

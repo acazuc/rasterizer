@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:24:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 15:58:45 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <stdio.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
-# define MAX(x, y) (x < y ? y : x)
-# define MIN(x, y) (x < y ? x : y)
+# define MAX(x, y) ((x) < (y) ? (y) : (x))
+# define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 # define Z_MIN 0.01
 # define Z_MAX 1000

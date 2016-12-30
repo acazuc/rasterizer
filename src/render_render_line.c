@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/12 14:35:01 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:29:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2016/12/30 16:02:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void		do_draw(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.red = start->color.red + dif->color.red * iter;
 		tmp.color.green = start->color.green + dif->color.green * iter;
 		tmp.color.blue = start->color.blue + dif->color.blue * iter;
+		tmp.color.alpha = start->color.alpha + dif->color.alpha * iter;
 		render_put_pixel(render, tmp.x, tmp.y, tmp.z, &tmp.color);
 		if (iter == 1)
 			break;
