@@ -18,7 +18,7 @@ void	window_listener_resize(GLFWwindow *window, int width, int height)
 {
 	g_env->window_width = width;
 	g_env->window_height = height;
-	render_resize(&g_env->render, width, height);
+	render_resize(&g_env->ctx, width, height);
 	g_env->camera.width = width;
 	g_env->camera.height = height;
 	window_update_context(g_env);

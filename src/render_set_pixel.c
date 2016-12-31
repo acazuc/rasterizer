@@ -12,17 +12,17 @@
 
 #include "rasterizer.h"
 
-void	render_set_pixel(t_render *render, int x, int y, t_color *color)
+void	render_set_pixel(t_ftg_ctx *ctx, int x, int y, t_color *color)
 {
 	float	*red;
 	float	*green;
 	float	*blue;
 
-	if (y < 0 || y >= render->height || x < 0 || x >= render->width)
+	if (y < 0 || y >= ctx->height || x < 0 || x >= ctx->width)
 		return ;
-	red = &render->colors[(y * render->width + x) * 3 + 0];
-	green = &render->colors[(y * render->width + x) * 3 + 1];
-	blue = &render->colors[(y * render->width + x) * 3 + 2];
+	red = &ctx->colors[(y * ctx->width + x) * 3 + 0];
+	green = &ctx->colors[(y * ctx->width + x) * 3 + 1];
+	blue = &ctx->colors[(y * ctx->width + x) * 3 + 2];
 	if (color->alpha == 1)
 	{
 		*red = MAX(0, MIN(1, color->red));

@@ -26,11 +26,11 @@ static void		draw_elements(t_env *env)
 	coords[5] = 1;
 	coords[7] = 1;
 	ft_memset(vertex, 0, sizeof(vertex));
-	vertex[2] = env->render.width;
-	vertex[4] = env->render.width;
-	vertex[5] = env->render.height;
-	vertex[7] = env->render.height;
-	glBindTexture(GL_TEXTURE_2D, env->render.texture);
+	vertex[2] = env->ctx.width;
+	vertex[4] = env->ctx.width;
+	vertex[5] = env->ctx.height;
+	vertex[7] = env->ctx.height;
+	glBindTexture(GL_TEXTURE_2D, env->ctx.texture);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glVertexPointer(2, GL_INT, 0, vertex);
@@ -62,7 +62,7 @@ int				main()
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i * 2), ft_toradians(i * 3));
-		render_render(&env.render);
+		render_render(&env.ctx);
 		++i;
 		glfwPollEvents();
 	}

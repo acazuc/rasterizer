@@ -12,12 +12,12 @@
 
 #include "rasterizer.h"
 
-void	render_render_vertex(t_render *render, t_vec4 *vec)
+void	render_render_vertex(t_ftg_ctx *ctx, t_vec4 *vec)
 {
 	t_vec4	tmp;
 
 	ft_memcpy(&tmp, vec, sizeof(tmp));
-	tmp.x = render->width / 2 + tmp.x * render->width / 2;
-	tmp.y = render->height / 2 + tmp.y * render->height / 2;
-	render_put_pixel(render, &tmp);
+	tmp.x = ctx->width / 2 + tmp.x * ctx->width / 2;
+	tmp.y = ctx->height / 2 + tmp.y * ctx->height / 2;
+	render_put_pixel(ctx, &tmp);
 }

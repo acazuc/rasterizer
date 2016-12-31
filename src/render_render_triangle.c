@@ -12,7 +12,7 @@
 
 #include "rasterizer.h"
 
-static void		_render_bottom_flat(t_render *render, t_triangle *tr)
+static void		_render_bottom_flat(t_ftg_ctx *ctx, t_triangle *tr)
 {
 	t_vec4	v1;
 	t_vec4	v2;
@@ -64,7 +64,7 @@ static void		_render_bottom_flat(t_render *render, t_triangle *tr)
 			tmp.color.green = (1 - t) * v1.color.green + t * v2.color.green;
 			tmp.color.blue = (1 - t) * v1.color.blue + t * v2.color.blue;
 			tmp.color.alpha = (1 - t) * v1.color.alpha + t * v2.color.alpha;
-			render_put_pixel(render, &tmp);
+			render_put_pixel(ctx, &tmp);
 		}
 		v1.x += step1.x;
 		v1.z += step1.z;
@@ -81,7 +81,7 @@ static void		_render_bottom_flat(t_render *render, t_triangle *tr)
 	}
 }
 
-static void		_render_top_flat(t_render *render, t_triangle *tr)
+static void		_render_top_flat(t_ftg_ctx *ctx, t_triangle *tr)
 {
 	t_vec4	v1;
 	t_vec4	v2;
@@ -133,7 +133,7 @@ static void		_render_top_flat(t_render *render, t_triangle *tr)
 			tmp.color.green = (1 - t) * v1.color.green + t * v2.color.green;
 			tmp.color.blue = (1 - t) * v1.color.blue + t * v2.color.blue;
 			tmp.color.alpha = (1 - t) * v1.color.alpha + t * v2.color.alpha;
-			render_put_pixel(render, &tmp);
+			render_put_pixel(ctx, &tmp);
 		}
 		v1.x -= step1.x;
 		v1.z -= step1.z;
@@ -150,7 +150,7 @@ static void		_render_top_flat(t_render *render, t_triangle *tr)
 	}
 }
 
-static void		_render_not_flat(t_render *render, t_triangle *tr)
+static void		_render_not_flat(t_ftg_ctx *ctx, t_triangle *tr)
 {
 	double		factor;
 	t_triangle	new;
@@ -167,11 +167,11 @@ static void		_render_not_flat(t_render *render, t_triangle *tr)
 	new.v1 = tr->v2;
 	new.v2 = tmp;
 	new.v3 = tr->v3;
-	_render_top_flat(render, &new);
+	_render_top_flat(ctx, &new);
 	new.v1 = tr->v1;
 	new.v2 = tr->v2;
 	new.v3 = tmp;
-	_render_bottom_flat(render, &new);
+	_render_bottom_flat(ctx, &new);
 }
 
 static void		_get_vertices_sorted(t_triangle *triangle)
@@ -198,22 +198,22 @@ static void		_get_vertices_sorted(t_triangle *triangle)
 	}
 }
 
-void			render_render_triangle(t_render *render, t_triangle *triangle)
+void			render_render_triangle(t_ftg_ctx *ctx, t_triangle *triangle)
 {
 	t_triangle	intern;
 
 	intern = *triangle;
-	intern.v1.x = (int)(render->width / 2 + intern.v1.x * render->width / 2);
-	intern.v1.y = (int)(render->height / 2 + intern.v1.y * render->height / 2);
-	intern.v2.x = (int)(render->width / 2 + intern.v2.x * render->width / 2);
-	intern.v2.y = (int)(render->height / 2 + intern.v2.y * render->height / 2);
-	intern.v3.x = (int)(render->width / 2 + intern.v3.x * render->width / 2);
-	intern.v3.y = (int)(render->height / 2 + intern.v3.y * render->height / 2);
+	intern.v1.x = (int)(ctx->width / 2 + intern.v1.x * ctx->width / 2);
+	intern.v1.y = (int)(ctx->height / 2 + intern.v1.y * ctx->height / 2);
+	intern.v2.x = (int)(ctx->width / 2 + intern.v2.x * ctx->width / 2);
+	intern.v2.y = (int)(ctx->height / 2 + intern.v2.y * ctx->height / 2);
+	intern.v3.x = (int)(ctx->width / 2 + intern.v3.x * ctx->width / 2);
+	intern.v3.y = (int)(ctx->height / 2 + intern.v3.y * ctx->height / 2);
 	_get_vertices_sorted(&intern);
 	if (intern.v2.y == intern.v3.y)
-		_render_bottom_flat(render, &intern);
+		_render_bottom_flat(ctx, &intern);
 	else if (intern.v1.y == intern.v2.y)
-		_render_top_flat(render, &intern);
+		_render_top_flat(ctx, &intern);
 	else
-		_render_not_flat(render, &intern);
+		_render_not_flat(ctx, &intern);
 }

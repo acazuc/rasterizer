@@ -12,9 +12,9 @@
 
 #include "rasterizer.h"
 
-void	render_set_zindex(t_render *render, int x, int y, double z)
+void	render_set_zindex(t_ftg_ctx *ctx, int x, int y, double z)
 {
-	if (x < 0 || x >= render->width || y < 0 || y >= render->height)
+	if (x < 0 || x >= ctx->width || y < 0 || y >= ctx->height)
 		return ;
-	render->z_index[y * render->width + x] = z;
+	ctx->z_index[y * ctx->width + x] = z;
 }

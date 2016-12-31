@@ -12,16 +12,16 @@
 
 #include "rasterizer.h"
 
-void	render_put_pixel(t_render *render, t_vec4 *vec)
+void	render_put_pixel(t_ftg_ctx *ctx, t_vec4 *vec)
 {
 	double	current_z;
 
-	if (vec->x < 0 || vec->x >= render->width || vec->y < 0 || vec->y >= render->height
+	if (vec->x < 0 || vec->x >= ctx->width || vec->y < 0 || vec->y >= ctx->height
 			|| vec->z < Z_MIN || vec->z > Z_MAX)
 		return ;
-	current_z = render_get_zindex(render, vec->x, vec->y);
+	current_z = render_get_zindex(ctx, vec->x, vec->y);
 	if (current_z && vec->z >= current_z)
 		return ;
-	render_set_pixel(render, vec->x, vec->y, &vec->color);
-	render_set_zindex(render, vec->x, vec->y, vec->z);
+	render_set_pixel(ctx, vec->x, vec->y, &vec->color);
+	render_set_zindex(ctx, vec->x, vec->y, vec->z);
 }

@@ -12,7 +12,7 @@
 
 #include "rasterizer.h"
 
-static void		do_draw_top(t_render *render, t_vec4 *start, t_vec4 *dif)
+static void		do_draw_top(t_ftg_ctx *ctx, t_vec4 *start, t_vec4 *dif)
 {
 	t_vec4	tmp;
 	double	iter;
@@ -29,12 +29,12 @@ static void		do_draw_top(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.green = start->color.green + dif->color.green * fac;
 		tmp.color.blue = start->color.blue + dif->color.blue * fac;
 		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		render_put_pixel(render, &tmp);
+		render_put_pixel(ctx, &tmp);
 		++iter;
 	}
 }
 
-static void		do_draw_bottom(t_render *render, t_vec4 *start, t_vec4 *dif)
+static void		do_draw_bottom(t_ftg_ctx *ctx, t_vec4 *start, t_vec4 *dif)
 {
 	t_vec4	tmp;
 	double	iter;
@@ -51,12 +51,12 @@ static void		do_draw_bottom(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.green = start->color.green + dif->color.green * fac;
 		tmp.color.blue = start->color.blue + dif->color.blue * fac;
 		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		render_put_pixel(render, &tmp);
+		render_put_pixel(ctx, &tmp);
 		--iter;
 	}
 }
 
-static void		do_draw_right(t_render *render, t_vec4 *start, t_vec4 *dif)
+static void		do_draw_right(t_ftg_ctx *ctx, t_vec4 *start, t_vec4 *dif)
 {
 	t_vec4	tmp;
 	double	iter;
@@ -73,12 +73,12 @@ static void		do_draw_right(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.green = start->color.green + dif->color.green * fac;
 		tmp.color.blue = start->color.blue + dif->color.blue * fac;
 		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		render_put_pixel(render, &tmp);
+		render_put_pixel(ctx, &tmp);
 		++iter;
 	}
 }
 
-static void		do_draw_left(t_render *render, t_vec4 *start, t_vec4 *dif)
+static void		do_draw_left(t_ftg_ctx *ctx, t_vec4 *start, t_vec4 *dif)
 {
 	t_vec4	tmp;
 	double	iter;
@@ -95,35 +95,35 @@ static void		do_draw_left(t_render *render, t_vec4 *start, t_vec4 *dif)
 		tmp.color.green = start->color.green + dif->color.green * fac;
 		tmp.color.blue = start->color.blue + dif->color.blue * fac;
 		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		render_put_pixel(render, &tmp);
+		render_put_pixel(ctx, &tmp);
 		--iter;
 	}
 }
 
-void	render_render_line(t_render *render, t_vec4 *v1, t_vec4 *v2)
+void	render_render_line(t_ftg_ctx *ctx, t_vec4 *v1, t_vec4 *v2)
 {
 	t_vec4	start;
 	t_vec4	dif;
 
 	ft_memcpy(&start, v1, sizeof(start));
-	start.x = (int)(render->width / 2 + start.x * render->width / 2);
-	start.y = (int)(render->height / 2 + start.y * render->height / 2);
-	dif.x = (int)((v2->x - v1->x) * render->width / 2);
-	dif.y = (int)((v2->y - v1->y) * render->height / 2);
+	start.x = (int)(ctx->width / 2 + start.x * ctx->width / 2);
+	start.y = (int)(ctx->height / 2 + start.y * ctx->height / 2);
+	dif.x = (int)((v2->x - v1->x) * ctx->width / 2);
+	dif.y = (int)((v2->y - v1->y) * ctx->height / 2);
 	dif.z = (v2->z - v1->z);
 	dif.color = color_sub(&v2->color, &v1->color);
 	if (fabs(dif.x) > fabs(dif.y))
 	{
 		if (dif.x < 0)
-			do_draw_left(render, &start, &dif);
+			do_draw_left(ctx, &start, &dif);
 		else
-			do_draw_right(render, &start, &dif);
+			do_draw_right(ctx, &start, &dif);
 	}
 	else
 	{
 		if (dif.y < 0)
-			do_draw_bottom(render, &start, &dif);
+			do_draw_bottom(ctx, &start, &dif);
 		else
-			do_draw_top(render, &start, &dif);
+			do_draw_top(ctx, &start, &dif);
 	}
 }
