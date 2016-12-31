@@ -63,6 +63,8 @@ SRCS_NAME = main.c \
 			ftg/ftg_load_matrix.c \
 			ftg/ftg_load_transpose_matrix.c \
 			ftg/ftg_matrix_mode.c \
+			ftg/ftg_maxbsf.c \
+			ftg/ftg_maxild.c \
 			ftg/ftg_minbsf.c \
 			ftg/ftg_minild.c \
 			ftg/ftg_mult_matrix.c \
