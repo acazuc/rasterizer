@@ -30,7 +30,7 @@ static void		draw_elements(t_env *env)
 	vertex[4] = env->ctx.width;
 	vertex[5] = env->ctx.height;
 	vertex[7] = env->ctx.height;
-	//glBindTexture(GL_TEXTURE_2D, env->ctx.texture);
+	glBindTexture(GL_TEXTURE_2D, env->texture);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glVertexPointer(2, GL_INT, 0, vertex);

@@ -59,9 +59,18 @@ SRCS_NAME = main.c \
 			ftg/ftg_get_floatv.c \
 			ftg/ftg_get_intv.c \
 			ftg/ftg_get.c \
+			ftg/ftg_load_identity.c \
 			ftg/ftg_load_matrix.c \
+			ftg/ftg_load_transpose_matrix.c \
 			ftg/ftg_matrix_mode.c \
+			ftg/ftg_minbsf.c \
+			ftg/ftg_minild.c \
 			ftg/ftg_mult_matrix.c \
+			ftg/ftg_mult_transpose_matrix.c \
+			ftg/ftg_perspective.c \
+			ftg/ftg_rotate.c \
+			ftg/ftg_scale.c \
+			ftg/ftg_translate.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

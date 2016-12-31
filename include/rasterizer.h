@@ -104,6 +104,7 @@ struct					s_env
 	char				*window_title;
 	int					window_width;
 	int					window_height;
+	GLuint				texture;
 	t_ftg_ctx			ctx;
 	t_camera			camera;
 };

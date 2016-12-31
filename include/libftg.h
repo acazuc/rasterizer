@@ -54,6 +54,38 @@ void		ftg_get_floatv(t_ftg_enum pname, t_ftg_float *params);
 void		ftg_get_integerv(t_ftg_enum pname, t_ftg_int *params);
 void		ftg_mult_matrixd(const t_ftg_double *m);
 void		ftg_mult_matrixf(const t_ftg_float *m);
+void		ftg_load_identity(void);
+void		ftg_mult_transpose_matrixd(const t_ftg_double *m);
+void		ftg_mult_transpose_matrixf(const t_ftg_float *m);
+void		ftg_load_transpose_matrixd(const t_ftg_double *m);
+void		ftg_load_transpose_matrixf(const t_ftg_float *m);
+void		ftg_perspective(t_ftg_double fovy, t_ftg_double aspect, t_ftg_double z_near, t_ftg_double z_far);
+void		ftg_translated(t_ftg_double x, t_ftg_double y, t_ftg_double z);
+void		ftg_translatef(t_ftg_float x, t_ftg_float y, t_ftg_float z);
+void		ftg_rotated(t_ftg_double angle, t_ftg_double x, t_ftg_double y, t_ftg_double z);
+void		ftg_rotatef(t_ftg_float angle, t_ftg_float x, t_ftg_float y, t_ftg_float z);
+void		ftg_scaled(t_ftg_double x, t_ftg_double y, t_ftg_double z);
+void		ftg_scalef(t_ftg_float x, t_ftg_float y, t_ftg_float z);
+t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
+t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);
+t_ftg_short	ftg_mins(t_ftg_short s1, t_ftg_short s2);
+t_ftg_ushort	ftg_minus(t_ftg_ushort s1, t_ftg_ushort s2);
+t_ftg_int	ftg_mini(t_ftg_int i1, t_ftg_int i2);
+t_ftg_uint	ftg_minui(t_ftg_uint i1, t_ftg_uint i2);
+t_ftg_long	ftg_minl(t_ftg_long l1, t_ftg_long l2);
+t_ftg_ulong	ftg_minul(t_ftg_ulong l1, t_ftg_ulong l2);
+t_ftg_float	ftg_minf(t_ftg_float f1, t_ftg_float f2);
+t_ftg_double	ftg_mind(t_ftg_double f1, t_ftg_double f2);
+t_ftg_byte	ftg_maxb(t_ftg_byte b1, t_ftg_byte b2);
+t_ftg_ubyte	ftg_maxub(t_ftg_ubyte b1, t_ftg_ubyte b2);
+t_ftg_short	ftg_maxs(t_ftg_short s1, t_ftg_short s2);
+t_ftg_ushort	ftg_maxus(t_ftg_ushort s1, t_ftg_ushort s2);
+t_ftg_int	ftg_maxi(t_ftg_int i1, t_ftg_int i2);
+t_ftg_uint	ftg_maxui(t_ftg_uint i1, t_ftg_uint i2);
+t_ftg_long	ftg_maxl(t_ftg_long l1, t_ftg_long l2);
+t_ftg_ulong	ftg_maxul(t_ftg_ulong l1, t_ftg_ulong l2);
+t_ftg_float	ftg_maxf(t_ftg_float f1, t_ftg_float f2);
+t_ftg_double	ftg_maxd(t_ftg_double f1, t_ftg_double f2);
 
 struct					s_ftg_ctx
 {
