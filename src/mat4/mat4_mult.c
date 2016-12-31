@@ -20,23 +20,22 @@ static double	priv_patch(t_mat4 *m1, t_mat4 *m2, int x, int y)
 			+ m1->value[y][3] * m2->value[3][x]);
 }
 
-t_mat4			mat4_mult(t_mat4 *m1, t_mat4 *m2)
+void			mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
 {
-	t_mat4	new;
+	t_mat4		tmp;
 	int		y;
 	int		x;
 
-	mat4_clear(&new);
 	y = 0;
 	while (y < 4)
 	{
 		x = 0;
 		while (x < 4)
 		{
-			new.value[y][x] = priv_patch(m1, m2, x, y);
-			x++;
+			tmp.value[y][x] = priv_patch(m1, m2, x, y);
+			++x;
 		}
-		y++;
+		++y;
 	}
-	return (new);
+	ft_memcpy(dst, &tmp, sizeof(tmp));
 }

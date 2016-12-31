@@ -12,45 +12,118 @@
 
 #include "rasterizer.h"
 
-static void		calc_diff(t_vec4 *v1, t_vec4 *v2, t_vec4 *dif)
-{
-	ft_memset(dif, 0, sizeof(*dif));
-	dif->x = v2->x - v1->x;
-	dif->y = v2->y - v1->y;
-	dif->z = v2->z - v1->z;
-	dif->color = color_sub(&v2->color, &v1->color);
-}
-
-static void		do_draw(t_render *render, t_vec4 *start, t_vec4 *dif)
+static void		do_draw_top(t_render *render, t_vec4 *start, t_vec4 *dif)
 {
 	t_vec4	tmp;
 	double	iter;
-	double	len;
+	double	fac;
 
-	len = sqrt(pow(dif->x * render->width / 2, 2) + pow(dif->y * render->height / 2, 2));
 	iter = 0;
-	while (iter <= 1)
+	while (iter <= dif->y)
 	{
-		tmp.x = render->width / 2 + (start->x + dif->x * iter) * render->width / 2;
-		tmp.y = render->height / 2 + (start->y + dif->y * iter) * render->height / 2;
-		tmp.z = start->z + dif->z * iter;
-		tmp.color.red = start->color.red + dif->color.red * iter;
-		tmp.color.green = start->color.green + dif->color.green * iter;
-		tmp.color.blue = start->color.blue + dif->color.blue * iter;
-		tmp.color.alpha = start->color.alpha + dif->color.alpha * iter;
-		render_put_pixel(render, tmp.x, tmp.y, tmp.z, &tmp.color);
-		if (iter == 1)
-			break;
-		iter += 1 / len;
-		if (iter > 1)
-			iter = 1;
+		fac = iter / dif->y;
+		tmp.x = start->x + dif->x * fac;
+		tmp.y = start->y + iter;
+		tmp.z = start->z + dif->z * fac;
+		tmp.color.red = start->color.red + dif->color.red * fac;
+		tmp.color.green = start->color.green + dif->color.green * fac;
+		tmp.color.blue = start->color.blue + dif->color.blue * fac;
+		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
+		render_put_pixel(render, &tmp);
+		++iter;
+	}
+}
+
+static void		do_draw_bottom(t_render *render, t_vec4 *start, t_vec4 *dif)
+{
+	t_vec4	tmp;
+	double	iter;
+	double	fac;
+
+	iter = 0;
+	while (iter >= dif->y)
+	{
+		fac = iter / dif->y;
+		tmp.x = start->x + dif->x * fac;
+		tmp.y = start->y + iter;
+		tmp.z = start->z + dif->z * fac;
+		tmp.color.red = start->color.red + dif->color.red * fac;
+		tmp.color.green = start->color.green + dif->color.green * fac;
+		tmp.color.blue = start->color.blue + dif->color.blue * fac;
+		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
+		render_put_pixel(render, &tmp);
+		--iter;
+	}
+}
+
+static void		do_draw_right(t_render *render, t_vec4 *start, t_vec4 *dif)
+{
+	t_vec4	tmp;
+	double	iter;
+	double	fac;
+
+	iter = 0;
+	while (iter <= dif->x)
+	{
+		fac = iter / dif->x;
+		tmp.x = start->x + iter;
+		tmp.y = start->y + dif->y * fac;
+		tmp.z = start->z + dif->z * fac;
+		tmp.color.red = start->color.red + dif->color.red * fac;
+		tmp.color.green = start->color.green + dif->color.green * fac;
+		tmp.color.blue = start->color.blue + dif->color.blue * fac;
+		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
+		render_put_pixel(render, &tmp);
+		++iter;
+	}
+}
+
+static void		do_draw_left(t_render *render, t_vec4 *start, t_vec4 *dif)
+{
+	t_vec4	tmp;
+	double	iter;
+	double	fac;
+
+	iter = 0;
+	while (iter >= dif->x)
+	{
+		fac = iter / dif->x;
+		tmp.x = start->x + iter;
+		tmp.y = start->y + dif->y * fac;
+		tmp.z = start->z + dif->z * fac;
+		tmp.color.red = start->color.red + dif->color.red * fac;
+		tmp.color.green = start->color.green + dif->color.green * fac;
+		tmp.color.blue = start->color.blue + dif->color.blue * fac;
+		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
+		render_put_pixel(render, &tmp);
+		--iter;
 	}
 }
 
 void	render_render_line(t_render *render, t_vec4 *v1, t_vec4 *v2)
 {
+	t_vec4	start;
 	t_vec4	dif;
 
-	calc_diff(v1, v2, &dif);
-	do_draw(render, v1, &dif);
+	ft_memcpy(&start, v1, sizeof(start));
+	start.x = (int)(render->width / 2 + start.x * render->width / 2);
+	start.y = (int)(render->height / 2 + start.y * render->height / 2);
+	dif.x = (int)((v2->x - v1->x) * render->width / 2);
+	dif.y = (int)((v2->y - v1->y) * render->height / 2);
+	dif.z = (v2->z - v1->z);
+	dif.color = color_sub(&v2->color, &v1->color);
+	if (fabs(dif.x) > fabs(dif.y))
+	{
+		if (dif.x < 0)
+			do_draw_left(render, &start, &dif);
+		else
+			do_draw_right(render, &start, &dif);
+	}
+	else
+	{
+		if (dif.y < 0)
+			do_draw_bottom(render, &start, &dif);
+		else
+			do_draw_top(render, &start, &dif);
+	}
 }

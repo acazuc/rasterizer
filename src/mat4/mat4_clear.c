@@ -14,18 +14,5 @@
 
 void	mat4_clear(t_mat4 *mat)
 {
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < 4)
-	{
-		x = 0;
-		while (x < 4)
-		{
-			mat->value[y][x] = 0;
-			x++;
-		}
-		y++;
-	}
+	ft_memset(mat, 0, sizeof(*mat));
 }

@@ -12,7 +12,7 @@
 
 #include "rasterizer.h"
 
-t_mat4		mat4_reverse(t_mat4 *mat)
+void		mat4_reverse(t_mat4 *mat)
 {
 	t_mat4	new;
 	int		x;
@@ -25,9 +25,9 @@ t_mat4		mat4_reverse(t_mat4 *mat)
 		while (x < 4)
 		{
 			new.value[y][x] = mat->value[x][y];
-			x++;
+			++x;
 		}
-		y++;
+		++y;
 	}
-	return (new);
+	*mat = new;
 }

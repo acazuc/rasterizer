@@ -18,14 +18,15 @@
 # include <sys/time.h>
 # include <stdio.h>
 
+
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 # define MAX(x, y) ((x) < (y) ? (y) : (x))
 # define MIN(x, y) ((x) < (y) ? (x) : (y))
+# define ABS(x) ((x) < 0 ? (-(x)) : x)
 
 # define Z_MIN 0.01
 # define Z_MAX 1000
 
-typedef struct s_mat4	t_mat4;
 typedef struct s_vec4	t_vec4;
 typedef struct s_triangle t_triangle;
 typedef struct s_triangle_edge t_triangle_edge;
@@ -35,6 +36,8 @@ typedef struct s_camera	t_camera;
 typedef struct s_render	t_render;
 typedef struct s_env	t_env;
 
+# include "mat4.h"
+
 void					error_quit(char *str, char *file, int line);
 void					window_create(t_env *env);
 void					window_update_context(t_env *env);
@@ -42,21 +45,9 @@ void					window_listener_resize(GLFWwindow *window, int width, int height);
 t_color					color_add(t_color *c1, t_color *c2);
 t_color					color_sub(t_color *c1, t_color *c2);
 t_color					color_mult(t_color *color, double factor);
-void					mat4_clear(t_mat4 *mat);
-void					mat4_init_scale(t_mat4 *mat, double x, double y, double z);
-void					mat4_init_identity(t_mat4 *mat);
-void					mat4_init_projection(t_mat4 *mat, double sfov, double ratio, double ranges[2]);
-void					mat4_init_translation(t_mat4 *mat, double x, double y, double z);
-void					mat4_init_rotation_x(t_mat4 *mat, double angle);
-void					mat4_init_rotation_y(t_mat4 *mat, double angle);
-void					mat4_init_rotation_z(t_mat4 *mat, double angle);
-void					mat4_dump(t_mat4 *mat);
-t_mat4					mat4_mult(t_mat4 *m1, t_mat4 *m2);
-void					mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec);
-t_mat4					mat4_reverse(t_mat4 *mat);
 void					render_resize(t_render *render, int width, int height);
 void					render_render(t_render *render);
-void					render_put_pixel(t_render *render, int x, int y, double z, t_color *color);
+void					render_put_pixel(t_render *render, t_vec4 *vec);
 void					render_set_pixel(t_render *render, int x, int y, t_color *color);
 void					render_set_zindex(t_render *render, int x, int y, double z);
 double					render_get_zindex(t_render *render, int x, int y);
@@ -113,11 +104,6 @@ struct					s_triangle
 	t_vec4				v1;
 	t_vec4				v2;
 	t_vec4				v3;
-};
-
-struct					s_mat4
-{
-	double				value[4][4];
 };
 
 struct					s_camera

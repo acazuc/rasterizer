@@ -14,5 +14,5 @@
 
 void	camera_set_projection(t_camera *camera, t_mat4 *mat)
 {
-	camera->projection = *mat;
+	ft_memcpy(&camera->projection, mat, sizeof(*mat));
 }

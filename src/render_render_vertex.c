@@ -14,10 +14,10 @@
 
 void	render_render_vertex(t_render *render, t_vec4 *vec)
 {
-	double	x;
-	double	y;
+	t_vec4	tmp;
 
-	x = vec->x * render->width / 2  + render->width / 2;
-	y = vec->y * render->height / 2 + render->height / 2;
-	render_put_pixel(render, x, y, vec->z, &vec->color);
+	ft_memcpy(&tmp, vec, sizeof(tmp));
+	tmp.x = render->width / 2 + tmp.x * render->width / 2;
+	tmp.y = render->height / 2 + tmp.y * render->height / 2;
+	render_put_pixel(render, &tmp);
 }

@@ -18,13 +18,10 @@ void	camera_set_rotation(t_camera *camera, double x, double y, double z)
 	t_mat4	ry;
 	t_mat4	rz;
 
-	mat4_clear(&rx);
-	mat4_clear(&ry);
-	mat4_clear(&rz);
 	mat4_init_rotation_x(&rx, x);
 	mat4_init_rotation_y(&ry, y);
 	mat4_init_rotation_z(&rz, z);
-	rx = mat4_mult(&rx, &ry);
-	rx = mat4_mult(&rx, &rz);
-	ft_memcpy(&camera->rotation.value, &rx.value, sizeof(rx.value));
+	mat4_mult(&rz, &rz, &ry);
+	mat4_mult(&rz, &rz, &rx);
+	ft_memcpy(&camera->rotation, &rz, sizeof(rz));
 }

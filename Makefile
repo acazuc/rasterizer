@@ -28,16 +28,16 @@ SRCS_NAME = main.c \
 			color_add.c \
 			color_sub.c \
 			color_mult.c \
-			mat4_clear.c \
-			mat4_init_scale.c \
-			mat4_init_identity.c \
-			mat4_init_translation.c \
-			mat4_init_rotations.c \
-			mat4_init_projection.c \
-			mat4_mult.c \
-			mat4_transform_vec4.c \
-			mat4_reverse.c \
-			mat4_dump.c \
+			mat4/mat4_clear.c \
+			mat4/mat4_init_scale.c \
+			mat4/mat4_init_identity.c \
+			mat4/mat4_init_translation.c \
+			mat4/mat4_init_rotations.c \
+			mat4/mat4_init_projection.c \
+			mat4/mat4_mult.c \
+			mat4/mat4_transform_vec4.c \
+			mat4/mat4_reverse.c \
+			mat4/mat4_dump.c \
 			render_resize.c \
 			render_render.c \
 			render_set_pixel.c \
@@ -93,6 +93,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 
 odir:
 	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)mat4
 
 clean:
 	@make -C libft clean

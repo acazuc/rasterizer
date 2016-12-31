@@ -11,130 +11,209 @@
 /* ************************************************************************** */
 
 #include "rasterizer.h"
-/*
-static void		_render_span(t_render *render, t_triangle_span *span, double y)
-{
-	t_color	color;
-	t_color tmp;
-	t_vec4	dif;
-	double	factor;
-	double	factor_step;
-	double	x;
-	double	z;
 
-	dif.x = span->x2 - span->x1;
-	if (dif.x == 0)
-		return ;
-	dif.color = color_sub(&span->c2, &span->c1);
-	dif.z = span->z2 - span->z1;
-	factor = 0;
-	factor_step = 1 / dif.x;
-	x = span->x1;
-	while (x < span->x2)
+static void		_render_bottom_flat(t_render *render, t_triangle *tr)
+{
+	t_vec4	v1;
+	t_vec4	v2;
+	t_vec4	step1;
+	t_vec4	step2;
+
+	double v2v1Diff = (tr->v2.y - tr->v1.y);
+	step1.x = (tr->v2.x - tr->v1.x) / v2v1Diff;
+	step1.z = (tr->v2.z - tr->v1.z) / v2v1Diff;
+	step1.color.red = (tr->v2.color.red - tr->v1.color.red) / v2v1Diff;
+	step1.color.green = (tr->v2.color.green - tr->v1.color.green) / v2v1Diff;
+	step1.color.blue = (tr->v2.color.blue - tr->v1.color.blue) / v2v1Diff;
+	step1.color.alpha = (tr->v2.color.alpha - tr->v1.color.alpha) / v2v1Diff;
+	double v3v1Diff = (tr->v3.y - tr->v1.y);
+	step2.x = (tr->v3.x - tr->v1.x) / v3v1Diff;
+	step2.z = (tr->v3.z - tr->v1.z) / v3v1Diff;
+	step2.color.red = (tr->v3.color.red - tr->v1.color.red) / v3v1Diff;
+	step2.color.green = (tr->v3.color.green - tr->v1.color.green) / v3v1Diff;
+	step2.color.blue = (tr->v3.color.blue - tr->v1.color.blue) / v3v1Diff;
+	step2.color.alpha = (tr->v3.color.alpha - tr->v1.color.alpha) / v3v1Diff;
+	v1.x = tr->v1.x;
+	v1.z = tr->v1.z;
+	v1.color.red = tr->v1.color.red;
+	v1.color.green = tr->v1.color.green;
+	v1.color.blue = tr->v1.color.blue;
+	v1.color.alpha = tr->v1.color.alpha;
+	v2.x = tr->v1.x + 0.5f;
+	v2.z = tr->v1.z;
+	v2.color.red = tr->v1.color.red;
+	v2.color.green = tr->v1.color.green;
+	v2.color.blue = tr->v1.color.blue;
+	v2.color.alpha = tr->v1.color.alpha;
+	if (step2.x < step1.x)
 	{
-		z = span->z1 + dif.z * factor;
-		tmp = color_mult(&dif.color, factor);
-		color = color_add(&span->c1, &tmp);
-		render_put_pixel(render, x, y, z, &color);
-		factor += factor_step;
-		++x;
+		t_vec4 tmp = step1;
+		step1 = step2;
+		step2 = tmp;
+	}
+	for (int y = tr->v1.y; y <= tr->v2.y; ++y)
+	{
+		for (int x = (int)ceil(v1.x); x <= (int)v2.x; ++x)
+		{
+			t_vec4 tmp;
+			double t = (x - v1.x) / (v2.x - v1.x);
+			tmp.x = x;
+			tmp.y = y;
+			tmp.z = (1 - t) * v1.z + t * v2.z;
+			tmp.color.red = (1 - t) * v1.color.red + t * v2.color.red;
+			tmp.color.green = (1 - t) * v1.color.green + t * v2.color.green;
+			tmp.color.blue = (1 - t) * v1.color.blue + t * v2.color.blue;
+			tmp.color.alpha = (1 - t) * v1.color.alpha + t * v2.color.alpha;
+			render_put_pixel(render, &tmp);
+		}
+		v1.x += step1.x;
+		v1.z += step1.z;
+		v1.color.red += step1.color.red;
+		v1.color.green += step1.color.green;
+		v1.color.blue += step1.color.blue;
+		v1.color.alpha += step1.color.alpha;
+		v2.x += step2.x;
+		v2.z += step2.z;
+		v2.color.red += step2.color.red;
+		v2.color.green += step2.color.green;
+		v2.color.blue += step2.color.blue;
+		v2.color.alpha += step2.color.alpha;
 	}
 }
 
-static void		_render_span_edges(t_render *render, t_triangle_edge *e1
-		, t_triangle_edge *e2)
+static void		_render_top_flat(t_render *render, t_triangle *tr)
 {
-	t_vec4			e1_dif = {color_sub(&e1->c2, &e1->c1), e1->x2 - e1->x1
-		, e1->y2 - e1->y1, e1->z2 - e1->z1, 1};
-	t_vec4			e2_dif = {color_sub(&e2->c2, &e2->c1), e2->x2 - e2->x1
-		, e2->y2 - e2->y1, e2->z2 - e2->z1, 1};
-	t_triangle_span	span;
-	t_color			tmp;
-	double			factors[4];
-	double			y;
+	t_vec4	v1;
+	t_vec4	v2;
+	t_vec4	step1;
+	t_vec4	step2;
 
-	if (e1_dif.y == 0 || e2_dif.y == 0)
-		return ;
-	factors[0] = (e2->y1 - e1->y1) / e1_dif.y;
-	factors[1] = 1 / e1_dif.y;
-	factors[2] = 0;
-	factors[3] = 1 / e2_dif.y;
-	y = e2->y1;
-	while (y < e2->y2)
+	double v3v1Diff = tr->v3.y - tr->v1.y;
+	step1.x = (tr->v3.x - tr->v1.x) / v3v1Diff;
+	step1.color.red = (tr->v3.color.red - tr->v1.color.red) / v3v1Diff;
+	step1.color.green = (tr->v3.color.green - tr->v1.color.green) / v3v1Diff;
+	step1.color.blue = (tr->v3.color.blue - tr->v1.color.blue) / v3v1Diff;
+	step1.color.alpha = (tr->v3.color.alpha - tr->v1.color.alpha) / v3v1Diff;
+	step1.z = (tr->v3.z - tr->v1.z) / v3v1Diff;
+	double v3v2Diff = tr->v3.y - tr->v2.y;
+	step2.x = (tr->v3.x - tr->v2.x) / v3v2Diff;
+	step2.color.red = (tr->v3.color.red - tr->v2.color.red) / v3v2Diff;
+	step2.color.green = (tr->v3.color.green - tr->v2.color.green) / v3v2Diff;
+	step2.color.blue = (tr->v3.color.blue - tr->v2.color.blue) / v3v2Diff;
+	step2.color.alpha = (tr->v3.color.alpha - tr->v2.color.alpha) / v3v2Diff;
+	step2.z = (tr->v3.z - tr->v2.z) / v3v2Diff;
+	v1.x = tr->v3.x;
+	v1.z = tr->v3.z;
+	v1.color.red = tr->v3.color.red;
+	v1.color.green = tr->v3.color.green;
+	v1.color.blue = tr->v3.color.blue;
+	v1.color.alpha = tr->v3.color.alpha;
+	v2.x = tr->v3.x + 0.5f;
+	v2.z = tr->v3.z;
+	v2.color.red = tr->v3.color.red;
+	v2.color.green = tr->v3.color.green;
+	v2.color.blue = tr->v3.color.blue;
+	v2.color.alpha = tr->v3.color.alpha;
+	if (step1.x < step2.x)
 	{
-		tmp = color_mult(&e1_dif.color, factors[0]);
-		span.c1 = color_add(&e1->c1, &tmp);
-		span.x1 = e1->x1 + e1_dif.x * factors[0];
-		span.z1 = e1->z1 + e1_dif.z * factors[0];
-		tmp = color_mult(&e2_dif.color, factors[2]);
-		span.c2 = color_add(&e2->c1, &tmp);
-		span.x2 = e2->x1 + e2_dif.x * factors[2];
-		span.z2 = e2->z1 + e2_dif.z * factors[2];
-		_render_span(render, &span, y);
-		factors[0] += factors[1];
-		factors[2] += factors[3];
-		++y;
+		t_vec4 tmp = step1;
+		step1 = step2;
+		step2 = tmp;
+	}
+	for (int y = tr->v3.y; y >= tr->v1.y; --y)
+	{
+		for (int x = (int)ceil(v1.x); x <= (int)v2.x; ++x)
+		{
+			t_vec4 tmp;
+			double t = (x - v1.x) / (v2.x - v1.x);
+			tmp.x = x;
+			tmp.y = y;
+			tmp.z = (1 - t) * v1.z + t * v2.z;
+			tmp.color.red = (1 - t) * v1.color.red + t * v2.color.red;
+			tmp.color.green = (1 - t) * v1.color.green + t * v2.color.green;
+			tmp.color.blue = (1 - t) * v1.color.blue + t * v2.color.blue;
+			tmp.color.alpha = (1 - t) * v1.color.alpha + t * v2.color.alpha;
+			render_put_pixel(render, &tmp);
+		}
+		v1.x -= step1.x;
+		v1.z -= step1.z;
+		v1.color.red -= step1.color.red;
+		v1.color.green -= step1.color.green;
+		v1.color.blue -= step1.color.blue;
+		v1.color.alpha -= step1.color.alpha;
+		v2.x -= step2.x;
+		v2.z -= step2.z;
+		v2.color.red -= step2.color.red;
+		v2.color.green -= step2.color.green;
+		v2.color.blue -= step2.color.blue;
+		v2.color.alpha -= step2.color.alpha;
 	}
 }
 
-static void		_build_edges(t_triangle_edge *edges, t_triangle *triangle)
+static void		_render_not_flat(t_render *render, t_triangle *tr)
 {
-	edges[0].c1 = triangle->v1.color;
-	edges[0].x1 = triangle->v1.x;
-	edges[0].y1 = triangle->v1.y;
-	edges[0].z1 = triangle->v1.z;
-	edges[0].c2 = triangle->v2.color;
-	edges[0].x2 = triangle->v2.x;
-	edges[0].y2 = triangle->v2.y;
-	edges[0].z2 = triangle->v2.z;
-	edges[1].c1 = triangle->v2.color;
-	edges[1].x1 = triangle->v2.x;
-	edges[1].y1 = triangle->v2.y;
-	edges[1].z1 = triangle->v2.z;
-	edges[1].c2 = triangle->v3.color;
-	edges[1].x2 = triangle->v3.x;
-	edges[1].y2 = triangle->v3.y;
-	edges[1].z2 = triangle->v3.z;
-	edges[2].c1 = triangle->v3.color;
-	edges[2].x1 = triangle->v3.x;
-	edges[2].y1 = triangle->v3.y;
-	edges[2].z1 = triangle->v3.z;
-	edges[2].c2 = triangle->v1.color;
-	edges[2].x2 = triangle->v1.x;
-	edges[2].y2 = triangle->v1.y;
-	edges[2].z2 = triangle->v1.z;
-}*/
+	double		factor;
+	t_triangle	new;
+	t_vec4		tmp;
+
+	factor = (tr->v2.y - tr->v1.y) / (tr->v3.y - tr->v1.y);
+	tmp.x = tr->v1.x + factor * (tr->v3.x - tr->v1.x);
+	tmp.y = tr->v2.y;
+	tmp.z = tr->v2.z;
+	tmp.color.red = tr->v1.color.red + factor * (tr->v3.color.red - tr->v1.color.red);
+	tmp.color.green = tr->v1.color.green + factor * (tr->v3.color.green - tr->v1.color.green);
+	tmp.color.blue = tr->v1.color.blue + factor * (tr->v3.color.blue - tr->v1.color.blue);
+	tmp.color.alpha = tr->v1.color.alpha + factor * (tr->v3.color.alpha - tr->v1.color.alpha);
+	new.v1 = tr->v2;
+	new.v2 = tmp;
+	new.v3 = tr->v3;
+	_render_top_flat(render, &new);
+	new.v1 = tr->v1;
+	new.v2 = tr->v2;
+	new.v3 = tmp;
+	_render_bottom_flat(render, &new);
+}
+
+static void		_get_vertices_sorted(t_triangle *triangle)
+{
+	t_vec4	tmp;
+
+	if (triangle->v1.y > triangle->v2.y)
+	{
+		tmp = triangle->v1;
+		triangle->v1 = triangle->v2;
+		triangle->v2 = tmp;
+	}
+	if (triangle->v1.y > triangle->v3.y)
+	{
+		tmp = triangle->v1;
+		triangle->v1 = triangle->v3;
+		triangle->v3 = tmp;
+	}
+	if (triangle->v2.y > triangle->v3.y)
+	{
+		tmp = triangle->v2;
+		triangle->v2 = triangle->v3;
+		triangle->v3 = tmp;
+	}
+}
 
 void			render_render_triangle(t_render *render, t_triangle *triangle)
 {
-	render_render_line(render, &triangle->v1, &triangle->v2);
-	render_render_line(render, &triangle->v2, &triangle->v3);
-	render_render_line(render, &triangle->v3, &triangle->v1);
-	/*t_triangle_edge			edges[3];
-	double				max_length;
-	int					long_edge;
-	double				length;
-	int					i;
+	t_triangle	intern;
 
-	_build_edges(edges, triangle);
-	i = 0;
-	length = 0;
-	long_edge = 0;
-	max_length = 0;
-	while (i < 3)
-	{
-		edges[i].x1 = render->width / 2 + edges[i].x1 * render->width / 2;
-		edges[i].y1 = render->height / 2 + edges[i].y1 * render->height / 2;
-		edges[i].x2 = render->width / 2 + edges[i].x2 * render->width / 2;
-		edges[i].y2 = render->height / 2 + edges[i].y2 * render->height / 2;
-		length = edges[i].y2 - edges[i].y1;
-		if (length > max_length)
-		{
-			max_length = length;
-			long_edge = i;
-		}
-		++i;
-	}
-	_render_span_edges(render, &edges[long_edge], &edges[(long_edge + 1) % 3]);
-	_render_span_edges(render, &edges[long_edge], &edges[(long_edge + 2) % 3]);*/
+	intern = *triangle;
+	intern.v1.x = (int)(render->width / 2 + intern.v1.x * render->width / 2);
+	intern.v1.y = (int)(render->height / 2 + intern.v1.y * render->height / 2);
+	intern.v2.x = (int)(render->width / 2 + intern.v2.x * render->width / 2);
+	intern.v2.y = (int)(render->height / 2 + intern.v2.y * render->height / 2);
+	intern.v3.x = (int)(render->width / 2 + intern.v3.x * render->width / 2);
+	intern.v3.y = (int)(render->height / 2 + intern.v3.y * render->height / 2);
+	_get_vertices_sorted(&intern);
+	if (intern.v2.y == intern.v3.y)
+		_render_bottom_flat(render, &intern);
+	else if (intern.v1.y == intern.v2.y)
+		_render_top_flat(render, &intern);
+	else
+		_render_not_flat(render, &intern);
 }

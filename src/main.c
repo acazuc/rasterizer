@@ -61,8 +61,7 @@ int				main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
-		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i), ft_toradians(i));
-		//render_resize(&env.render, env.render.width, env.render.height);
+		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i * 2), ft_toradians(i * 3));
 		render_render(&env.render);
 		++i;
 		glfwPollEvents();

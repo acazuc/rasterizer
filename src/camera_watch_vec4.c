@@ -17,7 +17,7 @@ void	camera_watch_vec4(t_camera *camera, t_vec4 *vec)
 	mat4_transform_vec4(&camera->rotation, vec);
 	mat4_transform_vec4(&camera->position, vec);
 	mat4_transform_vec4(&camera->projection, vec);
-	if (vec->z >= 1)
+	if (vec->z != 0)
 	{
 		vec->x /= vec->z;
 		vec->y /= vec->z;
