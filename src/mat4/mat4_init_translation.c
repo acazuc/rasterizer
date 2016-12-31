@@ -15,7 +15,7 @@
 void	mat4_init_translation(t_mat4 *mat, double x, double y, double z)
 {
 	mat4_init_identity(mat);
-	mat->value[0][3] = x;
-	mat->value[1][3] = y;
-	mat->value[2][3] = z;
+	mat->value[12] = x;
+	mat->value[13] = y;
+	mat->value[14] = z;
 }

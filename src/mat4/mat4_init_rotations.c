@@ -15,32 +15,32 @@
 void	mat4_init_rotation_x(t_mat4 *mat, double angle)
 {
 	mat4_clear(mat);
-	mat->value[0][0] = 1;
-	mat->value[1][1] = cos(angle);
-	mat->value[1][2] = -sin(angle);
-	mat->value[2][1] = sin(angle);
-	mat->value[2][2] = cos(angle);
-	mat->value[3][3] = 1;
+	mat->value[0] = 1;
+	mat->value[5] = cos(angle);
+	mat->value[9] = -sin(angle);
+	mat->value[6] = sin(angle);
+	mat->value[10] = cos(angle);
+	mat->value[15] = 1;
 }
 
 void	mat4_init_rotation_y(t_mat4 *mat, double angle)
 {
 	mat4_clear(mat);
-	mat->value[0][0] = cos(angle);
-	mat->value[0][2] = sin(angle);
-	mat->value[1][1] = 1;
-	mat->value[2][0] = -sin(angle);
-	mat->value[2][2] = cos(angle);
-	mat->value[3][3] = 1;
+	mat->value[0] = cos(angle);
+	mat->value[8] = sin(angle);
+	mat->value[5] = 1;
+	mat->value[2] = -sin(angle);
+	mat->value[10] = cos(angle);
+	mat->value[15] = 1;
 }
 
 void	mat4_init_rotation_z(t_mat4 *mat, double angle)
 {
 	mat4_clear(mat);
-	mat->value[0][0] = cos(angle);
-	mat->value[0][1] = -sin(angle);
-	mat->value[1][0] = sin(angle);
-	mat->value[1][1] = cos(angle);
-	mat->value[2][2] = 1;
-	mat->value[3][3] = 1;
+	mat->value[0] = cos(angle);
+	mat->value[4] = -sin(angle);
+	mat->value[1] = sin(angle);
+	mat->value[5] = cos(angle);
+	mat->value[10] = 1;
+	mat->value[15] = 1;
 }

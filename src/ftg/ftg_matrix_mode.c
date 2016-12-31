@@ -10,6 +10,6 @@ void	ftg_matrix_mode(t_ftg_enum mode)
 	}
 	else
 	{
-		ctx->errno = GL_INVALID_ENUM;
+		ctx->errno = FTG_INVALID_ENUM;
 	}
 }

@@ -27,11 +27,9 @@
 # define Z_MIN 0.01
 # define Z_MAX 1000
 
-typedef struct s_vec4		t_vec4;
 typedef struct s_triangle	t_triangle;
 typedef struct s_triangle_edge	t_triangle_edge;
 typedef struct s_triangle_span	t_triangle_span;
-typedef struct s_color		t_color;
 typedef struct s_camera		t_camera;
 typedef struct s_env		t_env;
 
@@ -59,23 +57,6 @@ void					camera_set_position(t_camera *camera, double x, double y, double z);
 void					camera_set_rotation(t_camera *camera, double x, double y, double z);
 void					camera_set_projection(t_camera *camera, t_mat4 *mat);
 long					epoch_millis();
-
-struct					s_color
-{
-	double				red;
-	double				green;
-	double				blue;
-	double				alpha;
-};
-
-struct					s_vec4
-{
-	t_color				color;
-	double				x;
-	double				y;
-	double				z;
-	double				w;
-};
 
 struct					s_triangle_edge
 {
@@ -115,16 +96,6 @@ struct					s_camera
 	t_vec4				origin;
 	int					width;
 	int					height;
-};
-
-struct					s_ftg_ctx
-{
-	double				*z_index;
-	float				*colors;
-	GLuint				texture;
-	int					width;
-	int					height;
-	FTGenum				matrix_mode;
 };
 
 struct					s_env

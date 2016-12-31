@@ -15,8 +15,8 @@
 void	mat4_init_identity(t_mat4 *mat)
 {
 	mat4_clear(mat);
-	mat->value[0][0] = 1;
-	mat->value[1][1] = 1;
-	mat->value[2][2] = 1;
-	mat->value[3][3] = 1;
+	mat->value[0] = 1;
+	mat->value[5] = 1;
+	mat->value[10] = 1;
+	mat->value[15] = 1;
 }

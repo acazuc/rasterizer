@@ -24,7 +24,7 @@ void		mat4_reverse(t_mat4 *mat)
 		x = 0;
 		while (x < 4)
 		{
-			new.value[y][x] = mat->value[x][y];
+			new.value[y + x * 4] = mat->value[y + x * 4];
 			++x;
 		}
 		++y;

@@ -1,6 +1,8 @@
 #ifndef MAT4_H
 # define MAT4_H
 
+# include "vec4.h"
+
 typedef struct s_mat4	t_mat4;
 
 void			mat4_clear(t_mat4 *mat);
@@ -18,7 +20,7 @@ void			mat4_reverse(t_mat4 *mat);
 
 struct			s_mat4
 {
-	double		value[4][4];
+	double		value[16];
 };
 
 #endif

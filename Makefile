@@ -52,6 +52,16 @@ SRCS_NAME = main.c \
 			camera_set_rotation.c \
 			camera_set_projection.c \
 			epoch_millis.c \
+			ftg/ftg_ctx_init.c \
+			ftg/ftg_get_booleanv.c \
+			ftg/ftg_get_doublev.c \
+			ftg/ftg_get_error.c \
+			ftg/ftg_get_floatv.c \
+			ftg/ftg_get_intv.c \
+			ftg/ftg_get.c \
+			ftg/ftg_load_matrix.c \
+			ftg/ftg_matrix_mode.c \
+			ftg/ftg_mult_matrix.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -94,6 +104,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 odir:
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)mat4
+	@mkdir -p $(OBJS_PATH)ftg
 
 clean:
 	@make -C libft clean

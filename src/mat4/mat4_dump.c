@@ -39,7 +39,7 @@ void		mat4_dump(t_mat4 *mat)
 		x = 0;
 		while (x < 4)
 		{
-			print_value(mat->value[y][x], x);
+			print_value(mat->value[y + x * 4], x);
 			x++;
 		}
 		ft_putchar('\n');

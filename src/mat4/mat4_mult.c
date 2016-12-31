@@ -14,13 +14,13 @@
 
 static double	priv_patch(t_mat4 *m1, t_mat4 *m2, int x, int y)
 {
-	return (m1->value[y][0] * m2->value[0][x]
-			+ m1->value[y][1] * m2->value[1][x]
-			+ m1->value[y][2] * m2->value[2][x]
-			+ m1->value[y][3] * m2->value[3][x]);
+	return (m1->value[y] * m2->value[x * 4]
+			+ m1->value[y + 4] * m2->value[1 + x * 4]
+			+ m1->value[y + 8] * m2->value[2 + x * 4]
+			+ m1->value[y + 12] * m2->value[3 + x * 4]);
 }
 
-void			mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
+void		mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
 {
 	t_mat4		tmp;
 	int		y;
@@ -32,7 +32,7 @@ void			mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
 		x = 0;
 		while (x < 4)
 		{
-			tmp.value[y][x] = priv_patch(m1, m2, x, y);
+			tmp.value[y + x * 4] = priv_patch(m1, m2, x, y);
 			++x;
 		}
 		++y;
