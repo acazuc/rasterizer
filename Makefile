@@ -64,6 +64,11 @@ SRCS_NAME = main.c \
 			ftg/fog/ftg_fog_mode_color.c \
 			ftg/fog/ftg_fog_start_end_index_density.c \
 			ftg/fog/ftg_fog.c \
+			ftg/get/ftg_get_booleanv.c \
+			ftg/get/ftg_get_doublev.c \
+			ftg/get/ftg_get_floatv.c \
+			ftg/get/ftg_get_intv.c \
+			ftg/get/ftg_get.c \
 			ftg/matrix/ftg_load_identity.c \
 			ftg/matrix/ftg_load_matrix.c \
 			ftg/matrix/ftg_load_transpose_matrix.c \
@@ -90,12 +95,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_draw_arrays.c \
 			ftg/ftg_enable_client_state.c \
 			ftg/ftg_enable.c \
-			ftg/ftg_get_booleanv.c \
-			ftg/ftg_get_doublev.c \
 			ftg/ftg_get_error.c \
-			ftg/ftg_get_floatv.c \
-			ftg/ftg_get_intv.c \
-			ftg/ftg_get.c \
 			ftg/ftg_is_enabled.c \
 			ftg/ftg_maxbsf.c \
 			ftg/ftg_maxild.c \
@@ -149,6 +149,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
 	@mkdir -p $(OBJS_PATH)ftg/fog
+	@mkdir -p $(OBJS_PATH)ftg/get
 	@mkdir -p $(OBJS_PATH)ftg/matrix
 	@mkdir -p $(OBJS_PATH)ftg/rast
 	@mkdir -p $(OBJS_PATH)mat4
