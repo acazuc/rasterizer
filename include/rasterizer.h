@@ -41,7 +41,7 @@ void					window_create(t_env *env);
 void					window_update_context(t_env *env);
 void					window_listener_resize(GLFWwindow *window, int width, int height);
 void					render_resize(t_ftg_ctx *ctx, int width, int height);
-void					render_render(t_ftg_ctx *ctx);
+void					render_render();
 void					render_put_pixel(t_ftg_ctx *ctx, t_vec4 *vec);
 void					render_set_pixel(t_ftg_ctx *ctx, int x, int y, t_color *color);
 void					render_set_zindex(t_ftg_ctx *ctx, int x, int y, double z);

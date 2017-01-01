@@ -67,6 +67,7 @@ SRCS_NAME = main.c \
 			ftg/rast/rast_pixel_put.c \
 			ftg/rast/rast_triangle.c \
 			ftg/rast/rast_vertex.c \
+			ftg/rast/rast_watch_vertex.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_ctx_init.c \
 			ftg/ftg_ctx_set.c \

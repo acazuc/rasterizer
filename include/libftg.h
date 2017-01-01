@@ -167,6 +167,7 @@ void		rast_pixel_put(t_vec4 *vec);
 void		rast_pixel_set(int x, int y, t_color *color);
 double		rast_depthbuffer_get(int x, int y);
 void		rast_depthbuffer_set(int x, int y, double z);
+void		rast_watch_vertex(t_vec4 *vec);
 t_ftg_boolean	ftg_is_enabled(t_ftg_enum cap);
 t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
 t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);

@@ -20,6 +20,7 @@ static void		draw_elements(t_env *env)
 	int		coords[4 * 2];
 	int		vertex[4 * 2];
 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, env->ctx.width, env->ctx.height, 0, GL_RGBA, GL_FLOAT, env->ctx.color_buffer);
 	ft_memset(coords, 0, sizeof(coords));
 	coords[2] = 1;
 	coords[4] = 1;
@@ -30,14 +31,9 @@ static void		draw_elements(t_env *env)
 	vertex[4] = env->ctx.width;
 	vertex[5] = env->ctx.height;
 	vertex[7] = env->ctx.height;
-	glBindTexture(GL_TEXTURE_2D, env->texture);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glVertexPointer(2, GL_INT, 0, vertex);
 	glTexCoordPointer(2, GL_INT, 0, coords);
 	glDrawArrays(GL_QUADS, 0, 4);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 int				main()
@@ -58,6 +54,12 @@ int				main()
 	camera_set_rotation(&env.camera, 0, ft_toradians(0), 0);
 	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
+	glGenTextures(1, &g_env->texture);
+	glBindTexture(GL_TEXTURE_2D, g_env->texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	double i = 0;
 	while (!glfwWindowShouldClose(env.window))
 	{
@@ -65,10 +67,13 @@ int				main()
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i * 2), ft_toradians(i * 3));
-		render_render(&env.ctx);
+		ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
+		render_render();
 		++i;
 		glfwPollEvents();
 	}
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glfwTerminate();
 	return (EXIT_SUCCESS);
 }

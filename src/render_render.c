@@ -67,15 +67,7 @@ static void	render_render_do(t_env *env)
 	render_render_triangle(&env->ctx, &triangle);
 }
 
-void		render_render(t_ftg_ctx *ctx)
+void		render_render()
 {
-	if (!g_env->texture)
-		glGenTextures(1, &g_env->texture);
-	ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
 	render_render_do(g_env);
-	glBindTexture(GL_TEXTURE_2D, g_env->texture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ctx->width, ctx->height
-			, 0, GL_RGBA, GL_FLOAT, ctx->color_buffer);
 }
