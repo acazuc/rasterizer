@@ -48,6 +48,7 @@ int				main()
 	ftg_ctx_set(&env.ctx);
 	ftg_ctx_init(&env.ctx);
 	ftg_viewport(1280, 720);
+	ftg_enable(FTG_DEPTH_TEST);
 	if (!glfwInit())
 		ERROR("Can't init glfw");
 	window_create(&env);
@@ -75,9 +76,9 @@ int				main()
 		ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
 		ftg_load_identity();
 		ftg_translated(0, 0, -2);
-		ftg_rotated(ft_toradians(i * 3), 0, 0, 1);
+		//ftg_rotated(ft_toradians(i * 3), 0, 0, 1);
 		ftg_rotated(ft_toradians(i * 2), 0, 1, 0);
-		ftg_rotated(ft_toradians(i * 1), 1, 0, 0);
+		//ftg_rotated(ft_toradians(i * 1), 1, 0, 0);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex);
 		//ftg_draw_arrays(FTG_LINES, 0, 1);

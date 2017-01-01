@@ -17,6 +17,7 @@ void	mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec)
 	double	x;
 	double	y;
 	double	z;
+	double	w;
 
 	x = vec->x * mat->value[0]
 		+ vec->y * mat->value[4]
@@ -30,8 +31,12 @@ void	mat4_transform_vec4(t_mat4 *mat, t_vec4 *vec)
 		+ vec->y * mat->value[6]
 		+ vec->z * mat->value[10]
 		+ vec->w * mat->value[14];
+	w = vec->x * mat->value[3]
+		+ vec->y * mat->value[7]
+		+ vec->z * mat->value[11]
+		+ vec->w * mat->value[15];
 	vec->x = x;
 	vec->y = y;
 	vec->z = z;
-	vec->w = 1;
+	vec->w = w;
 }
