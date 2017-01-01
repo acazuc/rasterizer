@@ -17,7 +17,7 @@ void	ftg_clear(t_ftg_bitmask mask)
 		i = 0;
 		while (i < ctx->width * ctx->height)
 		{
-			ctx->depth_buffer[i] = 1;
+			ctx->depth_buffer[i] = 0;
 			++i;
 		}
 	}

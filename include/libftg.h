@@ -190,6 +190,7 @@ void		ftg_color_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, con
 void		ftg_draw_arrays(t_ftg_enum mode, t_ftg_int first, t_ftg_sizei count);
 void		ftg_draw_arrays_points(t_ftg_int first, t_ftg_sizei count);
 void		ftg_draw_arrays_triangles(t_ftg_int first, t_ftg_sizei count);
+void		ftg_draw_arrays_lines(t_ftg_int first, t_ftg_sizei count);
 void		ftg_draw_arrays_get_vec(t_vec4 *vec, t_ftg_int pos);
 void		ftg_draw_arrays_get_vec_color(t_vec4 *vec, t_ftg_int pos);
 void		ftg_draw_arrays_get_vec_vertex(t_vec4 *vec, t_ftg_int pos);

@@ -100,6 +100,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_draw_arrays_get_vec_color.c \
 			ftg/ftg_draw_arrays_get_vec_vertex.c \
 			ftg/ftg_draw_arrays_get_vec.c \
+			ftg/ftg_draw_arrays_lines.c \
 			ftg/ftg_draw_arrays_points.c \
 			ftg/ftg_draw_arrays_triangles.c \
 			ftg/ftg_draw_arrays.c \

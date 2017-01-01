@@ -6,12 +6,12 @@ static void	_allocate_buffers()
 {
 	if (!(ctx->color_buffer = malloc(sizeof(*ctx->color_buffer) * ctx->height * ctx->width * 4)))
 	{
-		ft_putstr("Failed to malloc color buffer 1st dimension\n");
+		ft_putstr_fd("Failed to malloc color buffer\n", 2);
 		raise(SIGABRT);
 	}
 	if (!(ctx->depth_buffer = malloc(sizeof(*ctx->depth_buffer) * ctx->height * ctx->width)))
 	{
-		ft_putstr("Failed to malloc color buffer 1st dimension\n");
+		ft_putstr_fd("Failed to malloc depth buffer\n", 2);
 		raise(SIGABRT);
 	}
 }
@@ -37,9 +37,15 @@ void		ftg_viewport(t_ftg_sizei width, t_ftg_sizei height)
 	if (width == 0 && height == 0)
 	{
 		if (!(ctx->color_buffer = malloc(1)))
-			exit(EXIT_FAILURE);
+		{
+			ft_putstr_fd("Failed to malloc color buffer\n", 2);
+			raise(SIGABRT);
+		}
 		if (!(ctx->depth_buffer = malloc(1)))
-			exit(EXIT_FAILURE);
+		{
+			ft_putstr_fd("Failed to malloc depth buffer\n", 2);
+			raise(SIGABRT);
+		}
 	}
 	else
 	{

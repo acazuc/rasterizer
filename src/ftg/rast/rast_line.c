@@ -92,28 +92,24 @@ static void		do_draw_left(t_vec4 *start, t_vec4 *dif)
 
 void			rast_line(t_vec4 *v1, t_vec4 *v2)
 {
-	t_vec4	start;
 	t_vec4	dif;
 
-	ft_memcpy(&start, v1, sizeof(start));
-	start.x = round(ctx->width / 2 + start.x * ctx->width / 2);
-	start.y = round(ctx->height / 2 + start.y * ctx->height / 2);
-	dif.x = round((v2->x - v1->x) * ctx->width / 2);
-	dif.y = round((v2->y - v1->y) * ctx->height / 2);
+	dif.x = round(v2->x - v1->x);
+	dif.y = round(v2->y - v1->y);
 	dif.z = (v2->z - v1->z);
 	dif.color = color_sub(&v2->color, &v1->color);
 	if (fabs(dif.x) > fabs(dif.y))
 	{
 		if (dif.x < 0)
-			do_draw_left(&start, &dif);
+			do_draw_left(v1, &dif);
 		else
-			do_draw_right(&start, &dif);
+			do_draw_right(v1, &dif);
 	}
 	else
 	{
 		if (dif.y < 0)
-			do_draw_bottom(&start, &dif);
+			do_draw_bottom(v1, &dif);
 		else
-			do_draw_top(&start, &dif);
+			do_draw_top(v1, &dif);
 	}
 }

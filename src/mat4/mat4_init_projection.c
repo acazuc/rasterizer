@@ -21,7 +21,7 @@ void	mat4_init_projection(t_mat4 *mat, double sfov, double ratio
 	fov = 1. / tan(ft_toradians(sfov / 2));
 	mat->value[0] = fov / ratio;
 	mat->value[5] = fov;
-	mat->value[10] = (ranges[1] + ranges[0]) / (ranges[0] - ranges[1]);
+	mat->value[10] = (ranges[0] + ranges[1]) / (ranges[0] - ranges[1]);
 	mat->value[11] = -1;
 	mat->value[14] = (2 * ranges[0] * ranges[1]) / (ranges[0] - ranges[1]);
 }

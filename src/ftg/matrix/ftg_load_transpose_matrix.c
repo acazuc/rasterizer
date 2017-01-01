@@ -16,8 +16,9 @@ void	ftg_load_transpose_matrixd(const t_ftg_double *m)
 	}
 	else
 	{
-		ft_putendl_fd("Invalid matrix type", 2);
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Invalid matrix type\n", 2);
+		raise(SIGABRT);
+		return;
 	}
 	ft_memcpy(dst->value, m, sizeof(*m) * 16);
 	mat4_reverse(dst);

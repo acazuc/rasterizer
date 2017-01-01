@@ -17,7 +17,6 @@ void	rast_pixel_set(int x, int y, t_color *color)
 	green = &ctx->color_buffer[pos + 1];
 	blue = &ctx->color_buffer[pos + 2];
 	alpha = &ctx->color_buffer[pos + 3];
-	printf("x: %d, y: %d, red: %f, green: %f, blue: %f, alpha: %f\n", x, y, color->red, color->green, color->blue, color->alpha);
 	if (color->alpha == 1)
 	{
 		*red = ftg_maxf(0, ftg_minf(1, color->red));

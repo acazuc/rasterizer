@@ -6,6 +6,8 @@ static void	_draw_case(t_ftg_enum mode, t_ftg_int first, t_ftg_sizei count)
 {
 	if (mode == FTG_POINTS)
 		ftg_draw_arrays_points(first, count);
+	else if (mode == FTG_LINES)
+		ftg_draw_arrays_lines(first, count);
 	else if (mode == FTG_TRIANGLES)
 		ftg_draw_arrays_triangles(first, count);
 }
