@@ -25,9 +25,6 @@ SRCS_NAME = main.c \
 			window_create.c \
 			window_update_context.c \
 			window_listener_resize.c \
-			color_add.c \
-			color_sub.c \
-			color_mult.c \
 			mat4/mat4_clear.c \
 			mat4/mat4_init_scale.c \
 			mat4/mat4_init_identity.c \
@@ -52,6 +49,10 @@ SRCS_NAME = main.c \
 			camera_set_rotation.c \
 			camera_set_projection.c \
 			epoch_millis.c \
+			color/color_add.c \
+			color/color_div.c \
+			color/color_mult.c \
+			color/color_sub.c \
 			ftg/blend/ftg_blend_color.c \
 			ftg/blend/ftg_blend_equation_separate.c \
 			ftg/blend/ftg_blend_equation.c \
@@ -136,12 +137,13 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 
 odir:
 	@mkdir -p $(OBJS_PATH)
-	@mkdir -p $(OBJS_PATH)mat4
+	@mkdir -p $(OBJS_PATH)color
 	@mkdir -p $(OBJS_PATH)ftg
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
 	@mkdir -p $(OBJS_PATH)ftg/fog
 	@mkdir -p $(OBJS_PATH)ftg/rast
+	@mkdir -p $(OBJS_PATH)mat4
 
 clean:
 	@make -C libft clean
