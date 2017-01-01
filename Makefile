@@ -38,6 +38,13 @@ SRCS_NAME = main.c \
 			ftg/depth/ftg_depth_func.c \
 			ftg/depth/ftg_depth_mask.c \
 			ftg/depth/ftg_depth_range.c \
+			ftg/draw_arrays/ftg_draw_arrays_get_vec_color.c \
+			ftg/draw_arrays/ftg_draw_arrays_get_vec_vertex.c \
+			ftg/draw_arrays/ftg_draw_arrays_get_vec.c \
+			ftg/draw_arrays/ftg_draw_arrays_lines.c \
+			ftg/draw_arrays/ftg_draw_arrays_points.c \
+			ftg/draw_arrays/ftg_draw_arrays_triangles.c \
+			ftg/draw_arrays/ftg_draw_arrays.c \
 			ftg/fog/ftg_fog_mode_color.c \
 			ftg/fog/ftg_fog_start_end_index_density.c \
 			ftg/fog/ftg_fog.c \
@@ -74,13 +81,6 @@ SRCS_NAME = main.c \
 			ftg/ftg_ctx_set.c \
 			ftg/ftg_disable_client_state.c \
 			ftg/ftg_disable.c \
-			ftg/ftg_draw_arrays_get_vec_color.c \
-			ftg/ftg_draw_arrays_get_vec_vertex.c \
-			ftg/ftg_draw_arrays_get_vec.c \
-			ftg/ftg_draw_arrays_lines.c \
-			ftg/ftg_draw_arrays_points.c \
-			ftg/ftg_draw_arrays_triangles.c \
-			ftg/ftg_draw_arrays.c \
 			ftg/ftg_enable_client_state.c \
 			ftg/ftg_enable.c \
 			ftg/ftg_get_error.c \
@@ -143,6 +143,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
+	@mkdir -p $(OBJS_PATH)ftg/draw_arrays
 	@mkdir -p $(OBJS_PATH)ftg/fog
 	@mkdir -p $(OBJS_PATH)ftg/get
 	@mkdir -p $(OBJS_PATH)ftg/matrix
