@@ -188,12 +188,6 @@ void			rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3)
 	points[0] = p1;
 	points[1] = p2;
 	points[2] = p3;
-	p1->x = round(p1->x);
-	p1->y = round(p1->y);
-	p2->x = round(p2->x);
-	p2->y = round(p2->y);
-	p3->x = round(p3->x);
-	p3->y = round(p3->y);
 	_get_vertices_sorted(&points[0], &points[1], &points[2]);
 	if (points[1]->y == points[2]->y)
 		_render_bottom_flat(points[0], points[1], points[2]);

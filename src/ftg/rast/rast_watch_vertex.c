@@ -11,6 +11,6 @@ void	rast_watch_vertex(t_vec4 *vec)
 		vec->x /= vec->z;
 		vec->y /= vec->z;
 	}
-	vec->x = ctx->width / 2 + vec->x * ctx->width / 2;
-	vec->y = ctx->height / 2 + vec->y * ctx->height / 2;
+	vec->x = round(ctx->width / 2 + vec->x * ctx->width / 2);
+	vec->y = round(ctx->height / 2 + vec->y * ctx->height / 2);
 }
