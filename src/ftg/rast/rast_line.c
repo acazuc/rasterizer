@@ -94,6 +94,10 @@ void			rast_line(t_vec4 *v1, t_vec4 *v2)
 {
 	t_vec4	dif;
 
+	v1->x = round(v1->x);
+	v1->y = round(v1->y);
+	v2->x = round(v2->x);
+	v2->y = round(v2->y);
 	dif.x = round(v2->x - v1->x);
 	dif.y = round(v2->y - v1->y);
 	dif.z = (v2->z - v1->z);
