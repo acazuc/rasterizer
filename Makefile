@@ -79,6 +79,10 @@ SRCS_NAME = main.c \
 			ftg/matrix/ftg_rotate.c \
 			ftg/matrix/ftg_scale.c \
 			ftg/matrix/ftg_translate.c \
+			ftg/min_max/ftg_maxbsf.c \
+			ftg/min_max/ftg_maxild.c \
+			ftg/min_max/ftg_minbsf.c \
+			ftg/min_max/ftg_minild.c \
 			ftg/rast/rast_line.c \
 			ftg/rast/rast_pixel_put.c \
 			ftg/rast/rast_triangle.c \
@@ -97,10 +101,6 @@ SRCS_NAME = main.c \
 			ftg/ftg_enable.c \
 			ftg/ftg_get_error.c \
 			ftg/ftg_is_enabled.c \
-			ftg/ftg_maxbsf.c \
-			ftg/ftg_maxild.c \
-			ftg/ftg_minbsf.c \
-			ftg/ftg_minild.c \
 			ftg/ftg_vertex_pointer.c \
 			ftg/ftg_viewport.c \
 
@@ -151,6 +151,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/fog
 	@mkdir -p $(OBJS_PATH)ftg/get
 	@mkdir -p $(OBJS_PATH)ftg/matrix
+	@mkdir -p $(OBJS_PATH)ftg/min_max
 	@mkdir -p $(OBJS_PATH)ftg/rast
 	@mkdir -p $(OBJS_PATH)mat4
 
