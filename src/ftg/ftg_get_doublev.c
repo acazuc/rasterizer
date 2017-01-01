@@ -25,6 +25,10 @@ static void	ftg_get_doublev_convert(t_ftg_double *params, void *data, t_ftg_enum
 			params[i] = ((t_ftg_uint*)data)[i];
 		else if (format == FTG_FLOAT)
 			params[i] = ((t_ftg_float*)data)[i];
+		else if (format == FTG_CLAMPF)
+			params[i] = ((t_ftg_clampf*)data)[i];
+		else if (format == FTG_CLAMPD)
+			params[i] = ((t_ftg_clampd*)data)[i];
 		++i;
 	}
 }

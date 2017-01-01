@@ -70,6 +70,72 @@ t_ftg_boolean	ftg_get(t_ftg_enum pname, void **data, t_ftg_enum *format, t_ftg_u
 		*format = FTG_ENUM;
 		*length = 1;
 	}
+	else if (pname == FTG_BLEND_COLOR)
+	{
+		*data = ctx->blend_color;
+		*format = FTG_CLAMPF;
+		*length = 4;
+	}
+	else if (pname == FTG_BLEND_EQUATION_RGB)
+	{
+		*data = &ctx->blend_equation_rgb;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_BLEND_EQUATION_ALPHA)
+	{
+		*data = &ctx->blend_equation_alpha;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_BLEND)
+	{
+		*data = &ctx->blend;
+		*format = FTG_BOOLEAN;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG)
+	{
+		*data = &ctx->fog;
+		*format = FTG_BOOLEAN;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG_COLOR)
+	{
+		*data = ctx->fog_color;
+		*format = FTG_CLAMPF;
+		*length = 4;
+	}
+	else if (pname == FTG_FOG_DENSITY)
+	{
+		*data = &ctx->fog_density;
+		*format = FTG_CLAMPD;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG_END)
+	{
+		*data = &ctx->fog_end;
+		*format = FTG_CLAMPD;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG_START)
+	{
+		*data = &ctx->fog_start;
+		*format = FTG_CLAMPD;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG_INDEX)
+	{
+		*data = &ctx->fog_index;
+		*format = FTG_CLAMPD;
+		*length = 1;
+	}
+	else if (pname == FTG_FOG_MODE)
+	{
+		*data = &ctx->fog_mode;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
 	else
 	{
 		ctx->errno = FTG_INVALID_ENUM;

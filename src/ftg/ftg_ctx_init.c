@@ -13,4 +13,15 @@ void	ftg_ctx_init(t_ftg_ctx *ctx)
 	ctx->blend_src_alpha = FTG_ONE;
 	ctx->blend_dst_rgb = FTG_ZERO;
 	ctx->blend_dst_alpha = FTG_ZERO;
+	ctx->blend_equation_rgb = FTG_FUNC_ADD;
+	ctx->blend_equation_alpha = FTG_FUNC_ADD;
+	ctx->blend_color[0] = 0;
+	ctx->blend_color[1] = 0;
+	ctx->blend_color[2] = 0;
+	ctx->blend_color[3] = 0;
+	ctx->fog_mode = FTG_EXP;
+	ctx->fog_density = 1;
+	ctx->fog_start = 0;
+	ctx->fog_end = 1;
+	ctx->fog_index = 0;
 }

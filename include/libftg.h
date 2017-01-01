@@ -2,6 +2,7 @@
 # define LIBFTG_H
 
 # include <stdint.h>
+# include <limits.h>
 # include "../libft/include/libft.h"
 # include "mat4.h"
 
@@ -19,10 +20,10 @@
 # define FTG_LONG		0x00000007
 # define FTG_UNSIGNED_LONG	0x00000008
 # define FTG_FLOAT		0x00000009
-# define FTG_CLAMPF		FTG_FLOAT
-# define FTG_DOUBLE		0x0000000a
-# define FTG_CLAMPD		FTG_DOUBLE
-# define FTG_BOOLEAN		0x0000000b
+# define FTG_CLAMPF		0x0000000a
+# define FTG_DOUBLE		0x0000000b
+# define FTG_CLAMPD		0x0000000c
+# define FTG_BOOLEAN		0x0000000d
 
 /*
 ** t_ftg_enum
@@ -63,6 +64,25 @@
 # define FTG_BLEND_SRC_ALPHA		0x00000020
 # define FTG_BLEND_DST_RGB		0x00000021
 # define FTG_BLEND_DST_ALPHA		0x00000022
+# define FTG_FUNC_ADD			0x00000023
+# define FTG_FUNC_SUBSTRACT		0x00000024
+# define FTG_FUNC_REVERSE_SUBSTRACT	0x00000025
+# define FTG_MIN			0x00000026
+# define FTG_MAX			0x00000027
+# define FTG_BLEND_COLOR		0x00000028
+# define FTG_BLEND_EQUATION_RGB		0x00000029
+# define FTG_BLEND_EQUATION_ALPHA	0x00000030
+# define FTG_BLEND			0x00000031
+# define FTG_EXP			0x00000032
+# define FTG_EXP2			0x00000033
+# define FTG_LINEAR			0x00000034
+# define FTG_FOG			0x00000035
+# define FTG_FOG_MODE			0x00000036
+# define FTG_FOG_DENSITY		0x00000037
+# define FTG_FOG_START			0x00000038
+# define FTG_FOG_END			0x00000039
+# define FTG_FOG_INDEX			0x0000003a
+# define FTG_FOG_COLOR			0x0000003b
 
 /*
 ** t_ftg_bitmask
@@ -126,6 +146,14 @@ void		ftg_disable(t_ftg_enum cap);
 void		ftg_enable(t_ftg_enum cap);
 void		ftg_blend_func(t_ftg_enum s_factor, t_ftg_enum d_factor);
 void		ftg_blend_func_separate(t_ftg_enum src_rgb, t_ftg_enum dst_rgb, t_ftg_enum src_alpha, t_ftg_enum dst_alpha);
+void		ftg_blend_equation(t_ftg_enum mode);
+void		ftg_blend_equation_separate(t_ftg_enum mode_rgb, t_ftg_enum mode_alpha);
+void		ftg_blend_color(t_ftg_clampf red, t_ftg_clampf green, t_ftg_clampf blue,t_ftg_clampf alpha);
+void		ftg_fogf(t_ftg_enum pname, t_ftg_float param);
+void		ftg_fogi(t_ftg_enum pname, t_ftg_int param);
+void		ftg_fogfv(t_ftg_enum pname, t_ftg_float *param);
+void		ftg_fogiv(t_ftg_enum pname, t_ftg_int *param);
+t_ftg_boolean	ftg_is_enabled(t_ftg_enum cap);
 t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
 t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);
 t_ftg_short	ftg_mins(t_ftg_short s1, t_ftg_short s2);
@@ -155,14 +183,25 @@ struct					s_ftg_ctx
 	t_ftg_sizei			height;
 	t_mat4				matrix_projection;
 	t_mat4				matrix_modelview;
+	t_ftg_boolean			depth_test;
 	t_ftg_boolean			depth_writemask;
 	t_ftg_enum			depth_func;
-	t_ftg_boolean			depth_test;
 	t_ftg_clampd			depth_range[2];
+	t_ftg_boolean			blend;
 	t_ftg_enum			blend_src_rgb;
 	t_ftg_enum			blend_src_alpha;
 	t_ftg_enum			blend_dst_rgb;
 	t_ftg_enum			blend_dst_alpha;
+	t_ftg_enum			blend_equation_rgb;
+	t_ftg_enum			blend_equation_alpha;
+	t_ftg_clampf			blend_color[4];
+	t_ftg_boolean			fog;
+	t_ftg_clampf			fog_color[4];
+	t_ftg_clampd			fog_density;
+	t_ftg_clampd			fog_index;
+	t_ftg_clampd			fog_start;
+	t_ftg_clampd			fog_end;
+	t_ftg_enum			fog_mode;
 	t_ftg_enum			matrix_mode;
 	t_ftg_enum			errno;
 };

@@ -23,8 +23,12 @@ static void	ftg_get_floatv_convert(t_ftg_float *params, void *data, t_ftg_enum f
 			params[i] = ((t_ftg_int*)data)[i];
 		else if (format == FTG_UNSIGNED_INT)
 			params[i] = ((t_ftg_uint*)data)[i];
+		else if (format == FTG_CLAMPF)
+			params[i] = ((t_ftg_clampf*)data)[i];
 		else if (format == FTG_DOUBLE)
 			params[i] = ((t_ftg_double*)data)[i];
+		else if (format == FTG_CLAMPD)
+			params[i] = ((t_ftg_clampd*)data)[i];
 		++i;
 	}
 }

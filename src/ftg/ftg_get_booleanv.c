@@ -23,8 +23,12 @@ static void	ftg_get_booleanv_convert(t_ftg_boolean *params, void *data, t_ftg_en
 			params[i] = ((t_ftg_uint*)data)[i] == 0 ? FTG_FALSE : FTG_TRUE;
 		else if (format == FTG_FLOAT)
 			params[i] = ((t_ftg_float*)data)[i] == 0 ? FTG_FALSE : FTG_TRUE;
+		else if (format == FTG_CLAMPF)
+			params[i] = ((t_ftg_clampf*)data)[i] == 0 ? FTG_FALSE : FTG_TRUE;
 		else if (format == FTG_DOUBLE)
 			params[i] = ((t_ftg_double*)data)[i] == 0 ? FTG_FALSE : FTG_TRUE;
+		else if (format == FTG_CLAMPD)
+			params[i] = ((t_ftg_clampd*)data)[i] == 0 ? FTG_FALSE : FTG_TRUE;
 		++i;
 	}
 }

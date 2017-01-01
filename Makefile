@@ -52,21 +52,26 @@ SRCS_NAME = main.c \
 			camera_set_rotation.c \
 			camera_set_projection.c \
 			epoch_millis.c \
-			ftg/ftg_blend_func_separate.c \
-			ftg/ftg_blend_func.c \
+			ftg/blend/ftg_blend_color.c \
+			ftg/blend/ftg_blend_equation_separate.c \
+			ftg/blend/ftg_blend_equation.c \
+			ftg/blend/ftg_blend_func_separate.c \
+			ftg/blend/ftg_blend_func.c \
+			ftg/depth/ftg_depth_func.c \
+			ftg/depth/ftg_depth_mask.c \
+			ftg/depth/ftg_depth_range.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_ctx_init.c \
-			ftg/ftg_depth_func.c \
-			ftg/ftg_depth_mask.c \
-			ftg/ftg_depth_range.c \
 			ftg/ftg_disable.c \
 			ftg/ftg_enable.c \
+			ftg/ftg_fog.c \
 			ftg/ftg_get_booleanv.c \
 			ftg/ftg_get_doublev.c \
 			ftg/ftg_get_error.c \
 			ftg/ftg_get_floatv.c \
 			ftg/ftg_get_intv.c \
 			ftg/ftg_get.c \
+			ftg/ftg_is_enabled.c \
 			ftg/ftg_load_identity.c \
 			ftg/ftg_load_matrix.c \
 			ftg/ftg_load_transpose_matrix.c \
@@ -125,6 +130,8 @@ odir:
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)mat4
 	@mkdir -p $(OBJS_PATH)ftg
+	@mkdir -p $(OBJS_PATH)ftg/blend
+	@mkdir -p $(OBJS_PATH)ftg/depth
 
 clean:
 	@make -C libft clean
