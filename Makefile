@@ -60,11 +60,13 @@ SRCS_NAME = main.c \
 			ftg/depth/ftg_depth_func.c \
 			ftg/depth/ftg_depth_mask.c \
 			ftg/depth/ftg_depth_range.c \
+			ftg/fog/ftg_fog_mode_color.c \
+			ftg/fog/ftg_fog_start_end_index_density.c \
+			ftg/fog/ftg_fog.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_ctx_init.c \
 			ftg/ftg_disable.c \
 			ftg/ftg_enable.c \
-			ftg/ftg_fog.c \
 			ftg/ftg_get_booleanv.c \
 			ftg/ftg_get_doublev.c \
 			ftg/ftg_get_error.c \
@@ -132,6 +134,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
+	@mkdir -p $(OBJS_PATH)ftg/fog
 
 clean:
 	@make -C libft clean
