@@ -63,8 +63,13 @@ SRCS_NAME = main.c \
 			ftg/fog/ftg_fog_mode_color.c \
 			ftg/fog/ftg_fog_start_end_index_density.c \
 			ftg/fog/ftg_fog.c \
+			ftg/rast/rast_line.c \
+			ftg/rast/rast_pixel_put.c \
+			ftg/rast/rast_triangle.c \
+			ftg/rast/rast_vertex.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_ctx_init.c \
+			ftg/ftg_ctx_set.c \
 			ftg/ftg_disable.c \
 			ftg/ftg_enable.c \
 			ftg/ftg_get_booleanv.c \
@@ -135,6 +140,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
 	@mkdir -p $(OBJS_PATH)ftg/fog
+	@mkdir -p $(OBJS_PATH)ftg/rast
 
 clean:
 	@make -C libft clean

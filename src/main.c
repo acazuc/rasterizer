@@ -46,6 +46,9 @@ int				main()
 	t_env	env;
 	double ranges[2] = {Z_MIN, Z_MAX};
 
+	ftg_ctx_set(&env.ctx);
+	ftg_ctx_init(&env.ctx);
+	ftg_viewport(1280, 720);
 	mat4_init_projection(&proj, 60, 1280. / 720, ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));

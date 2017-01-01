@@ -3,6 +3,8 @@
 
 # include <stdint.h>
 # include <limits.h>
+# include <signal.h>
+# include <stdio.h>
 # include "../libft/include/libft.h"
 # include "mat4.h"
 
@@ -159,6 +161,12 @@ void		ftg_fog_index(void *data, t_ftg_enum type);
 void		ftg_fog_density(void *data, t_ftg_enum type);
 void		ftg_fog_mode(void *data, t_ftg_enum type);
 void		ftg_fog_color(void *data, t_ftg_enum type);
+void		ftg_ctx_set(t_ftg_ctx *new_ctx);
+void		ftg_ctx_init(t_ftg_ctx *ctx);
+void		rast_pixel_put(t_vec4 *vec);
+void		rast_pixel_set(int x, int y, t_color *color);
+double		rast_depthbuffer_get(int x, int y);
+void		rast_depthbuffer_set(int x, int y, double z);
 t_ftg_boolean	ftg_is_enabled(t_ftg_enum cap);
 t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
 t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);

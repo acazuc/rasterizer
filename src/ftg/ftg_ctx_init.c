@@ -1,5 +1,7 @@
 #include "libftg.h"
 
+t_ftg_ctx	*ctx = NULL;
+
 void	ftg_ctx_init(t_ftg_ctx *ctx)
 {
 	ft_memset(ctx, 0, sizeof(*ctx));
