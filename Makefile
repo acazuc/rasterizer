@@ -83,8 +83,11 @@ SRCS_NAME = main.c \
 			ftg/min_max/ftg_maxild.c \
 			ftg/min_max/ftg_minbsf.c \
 			ftg/min_max/ftg_minild.c \
+			ftg/rast/rast_depthbuffer_get.c \
+			ftg/rast/rast_depthbuffer_set.c \
 			ftg/rast/rast_line.c \
 			ftg/rast/rast_pixel_put.c \
+			ftg/rast/rast_pixel_set.c \
 			ftg/rast/rast_triangle.c \
 			ftg/rast/rast_vertex.c \
 			ftg/rast/rast_watch_vertex.c \
@@ -94,6 +97,9 @@ SRCS_NAME = main.c \
 			ftg/ftg_ctx_set.c \
 			ftg/ftg_disable_client_state.c \
 			ftg/ftg_disable.c \
+			ftg/ftg_draw_arrays_get_vec_color.c \
+			ftg/ftg_draw_arrays_get_vec_vertex.c \
+			ftg/ftg_draw_arrays_get_vec.c \
 			ftg/ftg_draw_arrays_points.c \
 			ftg/ftg_draw_arrays_triangles.c \
 			ftg/ftg_draw_arrays.c \
@@ -101,6 +107,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_enable.c \
 			ftg/ftg_get_error.c \
 			ftg/ftg_is_enabled.c \
+			ftg/ftg_sizeof.c \
 			ftg/ftg_vertex_pointer.c \
 			ftg/ftg_viewport.c \
 

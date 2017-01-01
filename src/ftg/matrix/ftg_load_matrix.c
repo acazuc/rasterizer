@@ -6,6 +6,8 @@ void	ftg_load_matrixd(const t_ftg_double *m)
 {
 	t_ftg_double	*dst;
 
+	dst = NULL;
+	printf("%d\n", ctx->matrix_mode);
 	if (ctx->matrix_mode == FTG_MODELVIEW)
 	{
 		dst = ctx->matrix_modelview.value;
@@ -16,8 +18,8 @@ void	ftg_load_matrixd(const t_ftg_double *m)
 	}
 	else
 	{
-		ft_putendl_fd("Invalid matrix type", 2);
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Invalid matrix type\n", 2);
+		raise(SIGABRT);
 	}
 	ft_memcpy(dst, m, sizeof(*m) * 16);
 }

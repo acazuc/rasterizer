@@ -190,11 +190,18 @@ void		ftg_color_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, con
 void		ftg_draw_arrays(t_ftg_enum mode, t_ftg_int first, t_ftg_sizei count);
 void		ftg_draw_arrays_points(t_ftg_int first, t_ftg_sizei count);
 void		ftg_draw_arrays_triangles(t_ftg_int first, t_ftg_sizei count);
+void		ftg_draw_arrays_get_vec(t_vec4 *vec, t_ftg_int pos);
+void		ftg_draw_arrays_get_vec_color(t_vec4 *vec, t_ftg_int pos);
+void		ftg_draw_arrays_get_vec_vertex(t_vec4 *vec, t_ftg_int pos);
+t_ftg_sizei	ftg_sizeof(t_ftg_enum type);
 void		rast_pixel_put(t_vec4 *vec);
 void		rast_pixel_set(int x, int y, t_color *color);
 double		rast_depthbuffer_get(int x, int y);
 void		rast_depthbuffer_set(int x, int y, double z);
 void		rast_watch_vertex(t_vec4 *vec);
+void		rast_vertex(t_vec4 *vec);
+void		rast_line(t_vec4 *v1, t_vec4 *v2);
+void		rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3);
 t_ftg_boolean	ftg_is_enabled(t_ftg_enum cap);
 t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
 t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);

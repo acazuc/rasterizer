@@ -4,6 +4,8 @@ t_ftg_ctx	*ctx;
 
 void	ftg_clear(t_ftg_bitmask mask)
 {
+	int	i;
+
 	if (mask & FTG_COLOR_BUFFER_BIT)
 	{
 		mask &= ~FTG_COLOR_BUFFER_BIT;
@@ -12,7 +14,12 @@ void	ftg_clear(t_ftg_bitmask mask)
 	if (mask & FTG_DEPTH_BUFFER_BIT)
 	{
 		mask &= ~FTG_DEPTH_BUFFER_BIT;
-		ft_memset(ctx->depth_buffer, 1, sizeof(*ctx->depth_buffer) * ctx->width * ctx->height);
+		i = 0;
+		while (i < ctx->width * ctx->height)
+		{
+			ctx->depth_buffer[i] = 1;
+			++i;
+		}
 	}
 	if (mask)
 		ctx->errno = FTG_INVALID_VALUE;
