@@ -83,7 +83,7 @@ int				main()
 		//ftg_draw_arrays(FTG_LINES, 0, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors2);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex2);
-		//ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
+		ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors3);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex3);
 		ftg_draw_arrays(FTG_QUADS, 0, 1);

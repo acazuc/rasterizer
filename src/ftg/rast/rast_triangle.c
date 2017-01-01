@@ -80,18 +80,18 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 
 	double v3v1Diff = v3->y - v1->y;
 	step1.x = (v3->x - v1->x) / v3v1Diff;
+	step1.z = (v3->z - v1->z) / v3v1Diff;
 	step1.color.red = (v3->color.red - v1->color.red) / v3v1Diff;
 	step1.color.green = (v3->color.green - v1->color.green) / v3v1Diff;
 	step1.color.blue = (v3->color.blue - v1->color.blue) / v3v1Diff;
 	step1.color.alpha = (v3->color.alpha - v1->color.alpha) / v3v1Diff;
-	step1.z = (v3->z - v1->z) / v3v1Diff;
 	double v3v2Diff = v3->y - v2->y;
 	step2.x = (v3->x - v2->x) / v3v2Diff;
+	step2.z = (v3->z - v2->z) / v3v2Diff;
 	step2.color.red = (v3->color.red - v2->color.red) / v3v2Diff;
 	step2.color.green = (v3->color.green - v2->color.green) / v3v2Diff;
 	step2.color.blue = (v3->color.blue - v2->color.blue) / v3v2Diff;
 	step2.color.alpha = (v3->color.alpha - v2->color.alpha) / v3v2Diff;
-	step2.z = (v3->z - v2->z) / v3v2Diff;
 	n1.x = v3->x;
 	n1.z = v3->z;
 	n1.color.red = v3->color.red;
@@ -148,7 +148,7 @@ static void		_render_not_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	factor = (v2->y - v1->y) / (v3->y - v1->y);
 	new.x = v1->x + factor * (v3->x - v1->x);
 	new.y = v2->y;
-	new.z = v2->z;
+	new.z = v2->z + factor * (v3->z - v1->z);
 	new.color.red = v1->color.red + factor * (v3->color.red - v1->color.red);
 	new.color.green = v1->color.green + factor * (v3->color.green - v1->color.green);
 	new.color.blue = v1->color.blue + factor * (v3->color.blue - v1->color.blue);
