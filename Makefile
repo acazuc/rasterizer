@@ -64,15 +64,31 @@ SRCS_NAME = main.c \
 			ftg/fog/ftg_fog_mode_color.c \
 			ftg/fog/ftg_fog_start_end_index_density.c \
 			ftg/fog/ftg_fog.c \
+			ftg/matrix/ftg_load_identity.c \
+			ftg/matrix/ftg_load_matrix.c \
+			ftg/matrix/ftg_load_transpose_matrix.c \
+			ftg/matrix/ftg_matrix_mode.c \
+			ftg/matrix/ftg_mult_matrix.c \
+			ftg/matrix/ftg_mult_transpose_matrix.c \
+			ftg/matrix/ftg_perspective.c \
+			ftg/matrix/ftg_rotate.c \
+			ftg/matrix/ftg_scale.c \
+			ftg/matrix/ftg_translate.c \
 			ftg/rast/rast_line.c \
 			ftg/rast/rast_pixel_put.c \
 			ftg/rast/rast_triangle.c \
 			ftg/rast/rast_vertex.c \
 			ftg/rast/rast_watch_vertex.c \
 			ftg/ftg_clear.c \
+			ftg/ftg_color_pointer.c \
 			ftg/ftg_ctx_init.c \
 			ftg/ftg_ctx_set.c \
+			ftg/ftg_disable_client_state.c \
 			ftg/ftg_disable.c \
+			ftg/ftg_draw_arrays_points.c \
+			ftg/ftg_draw_arrays_triangles.c \
+			ftg/ftg_draw_arrays.c \
+			ftg/ftg_enable_client_state.c \
 			ftg/ftg_enable.c \
 			ftg/ftg_get_booleanv.c \
 			ftg/ftg_get_doublev.c \
@@ -81,20 +97,11 @@ SRCS_NAME = main.c \
 			ftg/ftg_get_intv.c \
 			ftg/ftg_get.c \
 			ftg/ftg_is_enabled.c \
-			ftg/ftg_load_identity.c \
-			ftg/ftg_load_matrix.c \
-			ftg/ftg_load_transpose_matrix.c \
-			ftg/ftg_matrix_mode.c \
 			ftg/ftg_maxbsf.c \
 			ftg/ftg_maxild.c \
 			ftg/ftg_minbsf.c \
 			ftg/ftg_minild.c \
-			ftg/ftg_mult_matrix.c \
-			ftg/ftg_mult_transpose_matrix.c \
-			ftg/ftg_perspective.c \
-			ftg/ftg_rotate.c \
-			ftg/ftg_scale.c \
-			ftg/ftg_translate.c \
+			ftg/ftg_vertex_pointer.c \
 			ftg/ftg_viewport.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
@@ -142,6 +149,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/blend
 	@mkdir -p $(OBJS_PATH)ftg/depth
 	@mkdir -p $(OBJS_PATH)ftg/fog
+	@mkdir -p $(OBJS_PATH)ftg/matrix
 	@mkdir -p $(OBJS_PATH)ftg/rast
 	@mkdir -p $(OBJS_PATH)mat4
 

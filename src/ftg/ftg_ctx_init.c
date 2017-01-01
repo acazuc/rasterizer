@@ -26,4 +26,12 @@ void	ftg_ctx_init(t_ftg_ctx *ctx)
 	ctx->fog_start = 0;
 	ctx->fog_end = 1;
 	ctx->fog_index = 0;
+	ctx->vertex_array_size = 4;
+	ctx->vertex_array_type = FTG_FLOAT;
+	ctx->vertex_array_stride = 0;
+	ctx->vertex_array_pointer = NULL;
+	ctx->color_array_size = 4;
+	ctx->color_array_type = FTG_FLOAT;
+	ctx->color_array_stride = 0;
+	ctx->color_array_pointer = NULL;
 }

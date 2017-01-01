@@ -12,6 +12,9 @@
 # define FTG_INVALID_ENUM	0x00000001
 # define FTG_INVALID_VALUE	0x00000002
 
+/*
+** data types
+*/
 # define FTG_BYTE		0x00000001
 # define FTG_UNSIGNED_BYTE	0x00000002
 # define FTG_SHORT		0x00000003
@@ -85,6 +88,22 @@
 # define FTG_FOG_END			0x00000039
 # define FTG_FOG_INDEX			0x0000003a
 # define FTG_FOG_COLOR			0x0000003b
+# define FTG_COLOR_ARRAY		0x0000003c
+# define FTG_VERTEX_ARRAY		0x0000003d
+
+/*
+** primitives
+*/
+# define FTG_POINTS		0x00000001
+# define FTG_LINE_STRIP		0x00000002
+# define FTG_LINE_LOOP		0x00000003
+# define FTG_LINES		0x00000004
+# define FTG_TRIANGLE_STRIP	0x00000005
+# define FTG_TRIANGLE_FAN	0x00000006
+# define FTG_TRIANGLES		0x00000007
+# define FTG_QUAD_STRIP		0x00000008
+# define FTG_QUADS		0x00000009
+# define FTG_POLYGONS		0x0000000a
 
 /*
 ** t_ftg_bitmask
@@ -114,6 +133,7 @@ typedef uint8_t			t_ftg_ubyte;
 typedef int32_t			t_ftg_sizei;
 typedef float			t_ftg_clampf;
 typedef double			t_ftg_clampd;
+typedef void			t_ftg_void;
 typedef struct s_ftg_ctx	t_ftg_ctx;
 
 void		ftg_matrix_mode(t_ftg_enum mode);
@@ -163,6 +183,13 @@ void		ftg_fog_mode(void *data, t_ftg_enum type);
 void		ftg_fog_color(void *data, t_ftg_enum type);
 void		ftg_ctx_set(t_ftg_ctx *new_ctx);
 void		ftg_ctx_init(t_ftg_ctx *ctx);
+void		ftg_disable_client_state(t_ftg_enum cap);
+void		ftg_enable_client_state(t_ftg_enum cap);
+void		ftg_vertex_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, const t_ftg_void *pointer);
+void		ftg_color_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, const t_ftg_void *pointer);
+void		ftg_draw_arrays(t_ftg_enum mode, t_ftg_int first, t_ftg_sizei count);
+void		ftg_draw_arrays_points(t_ftg_int first, t_ftg_sizei count);
+void		ftg_draw_arrays_triangles(t_ftg_int first, t_ftg_sizei count);
 void		rast_pixel_put(t_vec4 *vec);
 void		rast_pixel_set(int x, int y, t_color *color);
 double		rast_depthbuffer_get(int x, int y);
@@ -217,6 +244,16 @@ struct					s_ftg_ctx
 	t_ftg_clampd			fog_start;
 	t_ftg_clampd			fog_end;
 	t_ftg_enum			fog_mode;
+	t_ftg_boolean			vertex_array;
+	t_ftg_int			vertex_array_size;
+	t_ftg_enum			vertex_array_type;
+	t_ftg_sizei			vertex_array_stride;
+	const t_ftg_void		*vertex_array_pointer;
+	t_ftg_boolean			color_array;
+	t_ftg_int			color_array_size;
+	t_ftg_enum			color_array_type;
+	t_ftg_sizei			color_array_stride;
+	const t_ftg_void		*color_array_pointer;
 	t_ftg_enum			matrix_mode;
 	t_ftg_enum			errno;
 };
