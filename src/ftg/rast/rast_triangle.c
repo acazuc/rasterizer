@@ -43,7 +43,7 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	}
 	for (int y = v1->y; y <= v2->y; ++y)
 	{
-		for (int x = (int)ceil(n1.x); x <= (int)n2.x; ++x)
+		for (int x = n1.x; x <= n2.x; ++x)
 		{
 			t_vec4 tmp;
 			double t = (x - n1.x) / (n2.x - n1.x);
@@ -112,7 +112,7 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	}
 	for (int y = v3->y; y >= v1->y; --y)
 	{
-		for (int x = (int)ceil(n1.x); x <= (int)n2.x; ++x)
+		for (int x = n1.x; x <= n2.x; ++x)
 		{
 			t_vec4 tmp;
 			double t = (x - n1.x) / (n2.x - n1.x);
@@ -183,28 +183,22 @@ static void		_get_vertices_sorted(t_vec4 **v1, t_vec4 **v2, t_vec4 **v3)
 
 void			rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3)
 {
-	t_vec4	*t[3];
-	t_vec4	v1;
-	t_vec4	v2;
-	t_vec4	v3;
+	t_vec4	*points[3];
 
-	t[0] = &v1;
-	t[1] = &v2;
-	t[2] = &v3;
-	v1 = *p1;
-	v2 = *p2;
-	v3 = *p3;
-	v1.x = (int)(ctx->width / 2 + v1.x * ctx->width / 2);
-	v1.y = (int)(ctx->height / 2 + v1.y * ctx->height / 2);
-	v2.x = (int)(ctx->width / 2 + v2.x * ctx->width / 2);
-	v2.y = (int)(ctx->height / 2 + v2.y * ctx->height / 2);
-	v3.x = (int)(ctx->width / 2 + v3.x * ctx->width / 2);
-	v3.y = (int)(ctx->height / 2 + v3.y * ctx->height / 2);
-	_get_vertices_sorted(&t[0], &t[1], &t[2]);
-	if (t[1]->y == t[2]->y)
-		_render_bottom_flat(t[0], t[1], t[2]);
-	else if (t[0]->y == t[1]->y)
-		_render_top_flat(t[0], t[1], t[2]);
+	points[0] = p1;
+	points[1] = p2;
+	points[2] = p3;
+	p1->x = round(p1->x);
+	p1->y = round(p1->y);
+	p2->x = round(p2->x);
+	p2->y = round(p2->y);
+	p3->x = round(p3->x);
+	p3->y = round(p3->y);
+	_get_vertices_sorted(&points[0], &points[1], &points[2]);
+	if (points[1]->y == points[2]->y)
+		_render_bottom_flat(points[0], points[1], points[2]);
+	else if (points[0]->y == points[1]->y)
+		_render_top_flat(points[0], points[1], points[2]);
 	else
-		_render_not_flat(t[0], t[1], t[2]);
+		_render_not_flat(points[0], points[1], points[2]);
 }

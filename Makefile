@@ -25,29 +25,6 @@ SRCS_NAME = main.c \
 			window_create.c \
 			window_update_context.c \
 			window_listener_resize.c \
-			mat4/mat4_clear.c \
-			mat4/mat4_init_scale.c \
-			mat4/mat4_init_identity.c \
-			mat4/mat4_init_translation.c \
-			mat4/mat4_init_rotations.c \
-			mat4/mat4_init_projection.c \
-			mat4/mat4_mult.c \
-			mat4/mat4_transform_vec4.c \
-			mat4/mat4_reverse.c \
-			mat4/mat4_dump.c \
-			render_resize.c \
-			render_render.c \
-			render_set_pixel.c \
-			render_put_pixel.c \
-			render_render_vertex.c \
-			render_render_line.c \
-			render_render_triangle.c \
-			render_set_zindex.c \
-			render_get_zindex.c \
-			camera_watch_vec4.c \
-			camera_set_position.c \
-			camera_set_rotation.c \
-			camera_set_projection.c \
 			epoch_millis.c \
 			color/color_add.c \
 			color/color_div.c \
@@ -111,6 +88,16 @@ SRCS_NAME = main.c \
 			ftg/ftg_sizeof.c \
 			ftg/ftg_vertex_pointer.c \
 			ftg/ftg_viewport.c \
+			mat4/mat4_clear.c \
+			mat4/mat4_dump.c \
+			mat4/mat4_init_identity.c \
+			mat4/mat4_init_projection.c \
+			mat4/mat4_init_rotations.c \
+			mat4/mat4_init_scale.c \
+			mat4/mat4_init_translation.c \
+			mat4/mat4_mult.c \
+			mat4/mat4_reverse.c \
+			mat4/mat4_transform_vec4.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

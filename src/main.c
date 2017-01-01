@@ -50,9 +50,6 @@ int				main()
 	ftg_viewport(1280, 720);
 	if (!glfwInit())
 		ERROR("Can't init glfw");
-	camera_set_position(&env.camera, 0, 0, -10);
-	camera_set_rotation(&env.camera, 0, ft_toradians(0), 0);
-	camera_set_projection(&env.camera, &proj);
 	window_create(&env);
 	glGenTextures(1, &g_env->texture);
 	glBindTexture(GL_TEXTURE_2D, g_env->texture);
@@ -64,26 +61,28 @@ int				main()
 	ftg_enable_client_state(FTG_COLOR_ARRAY);
 	float colors[24] = {1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1};
 	double vertex[24] = {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1};
+	float colors2[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+	double vertex2[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 	ftg_matrix_mode(FTG_PROJECTION);
 	ftg_perspective(60, 1280. / 720, Z_MIN, Z_MAX);
 	ftg_matrix_mode(FTG_MODELVIEW);
-	ftg_translated(0, 0, -10);
-	ftg_color_pointer(3, FTG_FLOAT, 0, colors);
-	ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex);
 	double i = 0;
 	while (!glfwWindowShouldClose(env.window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//camera_set_rotation(&env.camera, ft_toradians(i), ft_toradians(i * 2), ft_toradians(i * 3));
 		ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
 		ftg_load_identity();
-		ftg_translated(0, 0, -10);
+		ftg_translated(0, 0, -2);
 		ftg_rotated(ft_toradians(i * 3), 0, 0, 1);
 		ftg_rotated(ft_toradians(i * 2), 0, 1, 0);
 		ftg_rotated(ft_toradians(i * 1), 1, 0, 0);
+		ftg_color_pointer(3, FTG_FLOAT, 0, colors);
+		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex);
 		ftg_draw_arrays(FTG_LINES, 0, 4);
+		ftg_color_pointer(3, FTG_FLOAT, 0, colors2);
+		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex2);
+		ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
 		draw_elements(&env);
-		//render_render();
 		glfwSwapBuffers(env.window);
 		glfwPollEvents();
 		++i;
