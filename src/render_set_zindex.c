@@ -16,5 +16,5 @@ void	render_set_zindex(t_ftg_ctx *ctx, int x, int y, double z)
 {
 	if (x < 0 || x >= ctx->width || y < 0 || y >= ctx->height)
 		return ;
-	ctx->z_index[y * ctx->width + x] = z;
+	ctx->depth_buffer[y * ctx->width + x] = z;
 }

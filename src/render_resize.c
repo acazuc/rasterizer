@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 #include "rasterizer.h"
-
+/*
 static void	do_copy(char **dst, int width, int height, int mult)
 {
 	if (!(*dst = malloc(width * height * mult)))
 		ERROR("malloc failed");
 	ft_memset(*dst, 0, width * height * mult);
-}
+}*/
 
 void		render_resize(t_ftg_ctx *ctx, int width, int height)
-{
+{/*
 	double			*z_index;
 	float			*colors;
 
@@ -31,6 +31,8 @@ void		render_resize(t_ftg_ctx *ctx, int width, int height)
 	ctx->z_index = z_index;
 	ctx->colors = colors;
 	ctx->width = width;
-	ctx->height = height;
+	ctx->height = height;*/
+	(void)width;
+	(void)height;
 	render_render(ctx);
 }

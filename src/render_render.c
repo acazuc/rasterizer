@@ -71,12 +71,12 @@ void		render_render(t_ftg_ctx *ctx)
 {
 	if (!g_env->texture)
 		glGenTextures(1, &g_env->texture);
-	ft_memset(ctx->colors, 0, ctx->width * ctx->height * 3 * sizeof(*ctx->colors));
-	ft_memset(ctx->z_index, 0, ctx->width * ctx->height * sizeof(*ctx->z_index));
+	/*ft_memset(ctx->colors, 0, ctx->width * ctx->height * 3 * sizeof(*ctx->colors));
+	ft_memset(ctx->z_index, 0, ctx->width * ctx->height * sizeof(*ctx->z_index));*/
 	render_render_do(g_env);
 	glBindTexture(GL_TEXTURE_2D, g_env->texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ctx->width, ctx->height
-			, 0, GL_RGB, GL_FLOAT, ctx->colors);
+			, 0, GL_RGB, GL_FLOAT, ctx->color_buffer);
 }

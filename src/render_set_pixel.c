@@ -20,9 +20,9 @@ void	render_set_pixel(t_ftg_ctx *ctx, int x, int y, t_color *color)
 
 	if (y < 0 || y >= ctx->height || x < 0 || x >= ctx->width)
 		return ;
-	red = &ctx->colors[(y * ctx->width + x) * 3 + 0];
-	green = &ctx->colors[(y * ctx->width + x) * 3 + 1];
-	blue = &ctx->colors[(y * ctx->width + x) * 3 + 2];
+	red = &ctx->color_buffer[(y * ctx->width + x) * 3 + 0];
+	green = &ctx->color_buffer[(y * ctx->width + x) * 3 + 1];
+	blue = &ctx->color_buffer[(y * ctx->width + x) * 3 + 2];
 	if (color->alpha == 1)
 	{
 		*red = MAX(0, MIN(1, color->red));

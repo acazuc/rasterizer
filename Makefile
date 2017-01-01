@@ -52,7 +52,15 @@ SRCS_NAME = main.c \
 			camera_set_rotation.c \
 			camera_set_projection.c \
 			epoch_millis.c \
+			ftg/ftg_blend_func_separate.c \
+			ftg/ftg_blend_func.c \
+			ftg/ftg_clear.c \
 			ftg/ftg_ctx_init.c \
+			ftg/ftg_depth_func.c \
+			ftg/ftg_depth_mask.c \
+			ftg/ftg_depth_range.c \
+			ftg/ftg_disable.c \
+			ftg/ftg_enable.c \
 			ftg/ftg_get_booleanv.c \
 			ftg/ftg_get_doublev.c \
 			ftg/ftg_get_error.c \
@@ -73,6 +81,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_rotate.c \
 			ftg/ftg_scale.c \
 			ftg/ftg_translate.c \
+			ftg/ftg_viewport.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

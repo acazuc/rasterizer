@@ -7,28 +7,76 @@
 
 # define FTG_NO_ERROR		0x00000000
 # define FTG_INVALID_ENUM	0x00000001
+# define FTG_INVALID_VALUE	0x00000002
 
 # define FTG_BYTE		0x00000001
 # define FTG_UNSIGNED_BYTE	0x00000002
-# define FTG_SHORT		0x00000004
-# define FTG_UNSIGNED_SHORT	0x00000008
-# define FTG_INT		0x0000000f
-# define FTG_UNSIGNED_INT	0x00000010
-# define FTG_LONG		0x00000011
-# define FTG_UNSIGNED_LONG	0x00000012
-# define FTG_FLOAT		0x00000014
-# define FTG_DOUBLE		0x00000018
-# define FTG_BOOLEAN		0x0000001f
+# define FTG_SHORT		0x00000003
+# define FTG_UNSIGNED_SHORT	0x00000004
+# define FTG_INT		0x00000005
+# define FTG_ENUM		FTG_INT
+# define FTG_UNSIGNED_INT	0x00000006
+# define FTG_LONG		0x00000007
+# define FTG_UNSIGNED_LONG	0x00000008
+# define FTG_FLOAT		0x00000009
+# define FTG_CLAMPF		FTG_FLOAT
+# define FTG_DOUBLE		0x0000000a
+# define FTG_CLAMPD		FTG_DOUBLE
+# define FTG_BOOLEAN		0x0000000b
 
-# define FTG_MATRIX_MODE	0x00000001
-# define FTG_MODELVIEW		0x00000002
-# define FTG_MODELVIEW_MATRIX	0x00000002
-# define FTG_PROJECTION		0x00000004
-# define FTG_PROJECTION_MATRIX	0x00000004
+/*
+** t_ftg_enum
+*/
+# define FTG_MATRIX_MODE		0x00000001
+# define FTG_MODELVIEW			0x00000002
+# define FTG_MODELVIEW_MATRIX		0x00000002
+# define FTG_PROJECTION			0x00000003
+# define FTG_PROJECTION_MATRIX		0x00000003
+# define FTG_NEVER			0x00000004
+# define FTG_LESS			0x00000005
+# define FTG_EQUAL			0x00000006
+# define FTG_LEQUAL			0x00000007
+# define FTG_GREATER			0x00000008
+# define FTG_NOTEQUAL			0x00000009
+# define FTG_GEQUAL			0x0000000a
+# define FTG_ALWAYS			0x0000000b
+# define FTG_DEPTH_RANGE		0x0000000c
+# define FTG_DEPTH_FUNC			0x0000000d
+# define FTG_DEPTH_TEST			0x0000000e
+# define FTG_DEPTH_WRITEMASK		0x0000000f
+# define FTG_ZERO			0x00000010
+# define FTG_ONE			0x00000011
+# define FTG_SRC_COLOR			0x00000012
+# define FTG_ONE_MINUS_SRC_COLOR	0x00000013
+# define FTG_DST_COLOR			0x00000014
+# define FTG_ONE_MINUS_DST_COLOR	0x00000015
+# define FTG_SRC_ALPHA			0x00000016
+# define FTG_ONE_MINUS_SRC_ALPHA	0x00000017
+# define FTG_DST_ALPHA			0x00000018
+# define FTG_ONE_MINUS_DST_ALPHA	0x00000019
+# define FTG_CONSTANT_COLOR		0x0000001a
+# define FTG_ONE_MINUS_CONSTANT_COLOR	0x0000001b
+# define FTG_CONSTANT_ALPHA		0x0000001c
+# define FTG_ONE_MINUS_CONSTANT_ALPHA	0x0000001d
+# define FTG_SRC_ALPHA_SATURATE		0x0000001e
+# define FTG_BLEND_SRC_RGB		0x0000001f
+# define FTG_BLEND_SRC_ALPHA		0x00000020
+# define FTG_BLEND_DST_RGB		0x00000021
+# define FTG_BLEND_DST_ALPHA		0x00000022
 
+/*
+** t_ftg_bitmask
+*/
+# define FTG_COLOR_BUFFER_BIT	0x00000001
+# define FTG_DEPTH_BUFFER_BIT	0x00000002
+
+/*
+** t_ftg_boolean
+*/
 # define FTG_FALSE		0x00000000
 # define FTG_TRUE		0x00000001
 
+typedef uint8_t			t_ftg_bitmask;
 typedef uint32_t		t_ftg_enum;
 typedef double			t_ftg_double;
 typedef float			t_ftg_float;
@@ -41,6 +89,9 @@ typedef int16_t			t_ftg_short;
 typedef uint16_t		t_ftg_ushort;
 typedef int8_t			t_ftg_byte;
 typedef uint8_t			t_ftg_ubyte;
+typedef int32_t			t_ftg_sizei;
+typedef float			t_ftg_clampf;
+typedef double			t_ftg_clampd;
 typedef struct s_ftg_ctx	t_ftg_ctx;
 
 void		ftg_matrix_mode(t_ftg_enum mode);
@@ -66,6 +117,15 @@ void		ftg_rotated(t_ftg_double angle, t_ftg_double x, t_ftg_double y, t_ftg_doub
 void		ftg_rotatef(t_ftg_float angle, t_ftg_float x, t_ftg_float y, t_ftg_float z);
 void		ftg_scaled(t_ftg_double x, t_ftg_double y, t_ftg_double z);
 void		ftg_scalef(t_ftg_float x, t_ftg_float y, t_ftg_float z);
+void		ftg_viewport(t_ftg_sizei width, t_ftg_sizei height);
+void		ftg_clear(t_ftg_bitmask mask);
+void		ftg_depth_mask(t_ftg_boolean flag);
+void		ftg_depth_func(t_ftg_enum func);
+void		ftg_depth_range(t_ftg_clampd near_val, t_ftg_clampd far_val);
+void		ftg_disable(t_ftg_enum cap);
+void		ftg_enable(t_ftg_enum cap);
+void		ftg_blend_func(t_ftg_enum s_factor, t_ftg_enum d_factor);
+void		ftg_blend_func_separate(t_ftg_enum src_rgb, t_ftg_enum dst_rgb, t_ftg_enum src_alpha, t_ftg_enum dst_alpha);
 t_ftg_byte	ftg_minb(t_ftg_byte b1, t_ftg_byte b2);
 t_ftg_ubyte	ftg_minub(t_ftg_ubyte b1, t_ftg_ubyte b2);
 t_ftg_short	ftg_mins(t_ftg_short s1, t_ftg_short s2);
@@ -89,12 +149,20 @@ t_ftg_double	ftg_maxd(t_ftg_double f1, t_ftg_double f2);
 
 struct					s_ftg_ctx
 {
-	double				*z_index;
-	float				*colors;
-	int32_t				width;
-	int32_t				height;
+	t_ftg_double			*depth_buffer;
+	t_ftg_float			*color_buffer;
+	t_ftg_sizei			width;
+	t_ftg_sizei			height;
 	t_mat4				matrix_projection;
 	t_mat4				matrix_modelview;
+	t_ftg_boolean			depth_writemask;
+	t_ftg_enum			depth_func;
+	t_ftg_boolean			depth_test;
+	t_ftg_clampd			depth_range[2];
+	t_ftg_enum			blend_src_rgb;
+	t_ftg_enum			blend_src_alpha;
+	t_ftg_enum			blend_dst_rgb;
+	t_ftg_enum			blend_dst_alpha;
 	t_ftg_enum			matrix_mode;
 	t_ftg_enum			errno;
 };
