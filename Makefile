@@ -41,8 +41,10 @@ SRCS_NAME = main.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec_color.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec_vertex.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec.c \
+			ftg/draw_arrays/ftg_draw_arrays_line_strip.c \
 			ftg/draw_arrays/ftg_draw_arrays_lines.c \
 			ftg/draw_arrays/ftg_draw_arrays_points.c \
+			ftg/draw_arrays/ftg_draw_arrays_quads.c \
 			ftg/draw_arrays/ftg_draw_arrays_triangles.c \
 			ftg/draw_arrays/ftg_draw_arrays.c \
 			ftg/fog/ftg_fog_mode_color.c \
@@ -75,6 +77,7 @@ SRCS_NAME = main.c \
 			ftg/rast/rast_triangle.c \
 			ftg/rast/rast_vertex.c \
 			ftg/rast/rast_watch_vertex.c \
+			ftg/ftg_clear_color.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_color_pointer.c \
 			ftg/ftg_ctx_init.c \

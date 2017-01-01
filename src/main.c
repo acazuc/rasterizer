@@ -63,6 +63,8 @@ int				main()
 	double vertex[24] = {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1};
 	float colors2[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 	double vertex2[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+	float colors3[12] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1};
+	double vertex3[12] = {0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0};
 	ftg_matrix_mode(FTG_PROJECTION);
 	ftg_perspective(60, 1280. / 720, Z_MIN, Z_MAX);
 	ftg_matrix_mode(FTG_MODELVIEW);
@@ -78,10 +80,13 @@ int				main()
 		ftg_rotated(ft_toradians(i * 1), 1, 0, 0);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex);
-		ftg_draw_arrays(FTG_LINES, 0, 4);
+		//ftg_draw_arrays(FTG_LINES, 0, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors2);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex2);
-		ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
+		//ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
+		ftg_color_pointer(3, FTG_FLOAT, 0, colors3);
+		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex3);
+		ftg_draw_arrays(FTG_QUADS, 0, 1);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		glfwPollEvents();
