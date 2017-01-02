@@ -10,10 +10,12 @@ void	ftg_fog_mode(void *data, t_ftg_enum type)
 		mode = ((t_ftg_float*)data)[0];
 	else if (type == FTG_INT)
 		mode = ((t_ftg_int*)data)[0];
+	else
+		return ;
 	if (mode != FTG_EXP && mode != FTG_EXP2 && mode != FTG_LINEAR)
 	{
 		ctx->errno = FTG_INVALID_VALUE;
-		return;
+		return ;
 	}
 	ctx->fog_mode = mode;
 }

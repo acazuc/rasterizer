@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2016/12/30 18:10:43 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/02 12:09:50 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,21 +114,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-#FRAMEWORK = -framework OpenGL
-#FRAMEWORK+= -framework AppKit
-#FRAMEWORK+= -framework IOKit
-#FRAMEWORK+= -framework CoreVideo
+FRAMEWORK = -framework OpenGL
+FRAMEWORK+= -framework AppKit
+FRAMEWORK+= -framework IOKit
+FRAMEWORK+= -framework CoreVideo
 
-FRAMEWORK = -lGL
-FRAMEWORK+= -lX11
-FRAMEWORK+= -lXrandr
-FRAMEWORK+= -lXinerama
-FRAMEWORK+= -lXcursor
-FRAMEWORK+= -lXxf86vm
-FRAMEWORK+= -ldl
-FRAMEWORK+= -lrt
-FRAMEWORK+= -lm
-FRAMEWORK+= -lpthread
+#FRAMEWORK = -lGL
+#FRAMEWORK+= -lX11
+#FRAMEWORK+= -lXrandr
+#FRAMEWORK+= -lXinerama
+#FRAMEWORK+= -lXcursor
+#FRAMEWORK+= -lXxf86vm
+#FRAMEWORK+= -ldl
+#FRAMEWORK+= -lrt
+#FRAMEWORK+= -lm
+#FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 

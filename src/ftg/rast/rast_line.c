@@ -25,20 +25,23 @@ static void		_calc_dif(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 
 static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
-	if (v1->x < 0)
+	(void)dif;
+	(void)v1;
+	(void)v2;
+	/*if (v1->x < 0)
 	{
 		printf("dif x: %f, v1->x: %f, v2->x: %f, v1->y %f, v2->y : %f\n", dif->x, v1->x, v2->x, v1->y, v2->y);
 		v1->y = v2->y - (1 - (-v1->x / dif->x)) * dif->y;
 		v1->x = 0;
 		return (FTG_TRUE);
-	}
-	if (v1->y < 0)
+	}*/
+	/*if (v1->y < 0)
 	{
 		v1->x = v2->x - (1 - (-v1->y / dif->y)) * dif->x;
 		v1->y = 0;
 		return (FTG_TRUE);
-	}
-	if (v1->x >= ctx->width)
+	}*/
+	/*if (v1->x >= ctx->width)
 	{
 		v1->y = v2->y - (1 - ((v1->x - (ctx->width - 1)) / -dif->x)) * dif->y;
 		v1->x = ctx->width - 1;
@@ -49,7 +52,7 @@ static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 		v1->x = v2->x - (1 - ((v1->y - (ctx->height - 1)) / -dif->y)) * dif->x;
 		v1->y = ctx->height - 1;
 		return (FTG_TRUE);
-	}
+	}*/
 	return (FTG_FALSE);
 }
 /*
