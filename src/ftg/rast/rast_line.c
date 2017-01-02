@@ -68,7 +68,7 @@ void			rast_line(t_vec4 *v1, t_vec4 *v2)
 	if (_is_out_of_screen(v1, v2) == FTG_TRUE)
 		return ;
 	_calc_dif(&dif, v1, v2);
-	while (_truncatev1(&dif, v1, v2) == FTG_TRUE)
+	while (_truncate_v1(&dif, v1, v2) == FTG_TRUE)
 	{
 		printf("truncated to: x: %f, y: %f\n", v1->x, v1->y);
 		if (_is_out_of_screen(v1, v2) == FTG_TRUE)
