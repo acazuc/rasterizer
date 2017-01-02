@@ -2,114 +2,93 @@
 
 t_ftg_ctx	*ctx;
 
-static void		do_draw_top(t_vec4 *start, t_vec4 *dif)
+static t_ftg_boolean	_is_out_of_screen(t_vec4 *v1, t_vec4 *v2)
 {
-	t_vec4	tmp;
-	double	iter;
-	double	fac;
-
-	iter = 0;
-	while (iter <= dif->y)
-	{
-		fac = iter / dif->y;
-		tmp.x = start->x + dif->x * fac;
-		tmp.y = start->y + iter;
-		tmp.z = start->z + dif->z * fac;
-		tmp.color.red = start->color.red + dif->color.red * fac;
-		tmp.color.green = start->color.green + dif->color.green * fac;
-		tmp.color.blue = start->color.blue + dif->color.blue * fac;
-		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		rast_pixel_put(&tmp);
-		++iter;
-	}
+	if (v1->x < 0 && v2->x < 0)
+		return (FTG_TRUE);
+	if (v1->x >= ctx->width && v2->x >= ctx->width)
+		return (FTG_TRUE);
+	if (v1->y < 0 && v2->y < 0)
+		return (FTG_TRUE);
+	if (v1->y >= ctx->height && v2->y >= ctx->height)
+		return (FTG_TRUE);
+	return (FTG_FALSE);
 }
 
-static void		do_draw_bottom(t_vec4 *start, t_vec4 *dif)
+static void		_calc_dif(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
-	t_vec4	tmp;
-	double	iter;
-	double	fac;
-
-	iter = 0;
-	while (iter >= dif->y)
-	{
-		fac = iter / dif->y;
-		tmp.x = start->x + dif->x * fac;
-		tmp.y = start->y + iter;
-		tmp.z = start->z + dif->z * fac;
-		tmp.color.red = start->color.red + dif->color.red * fac;
-		tmp.color.green = start->color.green + dif->color.green * fac;
-		tmp.color.blue = start->color.blue + dif->color.blue * fac;
-		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		rast_pixel_put(&tmp);
-		--iter;
-	}
+	dif->x = v2->x - v1->x;
+	dif->y = v2->y - v1->y;
+	dif->z = v2->z - v1->z;
+	dif->color = color_sub(&v2->color, &v1->color);
 }
 
-static void		do_draw_right(t_vec4 *start, t_vec4 *dif)
+static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
-	t_vec4	tmp;
-	double	iter;
-	double	fac;
-
-	iter = 0;
-	while (iter <= dif->x)
+	if (v1->x < 0)
 	{
-		fac = iter / dif->x;
-		tmp.x = start->x + iter;
-		tmp.y = start->y + dif->y * fac;
-		tmp.z = start->z + dif->z * fac;
-		tmp.color.red = start->color.red + dif->color.red * fac;
-		tmp.color.green = start->color.green + dif->color.green * fac;
-		tmp.color.blue = start->color.blue + dif->color.blue * fac;
-		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		rast_pixel_put(&tmp);
-		++iter;
+		printf("dif x: %f, v1->x: %f, v2->x: %f, v1->y %f, v2->y : %f\n", dif->x, v1->x, v2->x, v1->y, v2->y);
+		v1->y = v2->y - (1 - (-v1->x / dif->x)) * dif->y;
+		v1->x = 0;
+		return (FTG_TRUE);
 	}
+	if (v1->y < 0)
+	{
+		v1->x = v2->x - (1 - (-v1->y / dif->y)) * dif->x;
+		v1->y = 0;
+		return (FTG_TRUE);
+	}
+	if (v1->x >= ctx->width)
+	{
+		v1->y = v2->y - (1 - ((v1->x - (ctx->width - 1)) / -dif->x)) * dif->y;
+		v1->x = ctx->width - 1;
+		return (FTG_TRUE);
+	}
+	if (v1->y >= ctx->height)
+	{
+		v1->x = v2->x - (1 - ((v1->y - (ctx->height - 1)) / -dif->y)) * dif->x;
+		v1->y = ctx->height - 1;
+		return (FTG_TRUE);
+	}
+	return (FTG_FALSE);
 }
-
-static void		do_draw_left(t_vec4 *start, t_vec4 *dif)
+/*
+static t_ftg_boolean	_truncate_v2(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
-	t_vec4	tmp;
-	double	iter;
-	double	fac;
-
-	iter = 0;
-	while (iter >= dif->x)
-	{
-		fac = iter / dif->x;
-		tmp.x = start->x + iter;
-		tmp.y = start->y + dif->y * fac;
-		tmp.z = start->z + dif->z * fac;
-		tmp.color.red = start->color.red + dif->color.red * fac;
-		tmp.color.green = start->color.green + dif->color.green * fac;
-		tmp.color.blue = start->color.blue + dif->color.blue * fac;
-		tmp.color.alpha = start->color.alpha + dif->color.alpha * fac;
-		rast_pixel_put(&tmp);
-		--iter;
-	}
-}
+	(void)dif;
+	(void)v1;
+	(void)v2;
+	return (FTG_FALSE);
+}*/
 
 void			rast_line(t_vec4 *v1, t_vec4 *v2)
 {
 	t_vec4	dif;
 
-	dif.x = v2->x - v1->x;
-	dif.y = v2->y - v1->y;
-	dif.z = (v2->z - v1->z);
-	dif.color = color_sub(&v2->color, &v1->color);
+	if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+		return ;
+	_calc_dif(&dif, v1, v2);
+	while (_truncatev1(&dif, v1, v2) == FTG_TRUE)
+	{
+		printf("truncated to: x: %f, y: %f\n", v1->x, v1->y);
+		if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+			return ;
+		_calc_dif(&dif, v1, v2);
+	}
+	if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+		return ;
 	if (fabs(dif.x) > fabs(dif.y))
 	{
 		if (dif.x < 0)
-			do_draw_left(v1, &dif);
+			rast_line_draw_left(v1, &dif);
 		else
-			do_draw_right(v1, &dif);
+			rast_line_draw_right(v1, &dif);
 	}
 	else
 	{
 		if (dif.y < 0)
-			do_draw_bottom(v1, &dif);
+			rast_line_draw_bottom(v1, &dif);
 		else
-			do_draw_top(v1, &dif);
+			rast_line_draw_top(v1, &dif);
 	}
 }

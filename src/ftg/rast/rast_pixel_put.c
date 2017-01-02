@@ -28,7 +28,7 @@ void	rast_pixel_put(t_vec4 *vec)
 	double	current_z;
 
 	if (vec->x < 0 || vec->x >= ctx->width || vec->y < 0 || vec->y >= ctx->height
-			|| vec->z < 0)
+			|| vec->z < 0 || vec->z >= 1)
 		return ;
 	if (ctx->depth_test == FTG_TRUE)
 	{

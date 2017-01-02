@@ -71,6 +71,7 @@ SRCS_NAME = main.c \
 			ftg/min_max/ftg_minild.c \
 			ftg/rast/rast_depthbuffer_get.c \
 			ftg/rast/rast_depthbuffer_set.c \
+			ftg/rast/rast_line_draws.c \
 			ftg/rast/rast_line.c \
 			ftg/rast/rast_pixel_put.c \
 			ftg/rast/rast_pixel_set.c \
