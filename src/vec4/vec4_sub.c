@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 15:29:41 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 15:39:22 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 16:38:31 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	vec4_sub(t_vec4 *dst, t_vec4 *v1, t_vec4 *v2)
 	dst->w = v1->w - v2->w;
 	dst->u = v1->u - v2->u;
 	dst->v = v1->v - v2->v;
+	color_sub(&dst->color, &v1->color, &v2->color);
 }

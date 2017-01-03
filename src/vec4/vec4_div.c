@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 15:25:36 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 15:48:58 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 16:38:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	vec4_div(t_vec4 *dst, t_vec4 *v1, double factor)
 	dst->w = v1->w / factor;
 	dst->u = v1->u / factor;
 	dst->v = v1->v / factor;
+	color_div(&dst->color, &v1->color, factor);
 }

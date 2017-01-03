@@ -6,39 +6,22 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 {
 	t_vec4	step1;
 	t_vec4	step2;
+	t_vec4	tmp_v;
 	t_vec4	n1;
 	t_vec4	n2;
 	double	tmp;
 
 	tmp = (v2->y - v1->y);
-	step1.x = (v2->x - v1->x) / tmp;
-	step1.z = (v2->z - v1->z) / tmp;
-	step1.color.red = (v2->color.red - v1->color.red) / tmp;
-	step1.color.green = (v2->color.green - v1->color.green) / tmp;
-	step1.color.blue = (v2->color.blue - v1->color.blue) / tmp;
-	step1.color.alpha = (v2->color.alpha - v1->color.alpha) / tmp;
+	vec4_sub(&step1, v2, v1);
+	vec4_div(&step1, &step1, tmp);
 	tmp = (v3->y - v1->y);
-	step2.x = (v3->x - v1->x) / tmp;
-	step2.z = (v3->z - v1->z) / tmp;
-	step2.color.red = (v3->color.red - v1->color.red) / tmp;
-	step2.color.green = (v3->color.green - v1->color.green) / tmp;
-	step2.color.blue = (v3->color.blue - v1->color.blue) / tmp;
-	step2.color.alpha = (v3->color.alpha - v1->color.alpha) / tmp;
-	n1.x = v1->x;
-	n1.z = v1->z;
-	n1.color.red = v1->color.red;
-	n1.color.green = v1->color.green;
-	n1.color.blue = v1->color.blue;
-	n1.color.alpha = v1->color.alpha;
-	n2.x = v1->x + 1;
-	n2.z = v1->z;
-	n2.color.red = v1->color.red;
-	n2.color.green = v1->color.green;
-	n2.color.blue = v1->color.blue;
-	n2.color.alpha = v1->color.alpha;
+	vec4_sub(&step2, v3, v1);
+	vec4_div(&step2, &step2, tmp);
+	n1 = *v1;
+	n2 = *v1;
 	if (step2.x < step1.x)
 	{
-		t_vec4 tmp_v = step1;
+		tmp_v = step1;
 		step1 = step2;
 		step2 = tmp_v;
 	}
@@ -46,29 +29,18 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	{
 		for (int x = n1.x; x <= n2.x; ++x)
 		{
-			t_vec4 new;
 			tmp = (x - n1.x) / (n2.x - n1.x);
-			new.x = x;
-			new.y = y;
-			new.z = (1 - tmp) * n1.z + tmp * n2.z;
-			new.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
-			new.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
-			new.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
-			new.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			rast_pixel_put(&new);
+			tmp_v.x = x;
+			tmp_v.y = y;
+			tmp_v.z = (1 - tmp) * n1.z + tmp * n2.z;
+			tmp_v.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
+			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
+			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
+			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
+			rast_pixel_put(&tmp_v);
 		}
-		n1.x += step1.x;
-		n1.z += step1.z;
-		n1.color.red += step1.color.red;
-		n1.color.green += step1.color.green;
-		n1.color.blue += step1.color.blue;
-		n1.color.alpha += step1.color.alpha;
-		n2.x += step2.x;
-		n2.z += step2.z;
-		n2.color.red += step2.color.red;
-		n2.color.green += step2.color.green;
-		n2.color.blue += step2.color.blue;
-		n2.color.alpha += step2.color.alpha;
+		vec4_add(&n1, &n1, &step1);
+		vec4_add(&n2, &n2, &step2);
 	}
 }
 
@@ -76,39 +48,22 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 {
 	t_vec4	step1;
 	t_vec4	step2;
+	t_vec4	tmp_v;
 	t_vec4	n1;
 	t_vec4	n2;
 	double	tmp;
 
 	tmp = v3->y - v1->y;
-	step1.x = (v3->x - v1->x) / tmp;
-	step1.z = (v3->z - v1->z) / tmp;
-	step1.color.red = (v3->color.red - v1->color.red) / tmp;
-	step1.color.green = (v3->color.green - v1->color.green) / tmp;
-	step1.color.blue = (v3->color.blue - v1->color.blue) / tmp;
-	step1.color.alpha = (v3->color.alpha - v1->color.alpha) / tmp;
+	vec4_sub(&step1, v3, v1);
+	vec4_div(&step1, &step1, tmp);
 	tmp = v3->y - v2->y;
-	step2.x = (v3->x - v2->x) / tmp;
-	step2.z = (v3->z - v2->z) / tmp;
-	step2.color.red = (v3->color.red - v2->color.red) / tmp;
-	step2.color.green = (v3->color.green - v2->color.green) / tmp;
-	step2.color.blue = (v3->color.blue - v2->color.blue) / tmp;
-	step2.color.alpha = (v3->color.alpha - v2->color.alpha) / tmp;
-	n1.x = v3->x;
-	n1.z = v3->z;
-	n1.color.red = v3->color.red;
-	n1.color.green = v3->color.green;
-	n1.color.blue = v3->color.blue;
-	n1.color.alpha = v3->color.alpha;
-	n2.x = v3->x + 0.5f;
-	n2.z = v3->z;
-	n2.color.red = v3->color.red;
-	n2.color.green = v3->color.green;
-	n2.color.blue = v3->color.blue;
-	n2.color.alpha = v3->color.alpha;
+	vec4_sub(&step2, v3, v2);
+	vec4_div(&step2, &step2, tmp);
+	n1 = *v3;
+	n2 = *v3;
 	if (step1.x < step2.x)
 	{
-		t_vec4 tmp_v = step1;
+		tmp_v = step1;
 		step1 = step2;
 		step2 = tmp_v;
 	}
@@ -116,29 +71,18 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	{
 		for (int x = n1.x; x <= n2.x; ++x)
 		{
-			t_vec4 new;
 			tmp = (x - n1.x) / (n2.x - n1.x);
-			new.x = x;
-			new.y = y;
-			new.z = (1 - tmp) * n1.z + tmp * n2.z;
-			new.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
-			new.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
-			new.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
-			new.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			rast_pixel_put(&new);
+			tmp_v.x = x;
+			tmp_v.y = y;
+			tmp_v.z = (1 - tmp) * n1.z + tmp * n2.z;
+			tmp_v.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
+			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
+			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
+			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
+			rast_pixel_put(&tmp_v);
 		}
-		n1.x -= step1.x;
-		n1.z -= step1.z;
-		n1.color.red -= step1.color.red;
-		n1.color.green -= step1.color.green;
-		n1.color.blue -= step1.color.blue;
-		n1.color.alpha -= step1.color.alpha;
-		n2.x -= step2.x;
-		n2.z -= step2.z;
-		n2.color.red -= step2.color.red;
-		n2.color.green -= step2.color.green;
-		n2.color.blue -= step2.color.blue;
-		n2.color.alpha -= step2.color.alpha;
+		vec4_sub(&n1, &n1, &step1);
+		vec4_sub(&n2, &n2, &step2);
 	}
 }
 
