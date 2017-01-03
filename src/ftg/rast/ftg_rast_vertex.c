@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftg_load_identity.c                                :+:      :+:    :+:   */
+/*   ftg_rast_vertex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 18:49:57 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:27:16 by acazuc           ###   ########.fr       */
+/*   Created: 2017/01/03 22:25:37 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 22:25:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_ftg_ctx	*g_ctx;
 
-void	ftg_load_identity(void)
+void	ftg_rast_vertex(t_vec4 *vec)
 {
-	t_mat4	identity;
+	t_vec4	tmp;
 
-	mat4_init_identity(&identity);
-	ftg_load_matrixd(identity.value);
+	ft_memcpy(&tmp, vec, sizeof(tmp));
+	ftg_rast_pixel_put(&tmp);
 }

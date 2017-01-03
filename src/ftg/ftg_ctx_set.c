@@ -6,15 +6,15 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:13:46 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 19:13:48 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:34:58 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_ctx_set(t_ftg_ctx *new_ctx)
 {
-	ctx = new_ctx;
+	g_ctx = new_ctx;
 }

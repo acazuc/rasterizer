@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftg_load_identity.c                                :+:      :+:    :+:   */
+/*   ftg_rast_depthbuffer_set.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 18:49:57 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:27:16 by acazuc           ###   ########.fr       */
+/*   Created: 2017/01/03 22:22:42 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 22:37:58 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 t_ftg_ctx	*g_ctx;
 
-void	ftg_load_identity(void)
+void	ftg_rast_depthbuffer_set(int x, int y, double z)
 {
-	t_mat4	identity;
-
-	mat4_init_identity(&identity);
-	ftg_load_matrixd(identity.value);
+	if (x < 0 || x >= g_ctx->width || y < 0 || y >= g_ctx->height)
+		return ;
+	g_ctx->depth_buffer[y * g_ctx->width + x] = z;
 }

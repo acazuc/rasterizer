@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:28:59 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:29:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:36:17 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static t_ftg_boolean	factor_is_valid(t_ftg_enum s_factor
 		, t_ftg_enum d_factor)
@@ -47,11 +47,11 @@ void					ftg_blend_func_separate(t_ftg_enum src_rgb
 	if (!factor_is_valid(src_rgb, dst_rgb)
 			|| !factor_is_valid(src_alpha, dst_alpha))
 	{
-		ctx->errno = FTG_INVALID_ENUM;
+		g_ctx->errno = FTG_INVALID_ENUM;
 		return ;
 	}
-	ctx->blend_src_rgb = src_rgb;
-	ctx->blend_src_alpha = src_alpha;
-	ctx->blend_dst_rgb = dst_rgb;
-	ctx->blend_dst_alpha = dst_alpha;
+	g_ctx->blend_src_rgb = src_rgb;
+	g_ctx->blend_src_alpha = src_alpha;
+	g_ctx->blend_dst_rgb = dst_rgb;
+	g_ctx->blend_dst_alpha = dst_alpha;
 }

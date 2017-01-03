@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:27:32 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:27:33 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:23:35 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_blend_func(t_ftg_enum s_factor, t_ftg_enum d_factor)
 {

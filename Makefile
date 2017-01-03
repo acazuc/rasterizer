@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/03 22:01:02 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/03 22:16:21 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,16 +69,16 @@ SRCS_NAME = main.c \
 			ftg/min_max/ftg_maxild.c \
 			ftg/min_max/ftg_minbsf.c \
 			ftg/min_max/ftg_minild.c \
-			ftg/rast/rast_depthbuffer_get.c \
-			ftg/rast/rast_depthbuffer_set.c \
-			ftg/rast/rast_line_draws.c \
-			ftg/rast/rast_line_truncate.c \
-			ftg/rast/rast_line.c \
-			ftg/rast/rast_pixel_put.c \
-			ftg/rast/rast_pixel_set.c \
-			ftg/rast/rast_triangle.c \
-			ftg/rast/rast_vertex.c \
-			ftg/rast/rast_watch_vertex.c \
+			ftg/rast/ftg_rast_depthbuffer_get.c \
+			ftg/rast/ftg_rast_depthbuffer_set.c \
+			ftg/rast/ftg_rast_line_draws.c \
+			ftg/rast/ftg_rast_line_truncate.c \
+			ftg/rast/ftg_rast_line.c \
+			ftg/rast/ftg_rast_pixel_put.c \
+			ftg/rast/ftg_rast_pixel_set.c \
+			ftg/rast/ftg_rast_triangle.c \
+			ftg/rast/ftg_rast_vertex.c \
+			ftg/rast/ftg_rast_watch_vertex.c \
 			ftg/ftg_clear_color.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_color_pointer.c \

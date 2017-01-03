@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:10:49 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 19:12:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:24:02 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx = NULL;
+t_ftg_ctx	*g_ctx = NULL;
 
 static void	init_2(t_ftg_ctx *ctx)
 {

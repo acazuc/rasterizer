@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 18:54:51 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 18:54:54 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:27:11 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_mult_transpose_matrixd(const t_ftg_double *m)
 {
@@ -21,7 +21,7 @@ void	ftg_mult_transpose_matrixd(const t_ftg_double *m)
 
 	ft_memcpy(new.value, m, sizeof(*m) * 16);
 	mat4_reverse(&new);
-	ftg_get_doublev(ctx->matrix_mode, cur_mat.value);
+	ftg_get_doublev(g_ctx->matrix_mode, cur_mat.value);
 	mat4_mult(&cur_mat, &cur_mat, &new);
 	ftg_load_matrixd(cur_mat.value);
 }

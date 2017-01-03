@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 18:55:25 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 18:55:28 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:28:06 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_translated(t_ftg_double x, t_ftg_double y, t_ftg_double z)
 {

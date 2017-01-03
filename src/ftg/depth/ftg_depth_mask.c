@@ -6,22 +6,22 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:30:54 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:11:10 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:35:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_depth_mask(t_ftg_boolean flag)
 {
 	if (!flag)
 	{
-		ctx->depth_writemask = FTG_FALSE;
+		g_ctx->depth_writemask = FTG_FALSE;
 	}
 	else
 	{
-		ctx->depth_writemask = FTG_TRUE;
+		g_ctx->depth_writemask = FTG_TRUE;
 	}
 }

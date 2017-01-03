@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:01:41 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 19:01:42 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:30:07 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static void	ftg_get_intv_convert(t_ftg_int *params, void *data, t_ftg_enum format, t_ftg_uint length)
 {

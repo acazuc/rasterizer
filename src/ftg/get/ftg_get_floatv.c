@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:01:35 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 19:01:37 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:28:41 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static void	ftg_get_floatv_convert(t_ftg_float *params, void *data, t_ftg_enum format, t_ftg_uint length)
 {

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_rast_line_truncate.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 22:22:46 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 22:39:05 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static t_ftg_boolean	_is_out_of_screen(t_vec4 *v1, t_vec4 *v2)
 {
@@ -10,11 +22,11 @@ static t_ftg_boolean	_is_out_of_screen(t_vec4 *v1, t_vec4 *v2)
 		return (FTG_TRUE);
 	if (v1->x < 0 && v2->x < 0)
 		return (FTG_TRUE);
-	if (v1->x >= ctx->width && v2->x >= ctx->width)
+	if (v1->x >= g_ctx->width && v2->x >= g_ctx->width)
 		return (FTG_TRUE);
 	if (v1->y < 0 && v2->y < 0)
 		return (FTG_TRUE);
-	if (v1->y >= ctx->height && v2->y >= ctx->height)
+	if (v1->y >= g_ctx->height && v2->y >= g_ctx->height)
 		return (FTG_TRUE);
 	return (FTG_FALSE);
 }
@@ -49,21 +61,21 @@ static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
-	if (v1->x >= ctx->width)
+	if (v1->x >= g_ctx->width)
 	{
-		ratio = 1 - ((v1->x - (ctx->width - 1)) / -dif->x);
+		ratio = 1 - ((v1->x - (g_ctx->width - 1)) / -dif->x);
 		vec4_mul(&tmp, dif, ratio);
 		vec4_sub(v1, v2, &tmp);
-		v1->x = ctx->width - 1;
+		v1->x = g_ctx->width - 1;
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
-	if (v1->y >= ctx->height)
+	if (v1->y >= g_ctx->height)
 	{
-		ratio = 1 - ((v1->y - (ctx->height - 1)) / -dif->y);
+		ratio = 1 - ((v1->y - (g_ctx->height - 1)) / -dif->y);
 		vec4_mul(&tmp, dif, ratio);
 		vec4_sub(v1, v2, &tmp);
-		v1->y = ctx->height - 1;
+		v1->y = g_ctx->height - 1;
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
@@ -95,28 +107,28 @@ static t_ftg_boolean	_truncate_v2(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
-	if (v2->x >= ctx->width)
+	if (v2->x >= g_ctx->width)
 	{
-		ratio = 1 - ((v2->x - (ctx->width - 1)) / dif->x);
+		ratio = 1 - ((v2->x - (g_ctx->width - 1)) / dif->x);
 		vec4_mul(&tmp, dif, ratio);
 		vec4_add(v2, v1, &tmp);
-		v2->x = ctx->width - 1;
+		v2->x = g_ctx->width - 1;
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
-	if (v2->y >= ctx->height)
+	if (v2->y >= g_ctx->height)
 	{
-		ratio = 1 - ((v2->y - (ctx->height - 1)) / dif->y);
+		ratio = 1 - ((v2->y - (g_ctx->height - 1)) / dif->y);
 		vec4_mul(&tmp, dif, ratio);
 		vec4_add(v2, v1, &tmp);
-		v2->y = ctx->height - 1;
+		v2->y = g_ctx->height - 1;
 		_calc_dif(dif, v1, v2);
 		ret |= FTG_TRUE;
 	}
 	return (ret);
 }
 
-t_ftg_boolean			rast_line_truncate(t_vec4 *v1, t_vec4 *v2, t_vec4 *dif)
+t_ftg_boolean			ftg_rast_line_truncate(t_vec4 *v1, t_vec4 *v2, t_vec4 *dif)
 {
 	if (_is_out_of_screen(v1, v2))
 		return (FTG_TRUE);

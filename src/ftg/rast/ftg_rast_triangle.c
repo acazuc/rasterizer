@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_rast_triangle.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 22:25:03 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 22:25:21 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 {
@@ -37,7 +49,7 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
 			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
 			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			rast_pixel_put(&tmp_v);
+			ftg_rast_pixel_put(&tmp_v);
 		}
 		vec4_add(&n1, &n1, &step1);
 		vec4_add(&n2, &n2, &step2);
@@ -79,7 +91,7 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
 			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
 			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			rast_pixel_put(&tmp_v);
+			ftg_rast_pixel_put(&tmp_v);
 		}
 		vec4_sub(&n1, &n1, &step1);
 		vec4_sub(&n2, &n2, &step2);
@@ -127,7 +139,7 @@ static void		_get_vertices_sorted(t_vec4 **v1, t_vec4 **v2, t_vec4 **v3)
 	}
 }
 
-void			rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3)
+void			ftg_rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3)
 {
 	t_vec4	*points[3];
 

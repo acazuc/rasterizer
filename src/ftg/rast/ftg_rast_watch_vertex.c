@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftg_load_identity.c                                :+:      :+:    :+:   */
+/*   ftg_rast_watch_vertex.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 18:49:57 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:27:16 by acazuc           ###   ########.fr       */
+/*   Created: 2017/01/03 22:24:29 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 22:24:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 t_ftg_ctx	*g_ctx;
 
-void	ftg_load_identity(void)
+void	ftg_rast_watch_vertex(t_vec4 *vec)
 {
-	t_mat4	identity;
-
-	mat4_init_identity(&identity);
-	ftg_load_matrixd(identity.value);
+	mat4_transform_vec4(&g_ctx->matrix_modelview, vec);
+	mat4_transform_vec4(&g_ctx->matrix_projection, vec);
+	if (vec->w != 0)
+	{
+		vec->x /= vec->w;
+		vec->y /= vec->w;
+		vec->z /= vec->w;
+	}
+	vec->x = round(g_ctx->width / 2 + vec->x * g_ctx->width / 2);
+	vec->y = round(g_ctx->height / 2 + vec->y * g_ctx->height / 2);
 }

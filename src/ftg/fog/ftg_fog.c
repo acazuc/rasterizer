@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:31:15 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:32:03 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:33:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 static t_ftg_boolean	pname_is_valid(t_ftg_enum pname)
 {
@@ -27,7 +27,7 @@ void					ftg_fogf(t_ftg_enum pname, t_ftg_float param)
 {
 	if (pname == FTG_FOG_COLOR)
 	{
-		ctx->errno = FTG_INVALID_VALUE;
+		g_ctx->errno = FTG_INVALID_VALUE;
 		return ;
 	}
 	ftg_fogfv(pname, &param);
@@ -37,7 +37,7 @@ void					ftg_fogi(t_ftg_enum pname, t_ftg_int param)
 {
 	if (pname == FTG_FOG_COLOR)
 	{
-		ctx->errno = FTG_INVALID_VALUE;
+		g_ctx->errno = FTG_INVALID_VALUE;
 		return ;
 	}
 	ftg_fogiv(pname, &param);
@@ -47,7 +47,7 @@ void					ftg_fogfv(t_ftg_enum pname, t_ftg_float *param)
 {
 	if (!pname_is_valid(pname))
 	{
-		ctx->errno = FTG_INVALID_ENUM;
+		g_ctx->errno = FTG_INVALID_ENUM;
 		return ;
 	}
 	if (pname == FTG_FOG_DENSITY)
@@ -68,7 +68,7 @@ void					ftg_fogiv(t_ftg_enum pname, t_ftg_int *param)
 {
 	if (!pname_is_valid(pname))
 	{
-		ctx->errno = FTG_INVALID_ENUM;
+		g_ctx->errno = FTG_INVALID_ENUM;
 		return ;
 	}
 	if (pname == FTG_FOG_DENSITY)

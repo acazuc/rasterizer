@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:09:32 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 19:14:35 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:26:42 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 t_ftg_sizei	ftg_sizeof(t_ftg_enum type)
 {

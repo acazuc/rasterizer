@@ -6,25 +6,25 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 18:50:53 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 18:51:36 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:27:47 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_load_transpose_matrixd(const t_ftg_double *m)
 {
 	t_mat4	*dst;
 
-	if (ctx->matrix_mode == FTG_MODELVIEW)
+	if (g_ctx->matrix_mode == FTG_MODELVIEW)
 	{
-		dst = &ctx->matrix_modelview;
+		dst = &g_ctx->matrix_modelview;
 	}
-	else if (ctx->matrix_mode == FTG_PROJECTION)
+	else if (g_ctx->matrix_mode == FTG_PROJECTION)
 	{
-		dst = &ctx->matrix_projection;
+		dst = &g_ctx->matrix_projection;
 	}
 	else
 	{

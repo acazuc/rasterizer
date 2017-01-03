@@ -6,13 +6,13 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:32:53 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:32:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:34:03 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftg.h"
 
-t_ftg_ctx	*ctx;
+t_ftg_ctx	*g_ctx;
 
 void	ftg_fog_mode(void *data, t_ftg_enum type)
 {
@@ -26,10 +26,10 @@ void	ftg_fog_mode(void *data, t_ftg_enum type)
 		return ;
 	if (mode != FTG_EXP && mode != FTG_EXP2 && mode != FTG_LINEAR)
 	{
-		ctx->errno = FTG_INVALID_VALUE;
+		g_ctx->errno = FTG_INVALID_VALUE;
 		return ;
 	}
-	ctx->fog_mode = mode;
+	g_ctx->fog_mode = mode;
 }
 
 void	ftg_fog_color(void *data, t_ftg_enum type)
@@ -54,8 +54,8 @@ void	ftg_fog_color(void *data, t_ftg_enum type)
 	color[1] = ftg_minf(1, ftg_maxf(0, color[1]));
 	color[2] = ftg_minf(1, ftg_maxf(0, color[2]));
 	color[3] = ftg_minf(1, ftg_maxf(0, color[3]));
-	ctx->fog_color[0] = color[0];
-	ctx->fog_color[1] = color[1];
-	ctx->fog_color[2] = color[2];
-	ctx->fog_color[3] = color[3];
+	g_ctx->fog_color[0] = color[0];
+	g_ctx->fog_color[1] = color[1];
+	g_ctx->fog_color[2] = color[2];
+	g_ctx->fog_color[3] = color[3];
 }
