@@ -30,7 +30,7 @@ static void		_calc_dif(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
 	t_ftg_boolean	ret;
-	double		ratio;
+	double			ratio;
 
 	ret = FTG_FALSE;
 	if (v1->x < 0)
@@ -91,7 +91,7 @@ static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 static t_ftg_boolean	_truncate_v2(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 {
 	t_ftg_boolean	ret;
-	double		ratio;
+	double			ratio;
 
 	ret = FTG_FALSE;
 	if (v2->x < 0)
@@ -151,20 +151,20 @@ static t_ftg_boolean	_truncate_v2(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 
 t_ftg_boolean			rast_line_truncate(t_vec4 *v1, t_vec4 *v2, t_vec4 *dif)
 {
-	if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+	if (_is_out_of_screen(v1, v2))
 		return (FTG_TRUE);
 	_calc_dif(dif, v1, v2);
-	if (_truncate_v1(dif, v1, v2) == FTG_TRUE)
+	if (_truncate_v1(dif, v1, v2))
 	{
-		if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+		if (_is_out_of_screen(v1, v2))
 			return (FTG_TRUE);
 	}
-	if (_truncate_v2(dif, v1, v2) == FTG_TRUE)
+	if (_truncate_v2(dif, v1, v2))
 	{
-		if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+		if (_is_out_of_screen(v1, v2))
 			return (FTG_TRUE);
 	}
-	if (_is_out_of_screen(v1, v2) == FTG_TRUE)
+	if (_is_out_of_screen(v1, v2))
 		return (FTG_TRUE);
 	return (FTG_FALSE);
 }

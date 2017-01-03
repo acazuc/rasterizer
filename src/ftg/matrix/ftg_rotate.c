@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_rotate.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 18:55:15 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 18:55:21 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
 
-void	ftg_rotated(t_ftg_double angle, t_ftg_double x, t_ftg_double y, t_ftg_double z)
+void	ftg_rotated(t_ftg_double angle, t_ftg_double x, t_ftg_double y
+		, t_ftg_double z)
 {
 	t_mat4	rotation;
 
@@ -23,7 +36,8 @@ void	ftg_rotated(t_ftg_double angle, t_ftg_double x, t_ftg_double y, t_ftg_doubl
 	ftg_mult_matrixd(rotation.value);
 }
 
-void	ftg_rotatef(t_ftg_float angle, t_ftg_float x, t_ftg_float y, t_ftg_float z)
+void	ftg_rotatef(t_ftg_float angle, t_ftg_float x, t_ftg_float y
+		, t_ftg_float z)
 {
 	ftg_rotated(angle, x, y, z);
 }

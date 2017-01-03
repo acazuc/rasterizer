@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:27:41 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:28:50 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 19:02:26 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static t_ftg_boolean	mode_is_valid(t_ftg_enum mode)
 void					ftg_blend_equation_separate(t_ftg_enum mode_rgb
 		, t_ftg_enum mode_alpha)
 {
-	if (!mode_is_valid(mode_rgb) == FTG_FALSE
-			|| !mode_is_valid(mode_alpha) == FTG_FALSE)
+	if (!mode_is_valid(mode_rgb)
+			|| !mode_is_valid(mode_alpha))
 	{
 		ctx->errno = FTG_INVALID_ENUM;
 		return ;

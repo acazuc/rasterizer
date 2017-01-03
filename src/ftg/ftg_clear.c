@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_clear.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 19:08:50 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 19:09:23 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
 
-static void	_clear_colors()
+static void	clear_colors(void)
 {
 	int	i;
 
@@ -17,7 +29,7 @@ static void	_clear_colors()
 	}
 }
 
-static void	_clear_depth()
+static void	clear_depth(void)
 {
 	int	i;
 
@@ -29,17 +41,17 @@ static void	_clear_depth()
 	}
 }
 
-void	ftg_clear(t_ftg_bitmask mask)
+void		ftg_clear(t_ftg_bitmask mask)
 {
 	if (mask & FTG_COLOR_BUFFER_BIT)
 	{
 		mask &= ~FTG_COLOR_BUFFER_BIT;
-		_clear_colors();
+		clear_colors();
 	}
 	if (mask & FTG_DEPTH_BUFFER_BIT)
 	{
 		mask &= ~FTG_DEPTH_BUFFER_BIT;
-		_clear_depth();
+		clear_depth();
 	}
 	if (mask)
 		ctx->errno = FTG_INVALID_VALUE;

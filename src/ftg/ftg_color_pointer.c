@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_color_pointer.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 19:12:45 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 19:12:50 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
 
-void	ftg_color_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, const t_ftg_void *pointer)
+void	ftg_color_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride
+		, const t_ftg_void *pointer)
 {
 	if (size != 3 && size != 4)
 	{

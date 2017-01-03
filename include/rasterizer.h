@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:24:09 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 19:18:22 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "../libft/include/libft.h"
 # include "../glfw/include/GLFW/glfw3.h"
+# include "libftg.h"
+# include "mat4.h"
 # include <sys/time.h>
 # include <stdio.h>
-
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 # define MAX(x, y) ((x) < (y) ? (y) : (x))
@@ -32,21 +33,19 @@
 
 typedef struct s_env			t_env;
 
-# include "libftg.h"
-# include "mat4.h"
-
 void					error_quit(char *str, char *file, int line);
 void					window_create(t_env *env);
 void					window_update_context(t_env *env);
-void					window_listener_resize(GLFWwindow *window, int width, int height);
+void					window_listener_resize(GLFWwindow *window, int width
+		, int height);
 long					epoch_millis();
 
 struct					s_env
 {
 	GLFWwindow			*window;
 	char				*window_title;
-	int				window_width;
-	int				window_height;
+	int					window_width;
+	int					window_height;
 	GLuint				texture;
 	t_ftg_ctx			ctx;
 	int					key_left_down;

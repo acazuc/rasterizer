@@ -1,15 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_vertex_pointer.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 19:10:21 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 19:10:32 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
 
-void	ftg_vertex_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, const t_ftg_void *pointer)
+void	ftg_vertex_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride
+		, const t_ftg_void *pointer)
 {
 	if (size != 2 && size != 3 && size != 4)
 	{
 		ctx->errno = FTG_INVALID_VALUE;
 		return ;
 	}
-	if (type != FTG_SHORT && type != FTG_INT && type != FTG_FLOAT && type != FTG_DOUBLE)
+	if (type != FTG_SHORT && type != FTG_INT && type != FTG_FLOAT
+			&& type != FTG_DOUBLE)
 	{
 		ctx->errno = FTG_INVALID_ENUM;
 		return ;

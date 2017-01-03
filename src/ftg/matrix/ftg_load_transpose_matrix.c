@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_load_transpose_matrix.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 18:50:53 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 18:51:36 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
@@ -18,17 +30,16 @@ void	ftg_load_transpose_matrixd(const t_ftg_double *m)
 	{
 		ft_putstr_fd("Invalid matrix type\n", 2);
 		raise(SIGABRT);
-		return;
+		return ;
 	}
 	ft_memcpy(dst->value, m, sizeof(*m) * 16);
 	mat4_reverse(dst);
-
 }
 
 void	ftg_load_transpose_matrixf(const t_ftg_float *m)
 {
 	double	new[16];
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < 16)

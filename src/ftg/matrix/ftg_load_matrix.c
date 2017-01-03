@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_load_matrix.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 18:50:24 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 18:51:12 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx;
@@ -26,7 +38,7 @@ void	ftg_load_matrixd(const t_ftg_double *m)
 void	ftg_load_matrixf(const t_ftg_float *m)
 {
 	double	new[16];
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < 16)

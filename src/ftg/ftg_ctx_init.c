@@ -1,8 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ftg_ctx_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/03 19:10:49 by acazuc            #+#    #+#             */
+/*   Updated: 2017/01/03 19:12:36 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftg.h"
 
 t_ftg_ctx	*ctx = NULL;
 
-void	ftg_ctx_init(t_ftg_ctx *ctx)
+static void	init_2(t_ftg_ctx *ctx)
+{
+	ctx->color_array_stride = 0;
+	ctx->color_array_pointer = NULL;
+}
+
+void		ftg_ctx_init(t_ftg_ctx *ctx)
 {
 	ft_memset(ctx, 0, sizeof(*ctx));
 	mat4_init_identity(&ctx->matrix_projection);
@@ -28,6 +46,5 @@ void	ftg_ctx_init(t_ftg_ctx *ctx)
 	ctx->vertex_array_pointer = NULL;
 	ctx->color_array_size = 4;
 	ctx->color_array_type = FTG_FLOAT;
-	ctx->color_array_stride = 0;
-	ctx->color_array_pointer = NULL;
+	init_2(ctx);
 }
