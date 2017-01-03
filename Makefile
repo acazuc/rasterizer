@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/03 12:11:49 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/03 15:25:06 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS_NAME = main.c \
 			epoch_millis.c \
 			color/color_add.c \
 			color/color_div.c \
-			color/color_mult.c \
+			color/color_mul.c \
 			color/color_sub.c \
 			ftg/blend/ftg_blend_color.c \
 			ftg/blend/ftg_blend_equation_separate.c \
@@ -103,6 +103,10 @@ SRCS_NAME = main.c \
 			mat4/mat4_mult.c \
 			mat4/mat4_reverse.c \
 			mat4/mat4_transform_vec4.c \
+			vec4/vec4_add.c \
+			vec4/vec4_div.c \
+			vec4/vec4_mul.c \
+			vec4/vec4_sub.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -155,6 +159,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/min_max
 	@mkdir -p $(OBJS_PATH)ftg/rast
 	@mkdir -p $(OBJS_PATH)mat4
+	@mkdir -p $(OBJS_PATH)vec4
 
 clean:
 	@make -C libft clean

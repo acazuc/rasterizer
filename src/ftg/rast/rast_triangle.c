@@ -30,7 +30,7 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	n1.color.green = v1->color.green;
 	n1.color.blue = v1->color.blue;
 	n1.color.alpha = v1->color.alpha;
-	n2.x = v1->x + 0.5f;
+	n2.x = v1->x + 1;
 	n2.z = v1->z;
 	n2.color.red = v1->color.red;
 	n2.color.green = v1->color.green;

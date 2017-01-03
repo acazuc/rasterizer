@@ -6,11 +6,11 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 12:16:35 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 16:02:19 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 15:46:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rasterizer.h"
+#include "color.h"
 
 static void	check_range(double *val)
 {
@@ -20,17 +20,14 @@ static void	check_range(double *val)
 		*val = 1;
 }
 
-t_color		color_div(t_color *color, double factor)
+void		color_div(t_color *dst, t_color *c1, double factor)
 {
-	t_color		new;
-
-	new.red = color->red / factor;
-	check_range(&new.red);
-	new.green = color->green / factor;
-	check_range(&new.green);
-	new.blue = color->blue / factor;
-	check_range(&new.blue);
-	new.alpha = color->alpha / factor;
-	check_range(&new.alpha);
-	return (new);
+	dst->red = c1->red / factor;
+	check_range(&dst->red);
+	dst->green = c1->green / factor;
+	check_range(&dst->green);
+	dst->blue = c1->blue / factor;
+	check_range(&dst->blue);
+	dst->alpha = c1->alpha / factor;
+	check_range(&dst->alpha);
 }

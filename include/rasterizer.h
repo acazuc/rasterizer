@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2016/12/30 15:58:45 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 16:30:23 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define Z_MIN 0.01
 # define Z_MAX 1000
 
+# define ROT_FAC 0.1
+# define MOV_FAC 0.1
+
 typedef struct s_env			t_env;
 
 # include "libftg.h"
@@ -46,6 +49,22 @@ struct					s_env
 	int				window_height;
 	GLuint				texture;
 	t_ftg_ctx			ctx;
+	int					key_left_down;
+	int					key_right_down;
+	int					key_up_down;
+	int					key_down_down;
+	int					key_lshift_down;
+	int					key_space_down;
+	int					key_w_down;
+	int					key_a_down;
+	int					key_s_down;
+	int					key_d_down;
+	double				posx;
+	double				posy;
+	double				posz;
+	double				rotx;
+	double				roty;
+	double				rotz;
 };
 
 #endif

@@ -20,7 +20,7 @@ static void		_calc_dif(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
 	dif->x = v2->x - v1->x;
 	dif->y = v2->y - v1->y;
 	dif->z = v2->z - v1->z;
-	dif->color = color_sub(&v2->color, &v1->color);
+	color_sub(&dif->color, &v2->color, &v1->color);
 }
 
 static t_ftg_boolean	_truncate_v1(t_vec4 *dif, t_vec4 *v1, t_vec4 *v2)
