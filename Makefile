@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/02 12:09:50 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/03 12:11:49 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRCS_NAME = main.c \
 			ftg/rast/rast_depthbuffer_get.c \
 			ftg/rast/rast_depthbuffer_set.c \
 			ftg/rast/rast_line_draws.c \
+			ftg/rast/rast_line_truncate.c \
 			ftg/rast/rast_line.c \
 			ftg/rast/rast_pixel_put.c \
 			ftg/rast/rast_pixel_set.c \
