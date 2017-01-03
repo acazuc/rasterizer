@@ -4,6 +4,10 @@ t_ftg_ctx	*ctx;
 
 static t_ftg_boolean	_is_out_of_screen(t_vec4 *v1, t_vec4 *v2)
 {
+	if (v1->z < 0 && v2->z < 0)
+		return (FTG_TRUE);
+	if (v1->z > 1 || v2->z > 1)
+		return (FTG_TRUE);
 	if (v1->x < 0 && v2->x < 0)
 		return (FTG_TRUE);
 	if (v1->x >= ctx->width && v2->x >= ctx->width)

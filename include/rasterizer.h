@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:48:34 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 16:30:23 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 17:24:09 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define MIN(x, y) ((x) < (y) ? (x) : (y))
 # define ABS(x) ((x) < 0 ? (-(x)) : x)
 
-# define Z_MIN 0.01
+# define Z_MIN 0.001
 # define Z_MAX 1000
 
 # define ROT_FAC 0.1

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 16:38:58 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 17:23:44 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,8 @@ static void key_listener(GLFWwindow *window, int key, int scancode, int action, 
 
 int				main()
 {
-	t_mat4	proj;
 	t_env	env;
-	double ranges[2] = {Z_MIN, Z_MAX};
 
-	mat4_init_projection(&proj, 60, 1280. / 720, ranges);
 	g_env = &env;
 	ft_memset(&env, 0, sizeof(env));
 	ftg_ctx_set(&env.ctx);
@@ -103,7 +100,7 @@ int				main()
 	float colors3[12] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1};
 	double vertex3[12] = {0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0};
 	ftg_matrix_mode(FTG_PROJECTION);
-	ftg_perspective(60, 1280. / 720, Z_MIN, Z_MAX);
+	ftg_perspective(120, 1280. / 720, Z_MIN, Z_MAX);
 	ftg_matrix_mode(FTG_MODELVIEW);
 	glfwSetKeyCallback(env.window, key_listener);
 	env.posz = -2;
@@ -142,7 +139,7 @@ int				main()
 		ftg_draw_arrays(FTG_LINES, 0, 3);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors2);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex2);
-		ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
+		//ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors3);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex3);
 		//ftg_draw_arrays(FTG_QUADS, 0, 1);
