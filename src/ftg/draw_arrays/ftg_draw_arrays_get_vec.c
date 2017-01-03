@@ -16,4 +16,6 @@ void	ftg_draw_arrays_get_vec(t_vec4 *vec, t_ftg_int pos)
 		vec->color.blue = 1;
 		vec->color.alpha = 1;
 	}
+	vec->u = 1;
+	vec->v = 1;
 }

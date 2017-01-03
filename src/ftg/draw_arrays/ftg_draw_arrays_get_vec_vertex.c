@@ -41,4 +41,6 @@ void	ftg_draw_arrays_get_vec_vertex(t_vec4 *vec, t_ftg_int pos)
 		vec->z = _get_val(arr_pos + 2);
 		vec->w = _get_val(arr_pos + 3);
 	}
+	else
+		ft_memset(vec, 0, sizeof(*vec));
 }

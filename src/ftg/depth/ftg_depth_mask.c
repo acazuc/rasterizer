@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:30:54 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:30:55 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 22:11:10 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_ftg_ctx	*ctx;
 
 void	ftg_depth_mask(t_ftg_boolean flag)
 {
-	if (flag == FTG_FALSE)
+	if (!flag)
 	{
 		ctx->depth_writemask = FTG_FALSE;
 	}

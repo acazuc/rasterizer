@@ -30,7 +30,7 @@ void		ftg_draw_arrays(t_ftg_enum mode, t_ftg_int first, t_ftg_sizei count)
 		ctx->errno = FTG_INVALID_VALUE;
 		return ;
 	}
-	if (ctx->vertex_array == FTG_FALSE)
+	if (!ctx->vertex_array)
 		return ;
 	if (!count)
 		return;
