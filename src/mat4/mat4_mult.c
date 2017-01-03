@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 12:05:59 by acazuc            #+#    #+#             */
-/*   Updated: 2016/10/09 12:13:56 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/03 17:25:33 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static double	priv_patch(t_mat4 *m1, t_mat4 *m2, int x, int y)
 			+ m1->value[y + 12] * m2->value[3 + x * 4]);
 }
 
-void		mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
+void			mat4_mult(t_mat4 *dst, t_mat4 *m1, t_mat4 *m2)
 {
 	t_mat4		tmp;
-	int		y;
-	int		x;
+	int			y;
+	int			x;
 
 	y = 0;
 	while (y < 4)
