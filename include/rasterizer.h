@@ -19,16 +19,19 @@
 # include "mat4.h"
 # include <sys/time.h>
 # include <stdio.h>
+# include <math.h>
 
 # define ERROR(x) (error_quit(x, __FILE__, __LINE__))
 # define MAX(x, y) ((x) < (y) ? (y) : (x))
 # define MIN(x, y) ((x) < (y) ? (x) : (y))
 # define ABS(x) ((x) < 0 ? (-(x)) : x)
 
+# define TO_RADIANS(x) (x / 360. * M_PI)
+
 # define Z_MIN 0.001
 # define Z_MAX 1000
 
-# define ROT_FAC 0.1
+# define ROT_FAC 0.001
 # define MOV_FAC 0.1
 
 typedef struct s_env			t_env;
@@ -48,16 +51,10 @@ struct					s_env
 	int					window_height;
 	GLuint				texture;
 	t_ftg_ctx			ctx;
-	int					key_left_down;
-	int					key_right_down;
-	int					key_up_down;
-	int					key_down_down;
-	int					key_lshift_down;
-	int					key_space_down;
-	int					key_w_down;
-	int					key_a_down;
-	int					key_s_down;
-	int					key_d_down;
+	long				mouse_x;
+	long				mouse_y;
+	long				delta_x;
+	long				delta_y;
 	double				posx;
 	double				posy;
 	double				posz;

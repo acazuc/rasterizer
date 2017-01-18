@@ -38,17 +38,21 @@ static t_ftg_boolean	_test(double test, double cur)
 void	ftg_rast_pixel_put(t_vec4 *vec)
 {
 	double	current_z;
+	int	x;
+	int	y;
 
 	if (vec->x < 0 || vec->x >= g_ctx->width || vec->y < 0 || vec->y >= g_ctx->height
 			|| vec->z < 0 || vec->z > 1)
 		return ;
+	x = round(vec->x);
+	y = round(vec->y);
 	if (g_ctx->depth_test)
 	{
-		current_z = ftg_rast_depthbuffer_get(vec->x, vec->y);
+		current_z = ftg_rast_depthbuffer_get(x, y);
 		if (current_z && !_test(vec->z, current_z))
 			return ;
 	}
-	ftg_rast_pixel_set(vec->x, vec->y, &vec->color);
+	ftg_rast_pixel_set(x, y, &vec->color);
 	if (g_ctx->depth_writemask)
-		ftg_rast_depthbuffer_set(vec->x, vec->y, vec->z);
+		ftg_rast_depthbuffer_set(x, y, vec->z);
 }
