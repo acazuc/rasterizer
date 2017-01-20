@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftg_rast_pixel_set_blend_rgb.c                     :+:      :+:    :+:   */
+/*   ftg_rast_pixel_set_blend_func_rgb.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -96,19 +96,13 @@ static void	do_2(t_color *color, t_color *src, t_color *dst, t_ftg_enum mode)
 		do_3(color, src, dst, mode);
 }
 
-void		ftg_rast_pixel_set_blend_rgb(t_color *color, t_color *src, t_color *dst, t_ftg_enum mode)
+void		ftg_rast_pixel_set_blend_func_rgb(t_color *color, t_color *src, t_color *dst, t_ftg_enum mode)
 {
 	if (mode == FTG_ZERO)
 	{
 		color->red = 0;
 		color->green = 0;
 		color->blue = 0;
-	}
-	else if (mode == FTG_ONE)
-	{
-		color->red = 1;
-		color->green = 1;
-		color->blue = 1;
 	}
 	else if (mode == FTG_SRC_COLOR)
 	{

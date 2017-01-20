@@ -97,6 +97,10 @@ static void move()
 		angle += 0;
 	g_env->posx += cos(TO_RADIANS(angle)) * MOV_FAC;
 	g_env->posz += sin(TO_RADIANS(angle)) * MOV_FAC;
+	if (glfwGetKey(g_env->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+		g_env->posy -= MOV_FAC;
+	if (glfwGetKey(g_env->window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		g_env->posy += MOV_FAC;
 }
 
 int				main()
@@ -126,8 +130,11 @@ int				main()
 	double vertex2[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 	float colors3[12] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1};
 	double vertex3[12] = {0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0};
+	float colors4[3] = {1, 0, 0};
+	double vertex4[3] = {0, 0, 0};
 	ftg_matrix_mode(FTG_PROJECTION);
-	ftg_perspective(120, 1280. / 720, Z_MIN, Z_MAX);
+	ftg_perspective(90, 1280. / 720, Z_MIN, Z_MAX);
+	ftg_push_matrix();
 	ftg_matrix_mode(FTG_MODELVIEW);
 	glfwSetCursorPosCallback(g_env->window, cursor_listener);
 	glfwSetInputMode(g_env->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -152,6 +159,9 @@ int				main()
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors3);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex3);
 		//ftg_draw_arrays(FTG_QUADS, 0, 1);
+		ftg_color_pointer(3, FTG_FLOAT, 0, colors4);
+		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex4);
+		//ftg_draw_arrays(FTG_POINTS, 0, 1);
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		glfwPollEvents();

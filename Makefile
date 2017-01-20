@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/20 18:37:11 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/20 19:21:28 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_NAME = main.c \
 			color/color_div.c \
 			color/color_mul.c \
 			color/color_sub.c \
+			color/color_dump.c \
 			ftg/blend/ftg_blend_color.c \
 			ftg/blend/ftg_blend_equation_separate.c \
 			ftg/blend/ftg_blend_equation.c \
@@ -83,7 +84,10 @@ SRCS_NAME = main.c \
 			ftg/rast/ftg_rast_triangle.c \
 			ftg/rast/ftg_rast_vertex.c \
 			ftg/rast/ftg_rast_watch_vertex.c \
-			ftg/rast/ftg_rast_pixel_set_blend_rgb.c \
+			ftg/rast/ftg_rast_pixel_set_blend_func_rgb.c \
+			ftg/rast/ftg_rast_pixel_set_blend_func_alpha.c \
+			ftg/rast/ftg_rast_pixel_set_blend_equ_rgb.c \
+			ftg/rast/ftg_rast_pixel_set_blend_equ_alpha.c \
 			ftg/ftg_clear_color.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_color_pointer.c \
@@ -124,21 +128,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-FRAMEWORK = -framework OpenGL
-FRAMEWORK+= -framework AppKit
-FRAMEWORK+= -framework IOKit
-FRAMEWORK+= -framework CoreVideo
+#FRAMEWORK = -framework OpenGL
+#FRAMEWORK+= -framework AppKit
+#FRAMEWORK+= -framework IOKit
+#FRAMEWORK+= -framework CoreVideo
 
-#FRAMEWORK = -lGL
-#FRAMEWORK+= -lX11
-#FRAMEWORK+= -lXrandr
-#FRAMEWORK+= -lXinerama
-#FRAMEWORK+= -lXcursor
-#FRAMEWORK+= -lXxf86vm
-#FRAMEWORK+= -ldl
-#FRAMEWORK+= -lrt
-#FRAMEWORK+= -lm
-#FRAMEWORK+= -lpthread
+FRAMEWORK = -lGL
+FRAMEWORK+= -lX11
+FRAMEWORK+= -lXrandr
+FRAMEWORK+= -lXinerama
+FRAMEWORK+= -lXcursor
+FRAMEWORK+= -lXxf86vm
+FRAMEWORK+= -ldl
+FRAMEWORK+= -lrt
+FRAMEWORK+= -lm
+FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 
