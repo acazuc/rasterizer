@@ -138,6 +138,10 @@ int				main()
 	ftg_matrix_mode(FTG_MODELVIEW);
 	glfwSetCursorPosCallback(g_env->window, cursor_listener);
 	glfwSetInputMode(g_env->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	//ftg_enable(FTG_FOG);
+	float fog_color[4] = {1, 0, 1};
+	ftg_fogfv(FTG_FOG_COLOR, fog_color);
+	ftg_fogi(FTG_FOG_MODE, FTG_LINEAR);
 	env.posz = -2;
 	double i = 0;
 	while (!glfwWindowShouldClose(env.window))
@@ -162,6 +166,7 @@ int				main()
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors4);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex4);
 		//ftg_draw_arrays(FTG_POINTS, 0, 1);
+		ftg_end();
 		draw_elements(&env);
 		glfwSwapBuffers(env.window);
 		glfwPollEvents();

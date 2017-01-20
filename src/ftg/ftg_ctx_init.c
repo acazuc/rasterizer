@@ -48,5 +48,12 @@ void		ftg_ctx_init(t_ftg_ctx *ctx)
 	ctx->vertex_array_pointer = NULL;
 	ctx->color_array_size = 4;
 	ctx->color_array_type = FTG_FLOAT;
+	if (!(ctx->textures = malloc(sizeof(*ctx->textures) * 2)))
+	{
+		ft_putstr("Malloc failed\n");
+		raise(SIGABRT);
+	}
+	ft_memset(ctx->textures, 0, sizeof(*ctx->textures) * 2);
+	ctx->textures_capacity = 0;
 	init_2(ctx);
 }

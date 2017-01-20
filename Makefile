@@ -49,6 +49,7 @@ SRCS_NAME = main.c \
 			ftg/draw_arrays/ftg_draw_arrays_triangles.c \
 			ftg/draw_arrays/ftg_draw_arrays.c \
 			ftg/fog/ftg_fog_mode_color.c \
+			ftg/fog/ftg_fog_place.c \
 			ftg/fog/ftg_fog_start_end_index_density.c \
 			ftg/fog/ftg_fog.c \
 			ftg/get/ftg_get_booleanv.c \
@@ -88,6 +89,9 @@ SRCS_NAME = main.c \
 			ftg/rast/ftg_rast_pixel_set_blend_func_alpha.c \
 			ftg/rast/ftg_rast_pixel_set_blend_equ_rgb.c \
 			ftg/rast/ftg_rast_pixel_set_blend_equ_alpha.c \
+			ftg/texture/ftg_delete_textures.c \
+			ftg/texture/ftg_gen_textures.c \
+			ftg/texture/ftg_is_texture.c \
 			ftg/ftg_clear_color.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_color_pointer.c \
@@ -97,6 +101,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_disable.c \
 			ftg/ftg_enable_client_state.c \
 			ftg/ftg_enable.c \
+			ftg/ftg_end.c \
 			ftg/ftg_get_error.c \
 			ftg/ftg_is_enabled.c \
 			ftg/ftg_sizeof.c \
@@ -167,6 +172,7 @@ odir:
 	@mkdir -p $(OBJS_PATH)ftg/matrix
 	@mkdir -p $(OBJS_PATH)ftg/min_max
 	@mkdir -p $(OBJS_PATH)ftg/rast
+	@mkdir -p $(OBJS_PATH)ftg/texture
 	@mkdir -p $(OBJS_PATH)mat4
 	@mkdir -p $(OBJS_PATH)vec4
 

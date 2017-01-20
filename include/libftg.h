@@ -5,6 +5,7 @@
 # include <limits.h>
 # include <signal.h>
 # include <stdio.h>
+# include <math.h>
 # include "../libft/include/libft.h"
 # include "mat4.h"
 
@@ -96,6 +97,12 @@
 # define FTG_PROJECTION_STACK_DEPTH		0x0000003f
 # define FTG_MAX_MODELVIEW_STACK_DEPTH	0x00000040
 # define FTG_MAX_PROJECTION_STACK_DEPTH	0x00000041
+# define FTG_TEXTURE_BINDING_1D			0x00000042
+# define FTG_TEXTURE_BINDING_2D			0x00000043
+# define FTG_TEXTURE_BINDING_3D			0x00000044
+# define FTG_TEXTURE_1D						0x00000045
+# define FTG_TEXTURE_2D						0x00000046
+# define FTG_TEXTURE_3D						0x00000047
 
 /*
 ** primitives
@@ -143,6 +150,7 @@ typedef int32_t				t_ftg_sizei;
 typedef float				t_ftg_clampf;
 typedef double				t_ftg_clampd;
 typedef void				t_ftg_void;
+typedef struct s_ftg_texture	t_ftg_texture;
 typedef struct s_ftg_ctx	t_ftg_ctx;
 
 void			ftg_matrix_mode(t_ftg_enum mode);
@@ -211,6 +219,10 @@ void			ftg_frustum(t_ftg_double x_range[2], t_ftg_double y_range[2], t_ftg_doubl
 void			ftg_push_matrix(void);
 void			ftg_pop_matrix(void);
 void			ftg_ortho(t_ftg_double x_range[2], t_ftg_double y_range[2], t_ftg_double z_range[2]);
+void			ftg_end();
+void			ftg_fog_place(void);
+void			ftg_gen_textures(t_ftg_sizei n, t_ftg_uint *textures);
+void			ftg_delete_textures(t_ftg_sizei n, const t_ftg_uint *textures);
 void			ftg_rast_pixel_put(t_vec4 *vec);
 void			ftg_rast_pixel_set(int x, int y, t_color *color);
 void			ftg_rast_pixel_set_blend_func_rgb(t_color *color, t_color *src, t_color *dst, t_ftg_enum mode);
@@ -250,12 +262,22 @@ t_ftg_ulong		ftg_maxul(t_ftg_ulong l1, t_ftg_ulong l2);
 t_ftg_float		ftg_maxf(t_ftg_float f1, t_ftg_float f2);
 t_ftg_double	ftg_maxd(t_ftg_double f1, t_ftg_double f2);
 
+struct					s_ftg_texture
+{
+	t_ftg_uint			width;
+	t_ftg_uint			height;
+	t_ftg_enum			format;
+	t_ftg_enum			target;
+	t_ftg_float			*data;
+};
+
 struct					s_ftg_ctx
 {
 	t_ftg_double		*depth_buffer;
 	t_ftg_float			*color_buffer;
 	t_ftg_sizei			width;
 	t_ftg_sizei			height;
+	t_ftg_enum			matrix_mode;
 	t_mat4				projection_matrix[PROJECTION_MAX_STACK_DEPTH];
 	t_mat4				modelview_matrix[MODELVIEW_MAX_STACK_DEPTH];
 	t_ftg_int			projection_max_stack_depth;
@@ -292,7 +314,11 @@ struct					s_ftg_ctx
 	t_ftg_enum			color_array_type;
 	t_ftg_sizei			color_array_stride;
 	const t_ftg_void	*color_array_pointer;
-	t_ftg_enum			matrix_mode;
+	t_ftg_texture		**textures;
+	t_ftg_uint			textures_capacity;
+	t_ftg_uint			texture_binding_1d;
+	t_ftg_uint			texture_binding_2d;
+	t_ftg_uint			texture_binding_3d;
 	t_ftg_enum			errno;
 };
 

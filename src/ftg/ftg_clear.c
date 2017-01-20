@@ -36,7 +36,7 @@ static void	clear_depth(void)
 	i = 0;
 	while (i < g_ctx->width * g_ctx->height)
 	{
-		g_ctx->depth_buffer[i] = 0;
+		g_ctx->depth_buffer[i] = 1;
 		++i;
 	}
 }

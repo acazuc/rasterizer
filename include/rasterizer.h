@@ -29,7 +29,7 @@
 # define TO_RADIANS(x) (x / 360. * M_PI)
 
 # define Z_MIN 0.001
-# define Z_MAX 1000
+# define Z_MAX 10
 
 # define ROT_FAC 0.001
 # define MOV_FAC 0.1

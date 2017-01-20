@@ -172,6 +172,24 @@ t_ftg_boolean	ftg_get(t_ftg_enum pname, void **data, t_ftg_enum *format, t_ftg_u
 		*format = FTG_INT;
 		*length = 1;
 	}
+	else if (pname == FTG_TEXTURE_BINDING_1D)
+	{
+		*data = &g_ctx->texture_binding_1d;
+		*format = FTG_UNSIGNED_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_TEXTURE_BINDING_2D)
+	{
+		*data = &g_ctx->texture_binding_2d;
+		*format = FTG_UNSIGNED_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_TEXTURE_BINDING_3D)
+	{
+		*data = &g_ctx->texture_binding_3d;
+		*format = FTG_UNSIGNED_INT;
+		*length = 1;
+	}
 	else
 	{
 		g_ctx->errno = FTG_INVALID_ENUM;
