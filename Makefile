@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/20 17:30:56 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/20 18:37:11 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCS_NAME = main.c \
 			ftg/rast/ftg_rast_triangle.c \
 			ftg/rast/ftg_rast_vertex.c \
 			ftg/rast/ftg_rast_watch_vertex.c \
+			ftg/rast/ftg_rast_pixel_set_blend_rgb.c \
 			ftg/ftg_clear_color.c \
 			ftg/ftg_clear.c \
 			ftg/ftg_color_pointer.c \
