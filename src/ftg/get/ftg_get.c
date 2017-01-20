@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:01:46 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:29:46 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/20 17:13:53 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_ftg_boolean	ftg_get(t_ftg_enum pname, void **data, t_ftg_enum *format, t_ftg_u
 	}
 	else if (pname == FTG_MODELVIEW_MATRIX)
 	{
-		*data = g_ctx->matrix_modelview.value;
+		*data = g_ctx->modelview_matrix[g_ctx->modelview_stack_depth].value;
 		*format = FTG_DOUBLE;
 		*length = 16;
 	}
 	else if (pname == FTG_PROJECTION_MATRIX)
 	{
-		*data = g_ctx->matrix_projection.value;
+		*data = g_ctx->projection_matrix[g_ctx->projection_stack_depth].value;
 		*format = FTG_DOUBLE;
 		*length = 16;
 	}
@@ -146,6 +146,30 @@ t_ftg_boolean	ftg_get(t_ftg_enum pname, void **data, t_ftg_enum *format, t_ftg_u
 	{
 		*data = &g_ctx->fog_mode;
 		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_MODELVIEW_STACK_DEPTH)
+	{
+		*data = &g_ctx->modelview_stack_depth;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_PROJECTION_STACK_DEPTH)
+	{
+		*data = &g_ctx->projection_stack_depth;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_MAX_MODELVIEW_STACK_DEPTH)
+	{
+		*data = &g_ctx->modelview_max_stack_depth;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_MAX_PROJECTION_STACK_DEPTH)
+	{
+		*data = &g_ctx->projection_max_stack_depth;
+		*format = FTG_INT;
 		*length = 1;
 	}
 	else

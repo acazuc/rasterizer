@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 18:50:53 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:27:47 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/20 17:16:27 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	ftg_load_transpose_matrixd(const t_ftg_double *m)
 
 	if (g_ctx->matrix_mode == FTG_MODELVIEW)
 	{
-		dst = &g_ctx->matrix_modelview;
+		dst = &g_ctx->modelview_matrix[g_ctx->modelview_stack_depth];
 	}
 	else if (g_ctx->matrix_mode == FTG_PROJECTION)
 	{
-		dst = &g_ctx->matrix_projection;
+		dst = &g_ctx->projection_matrix[g_ctx->projection_stack_depth];
 	}
 	else
 	{

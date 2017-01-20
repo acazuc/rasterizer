@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/03 22:16:21 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/20 17:30:56 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,10 @@ SRCS_NAME = main.c \
 			ftg/matrix/ftg_rotate.c \
 			ftg/matrix/ftg_scale.c \
 			ftg/matrix/ftg_translate.c \
+			ftg/matrix/ftg_frustum.c \
+			ftg/matrix/ftg_push_matrix.c \
+			ftg/matrix/ftg_pop_matrix.c \
+			ftg/matrix/ftg_ortho.c \
 			ftg/min_max/ftg_maxbsf.c \
 			ftg/min_max/ftg_maxild.c \
 			ftg/min_max/ftg_minbsf.c \
@@ -119,21 +123,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-#FRAMEWORK = -framework OpenGL
-#FRAMEWORK+= -framework AppKit
-#FRAMEWORK+= -framework IOKit
-#FRAMEWORK+= -framework CoreVideo
+FRAMEWORK = -framework OpenGL
+FRAMEWORK+= -framework AppKit
+FRAMEWORK+= -framework IOKit
+FRAMEWORK+= -framework CoreVideo
 
-FRAMEWORK = -lGL
-FRAMEWORK+= -lX11
-FRAMEWORK+= -lXrandr
-FRAMEWORK+= -lXinerama
-FRAMEWORK+= -lXcursor
-FRAMEWORK+= -lXxf86vm
-FRAMEWORK+= -ldl
-FRAMEWORK+= -lrt
-FRAMEWORK+= -lm
-FRAMEWORK+= -lpthread
+#FRAMEWORK = -lGL
+#FRAMEWORK+= -lX11
+#FRAMEWORK+= -lXrandr
+#FRAMEWORK+= -lXinerama
+#FRAMEWORK+= -lXcursor
+#FRAMEWORK+= -lXxf86vm
+#FRAMEWORK+= -ldl
+#FRAMEWORK+= -lrt
+#FRAMEWORK+= -lm
+#FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 17:23:44 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/20 16:52:12 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,29 @@ static void move()
 	}
 	if (!left && !right && !front && !back)
 		return;
-	double angle = 0;
+	double angle = g_env->roty;
 	if (back)
 	{
 		if (left)
-			angle = 135;
+			angle += 135;
 		else if (right)
-			angle = 45;
+			angle += 45;
 		else
-			angle = 90;
+			angle += 90;
 	}
 	else if (front)
 	{
 		if (left)
-			angle = -135;
+			angle += -135;
 		else if (right)
-			angle = -45;
+			angle += -45;
 		else
-			angle = -90;
+			angle += -90;
 	}
 	else if (left)
-		angle = 180;
+		angle += 180;
 	else if (right)
-		angle = 0;
-	angle += g_env->roty;
+		angle += 0;
 	g_env->posx += cos(TO_RADIANS(angle)) * MOV_FAC;
 	g_env->posz += sin(TO_RADIANS(angle)) * MOV_FAC;
 }
@@ -141,7 +140,7 @@ int				main()
 		ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
 		ftg_load_identity();
 		ftg_rotated(env.rotx, 1, 0, 0);
-		ftg_rotated(env.roty, 0, 1, 0);
+		ftg_rotated(-env.roty, 0, 1, 0);
 		ftg_translated(-env.posx, -env.posy, env.posz);
 		ftg_scaled(1, 1, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors);

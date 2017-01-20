@@ -8,9 +8,11 @@
 # include "../libft/include/libft.h"
 # include "mat4.h"
 
-# define FTG_NO_ERROR		0x00000000
-# define FTG_INVALID_ENUM	0x00000001
-# define FTG_INVALID_VALUE	0x00000002
+# define FTG_NO_ERROR			0x00000000
+# define FTG_INVALID_ENUM		0x00000001
+# define FTG_INVALID_VALUE		0x00000002
+# define FTG_STACK_OVERFLOW 	0x00000003
+# define FTG_STACK_UNDERFLOW	0x00000004
 
 /*
 ** data types
@@ -90,6 +92,10 @@
 # define FTG_FOG_COLOR					0x0000003b
 # define FTG_COLOR_ARRAY				0x0000003c
 # define FTG_VERTEX_ARRAY				0x0000003d
+# define FTG_MODELVIEW_STACK_DEPTH		0x0000003e
+# define FTG_PROJECTION_STACK_DEPTH		0x0000003f
+# define FTG_MAX_MODELVIEW_STACK_DEPTH	0x00000040
+# define FTG_MAX_PROJECTION_STACK_DEPTH	0x00000041
 
 /*
 ** primitives
@@ -116,6 +122,9 @@
 */
 # define FTG_FALSE		0x00000000
 # define FTG_TRUE		0x00000001
+
+# define MODELVIEW_MAX_STACK_DEPTH	32
+# define PROJECTION_MAX_STACK_DEPTH	 2
 
 typedef uint8_t				t_ftg_bitmask;
 typedef uint32_t			t_ftg_enum;
@@ -198,6 +207,10 @@ void			ftg_draw_arrays_get_vec_color(t_vec4 *vec, t_ftg_int pos);
 void			ftg_draw_arrays_get_vec_vertex(t_vec4 *vec, t_ftg_int pos);
 t_ftg_sizei		ftg_sizeof(t_ftg_enum type);
 void			ftg_clear_color(t_ftg_clampf red, t_ftg_clampf green, t_ftg_clampf blue, t_ftg_clampf alpha);
+void			ftg_frustum(t_ftg_double x_range[2], t_ftg_double y_range[2], t_ftg_double z_range[2]);
+void			ftg_push_matrix(void);
+void			ftg_pop_matrix(void);
+void			ftg_ortho(t_ftg_double x_range[2], t_ftg_double y_range[2], t_ftg_double z_range[2]);
 void			ftg_rast_pixel_put(t_vec4 *vec);
 void			ftg_rast_pixel_set(int x, int y, t_color *color);
 double			ftg_rast_depthbuffer_get(int x, int y);
@@ -239,8 +252,12 @@ struct					s_ftg_ctx
 	t_ftg_float			*color_buffer;
 	t_ftg_sizei			width;
 	t_ftg_sizei			height;
-	t_mat4				matrix_projection;
-	t_mat4				matrix_modelview;
+	t_mat4				projection_matrix[PROJECTION_MAX_STACK_DEPTH];
+	t_mat4				modelview_matrix[MODELVIEW_MAX_STACK_DEPTH];
+	t_ftg_int			projection_max_stack_depth;
+	t_ftg_int			modelview_max_stack_depth;
+	t_ftg_int			projection_stack_depth;
+	t_ftg_int			modelview_stack_depth;
 	t_ftg_clampf		clear_color[4];
 	t_ftg_boolean		depth_test;
 	t_ftg_boolean		depth_writemask;

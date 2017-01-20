@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:10:49 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:24:02 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/20 17:20:57 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ static void	init_2(t_ftg_ctx *ctx)
 void		ftg_ctx_init(t_ftg_ctx *ctx)
 {
 	ft_memset(ctx, 0, sizeof(*ctx));
-	mat4_init_identity(&ctx->matrix_projection);
-	mat4_init_identity(&ctx->matrix_modelview);
+	mat4_init_identity(&ctx->projection_matrix[0]);
+	mat4_init_identity(&ctx->modelview_matrix[0]);
 	ftg_viewport(0, 0);
+	ctx->projection_max_stack_depth = PROJECTION_MAX_STACK_DEPTH;
+	ctx->modelview_max_stack_depth = MODELVIEW_MAX_STACK_DEPTH;
 	ctx->matrix_mode = FTG_MODELVIEW;
 	ctx->depth_func = FTG_LESS;
 	ctx->depth_writemask = FTG_TRUE;
