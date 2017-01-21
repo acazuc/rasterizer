@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/20 19:21:28 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/21 13:16:39 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS_NAME = main.c \
 			ftg/get/ftg_get_doublev.c \
 			ftg/get/ftg_get_floatv.c \
 			ftg/get/ftg_get_intv.c \
+			ftg/get/ftg_get_pointerv.c \
 			ftg/get/ftg_get.c \
 			ftg/matrix/ftg_load_identity.c \
 			ftg/matrix/ftg_load_matrix.c \
@@ -105,6 +106,7 @@ SRCS_NAME = main.c \
 			ftg/ftg_get_error.c \
 			ftg/ftg_is_enabled.c \
 			ftg/ftg_sizeof.c \
+			ftg/ftg_tex_coord_pointer.c \
 			ftg/ftg_vertex_pointer.c \
 			ftg/ftg_viewport.c \
 			mat4/mat4_clear.c \
@@ -133,21 +135,21 @@ OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 LIBRARY = -L libft -lft
 LIBRARY+= -L glfw/src -lglfw3
 
-#FRAMEWORK = -framework OpenGL
-#FRAMEWORK+= -framework AppKit
-#FRAMEWORK+= -framework IOKit
-#FRAMEWORK+= -framework CoreVideo
+FRAMEWORK = -framework OpenGL
+FRAMEWORK+= -framework AppKit
+FRAMEWORK+= -framework IOKit
+FRAMEWORK+= -framework CoreVideo
 
-FRAMEWORK = -lGL
-FRAMEWORK+= -lX11
-FRAMEWORK+= -lXrandr
-FRAMEWORK+= -lXinerama
-FRAMEWORK+= -lXcursor
-FRAMEWORK+= -lXxf86vm
-FRAMEWORK+= -ldl
-FRAMEWORK+= -lrt
-FRAMEWORK+= -lm
-FRAMEWORK+= -lpthread
+#FRAMEWORK = -lGL
+#FRAMEWORK+= -lX11
+#FRAMEWORK+= -lXrandr
+#FRAMEWORK+= -lXinerama
+#FRAMEWORK+= -lXcursor
+#FRAMEWORK+= -lXxf86vm
+#FRAMEWORK+= -ldl
+#FRAMEWORK+= -lrt
+#FRAMEWORK+= -lm
+#FRAMEWORK+= -lpthread
 
 all: odir $(NAME)
 
@@ -188,4 +190,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re odir
+size:
+	wc `find $(SRCS_PATH) -type f` `find $(INCLUDES_PATH) -type f`
+
+.PHONY: clean fclean re odir size

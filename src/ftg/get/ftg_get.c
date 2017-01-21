@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:01:46 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/20 17:13:53 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/21 13:02:38 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,60 @@ t_ftg_boolean	ftg_get(t_ftg_enum pname, void **data, t_ftg_enum *format, t_ftg_u
 	{
 		*data = &g_ctx->texture_binding_3d;
 		*format = FTG_UNSIGNED_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_VERTEX_ARRAY_SIZE)
+	{
+		*data = &g_ctx->vertex_array_size;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_VERTEX_ARRAY_TYPE)
+	{
+		*data = &g_ctx->vertex_array_type;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_VERTEX_ARRAY_STRIDE)
+	{
+		*data = &g_ctx->vertex_array_stride;
+		*format = FTG_SIZEI;
+		*length = 1;
+	}
+	else if (pname == FTG_COLOR_ARRAY_SIZE)
+	{
+		*data = &g_ctx->color_array_size;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_COLOR_ARRAY_TYPE)
+	{
+		*data = &g_ctx->color_array_type;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_COLOR_ARRAY_STRIDE)
+	{
+		*data = &g_ctx->color_array_stride;
+		*format = FTG_SIZEI;
+		*length = 1;
+	}
+	else if (pname == FTG_TEXTURE_COORD_ARRAY_SIZE)
+	{
+		*data = &g_ctx->texture_coord_array_size;
+		*format = FTG_INT;
+		*length = 1;
+	}
+	else if (pname == FTG_TEXTURE_COORD_ARRAY_TYPE)
+	{
+		*data = &g_ctx->texture_coord_array_type;
+		*format = FTG_ENUM;
+		*length = 1;
+	}
+	else if (pname == FTG_TEXTURE_COORD_ARRAY_STRIDE)
+	{
+		*data = &g_ctx->texture_coord_array_stride;
+		*format = FTG_SIZEI;
 		*length = 1;
 	}
 	else

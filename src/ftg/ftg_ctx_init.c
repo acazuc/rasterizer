@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 19:10:49 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/20 17:20:57 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/21 12:53:59 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void		ftg_ctx_init(t_ftg_ctx *ctx)
 	ctx->fog_index = 0;
 	ctx->vertex_array_size = 4;
 	ctx->vertex_array_type = FTG_FLOAT;
-	ctx->vertex_array_stride = 0;
 	ctx->vertex_array_pointer = NULL;
 	ctx->color_array_size = 4;
 	ctx->color_array_type = FTG_FLOAT;
@@ -55,5 +54,7 @@ void		ftg_ctx_init(t_ftg_ctx *ctx)
 	}
 	ft_memset(ctx->textures, 0, sizeof(*ctx->textures) * 2);
 	ctx->textures_capacity = 0;
+	ctx->texture_coord_array_size = 4;
+	ctx->texture_coord_array_type = FTG_FLOAT;
 	init_2(ctx);
 }

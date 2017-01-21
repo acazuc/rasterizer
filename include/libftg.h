@@ -24,6 +24,7 @@
 # define FTG_UNSIGNED_SHORT	0x00000004
 # define FTG_INT			0x00000005
 # define FTG_ENUM			FTG_INT
+# define FTG_SIZEI			FTG_INT
 # define FTG_UNSIGNED_INT	0x00000006
 # define FTG_LONG			0x00000007
 # define FTG_UNSIGNED_LONG	0x00000008
@@ -36,73 +37,86 @@
 /*
 ** t_ftg_enum
 */
-# define FTG_MATRIX_MODE				0x00000001
-# define FTG_MODELVIEW					0x00000002
-# define FTG_MODELVIEW_MATRIX			0x00000002
-# define FTG_PROJECTION					0x00000003
-# define FTG_PROJECTION_MATRIX			0x00000003
-# define FTG_NEVER						0x00000004
-# define FTG_LESS						0x00000005
-# define FTG_EQUAL						0x00000006
-# define FTG_LEQUAL						0x00000007
-# define FTG_GREATER					0x00000008
-# define FTG_NOTEQUAL					0x00000009
-# define FTG_GEQUAL						0x0000000a
-# define FTG_ALWAYS						0x0000000b
-# define FTG_DEPTH_RANGE				0x0000000c
-# define FTG_DEPTH_FUNC					0x0000000d
-# define FTG_DEPTH_TEST					0x0000000e
-# define FTG_DEPTH_WRITEMASK			0x0000000f
-# define FTG_ZERO						0x00000010
-# define FTG_ONE						0x00000011
-# define FTG_SRC_COLOR					0x00000012
-# define FTG_ONE_MINUS_SRC_COLOR		0x00000013
-# define FTG_DST_COLOR					0x00000014
-# define FTG_ONE_MINUS_DST_COLOR		0x00000015
-# define FTG_SRC_ALPHA					0x00000016
-# define FTG_ONE_MINUS_SRC_ALPHA		0x00000017
-# define FTG_DST_ALPHA					0x00000018
-# define FTG_ONE_MINUS_DST_ALPHA		0x00000019
-# define FTG_CONSTANT_COLOR				0x0000001a
-# define FTG_ONE_MINUS_CONSTANT_COLOR	0x0000001b
-# define FTG_CONSTANT_ALPHA				0x0000001c
-# define FTG_ONE_MINUS_CONSTANT_ALPHA	0x0000001d
-# define FTG_SRC_ALPHA_SATURATE			0x0000001e
-# define FTG_BLEND_SRC_RGB				0x0000001f
-# define FTG_BLEND_SRC_ALPHA			0x00000020
-# define FTG_BLEND_DST_RGB				0x00000021
-# define FTG_BLEND_DST_ALPHA			0x00000022
-# define FTG_FUNC_ADD					0x00000023
-# define FTG_FUNC_SUBSTRACT				0x00000024
-# define FTG_FUNC_REVERSE_SUBSTRACT		0x00000025
-# define FTG_MIN						0x00000026
-# define FTG_MAX						0x00000027
-# define FTG_BLEND_COLOR				0x00000028
-# define FTG_BLEND_EQUATION_RGB			0x00000029
-# define FTG_BLEND_EQUATION_ALPHA		0x00000030
-# define FTG_BLEND						0x00000031
-# define FTG_EXP						0x00000032
-# define FTG_EXP2						0x00000033
-# define FTG_LINEAR						0x00000034
-# define FTG_FOG						0x00000035
-# define FTG_FOG_MODE					0x00000036
-# define FTG_FOG_DENSITY				0x00000037
-# define FTG_FOG_START					0x00000038
-# define FTG_FOG_END					0x00000039
-# define FTG_FOG_INDEX					0x0000003a
-# define FTG_FOG_COLOR					0x0000003b
-# define FTG_COLOR_ARRAY				0x0000003c
-# define FTG_VERTEX_ARRAY				0x0000003d
-# define FTG_MODELVIEW_STACK_DEPTH		0x0000003e
-# define FTG_PROJECTION_STACK_DEPTH		0x0000003f
-# define FTG_MAX_MODELVIEW_STACK_DEPTH	0x00000040
-# define FTG_MAX_PROJECTION_STACK_DEPTH	0x00000041
-# define FTG_TEXTURE_BINDING_1D			0x00000042
-# define FTG_TEXTURE_BINDING_2D			0x00000043
-# define FTG_TEXTURE_BINDING_3D			0x00000044
+# define FTG_MATRIX_MODE					0x00000001
+# define FTG_MODELVIEW						0x00000002
+# define FTG_MODELVIEW_MATRIX				0x00000002
+# define FTG_PROJECTION						0x00000003
+# define FTG_PROJECTION_MATRIX				0x00000003
+# define FTG_NEVER							0x00000004
+# define FTG_LESS							0x00000005
+# define FTG_EQUAL							0x00000006
+# define FTG_LEQUAL							0x00000007
+# define FTG_GREATER						0x00000008
+# define FTG_NOTEQUAL						0x00000009
+# define FTG_GEQUAL							0x0000000a
+# define FTG_ALWAYS							0x0000000b
+# define FTG_DEPTH_RANGE					0x0000000c
+# define FTG_DEPTH_FUNC						0x0000000d
+# define FTG_DEPTH_TEST						0x0000000e
+# define FTG_DEPTH_WRITEMASK				0x0000000f
+# define FTG_ZERO							0x00000010
+# define FTG_ONE							0x00000011
+# define FTG_SRC_COLOR						0x00000012
+# define FTG_ONE_MINUS_SRC_COLOR			0x00000013
+# define FTG_DST_COLOR						0x00000014
+# define FTG_ONE_MINUS_DST_COLOR			0x00000015
+# define FTG_SRC_ALPHA						0x00000016
+# define FTG_ONE_MINUS_SRC_ALPHA			0x00000017
+# define FTG_DST_ALPHA						0x00000018
+# define FTG_ONE_MINUS_DST_ALPHA			0x00000019
+# define FTG_CONSTANT_COLOR					0x0000001a
+# define FTG_ONE_MINUS_CONSTANT_COLOR		0x0000001b
+# define FTG_CONSTANT_ALPHA					0x0000001c
+# define FTG_ONE_MINUS_CONSTANT_ALPHA		0x0000001d
+# define FTG_SRC_ALPHA_SATURATE				0x0000001e
+# define FTG_BLEND_SRC_RGB					0x0000001f
+# define FTG_BLEND_SRC_ALPHA				0x00000020
+# define FTG_BLEND_DST_RGB					0x00000021
+# define FTG_BLEND_DST_ALPHA				0x00000022
+# define FTG_FUNC_ADD						0x00000023
+# define FTG_FUNC_SUBSTRACT					0x00000024
+# define FTG_FUNC_REVERSE_SUBSTRACT			0x00000025
+# define FTG_MIN							0x00000026
+# define FTG_MAX							0x00000027
+# define FTG_BLEND_COLOR					0x00000028
+# define FTG_BLEND_EQUATION_RGB				0x00000029
+# define FTG_BLEND_EQUATION_ALPHA			0x00000030
+# define FTG_BLEND							0x00000031
+# define FTG_EXP							0x00000032
+# define FTG_EXP2							0x00000033
+# define FTG_LINEAR							0x00000034
+# define FTG_FOG							0x00000035
+# define FTG_FOG_MODE						0x00000036
+# define FTG_FOG_DENSITY					0x00000037
+# define FTG_FOG_START						0x00000038
+# define FTG_FOG_END						0x00000039
+# define FTG_FOG_INDEX						0x0000003a
+# define FTG_FOG_COLOR						0x0000003b
+# define FTG_COLOR_ARRAY					0x0000003c
+# define FTG_VERTEX_ARRAY					0x0000003d
+# define FTG_MODELVIEW_STACK_DEPTH			0x0000003e
+# define FTG_PROJECTION_STACK_DEPTH			0x0000003f
+# define FTG_MAX_MODELVIEW_STACK_DEPTH		0x00000040
+# define FTG_MAX_PROJECTION_STACK_DEPTH		0x00000041
+# define FTG_TEXTURE_BINDING_1D				0x00000042
+# define FTG_TEXTURE_BINDING_2D				0x00000043
+# define FTG_TEXTURE_BINDING_3D				0x00000044
 # define FTG_TEXTURE_1D						0x00000045
 # define FTG_TEXTURE_2D						0x00000046
 # define FTG_TEXTURE_3D						0x00000047
+# define FTG_TEXTURE_COORD_ARRAY			0x00000048
+# define FTG_VERTEX_ARRAY_SIZE				0x00000049
+# define FTG_VERTEX_ARRAY_TYPE				0x0000004a
+# define FTG_VERTEX_ARRAY_STRIDE			0x0000004b
+# define FTG_VERTEX_ARRAY_POINTER			0x0000004c
+# define FTG_COLOR_ARRAY_SIZE				0x0000004d
+# define FTG_COLOR_ARRAY_TYPE				0x0000004e
+# define FTG_COLOR_ARRAY_STRIDE				0x0000004f
+# define FTG_COLOR_ARRAY_POINTER			0x00000050
+# define FTG_TEXTURE_COORD_ARRAY_SIZE		0x00000051
+# define FTG_TEXTURE_COORD_ARRAY_TYPE		0x00000052
+# define FTG_TEXTURE_COORD_ARRAY_STRIDE		0x00000053
+# define FTG_TEXTURE_COORD_ARRAY_POINTER	0x00000054
 
 /*
 ** primitives
@@ -223,6 +237,8 @@ void			ftg_end();
 void			ftg_fog_place(void);
 void			ftg_gen_textures(t_ftg_sizei n, t_ftg_uint *textures);
 void			ftg_delete_textures(t_ftg_sizei n, const t_ftg_uint *textures);
+void			ftg_get_pointerv(t_ftg_enum pname, t_ftg_void **params);
+void			ftg_tex_coord_pointer(t_ftg_int size, t_ftg_enum type, t_ftg_sizei stride, const t_ftg_void *pointer);
 void			ftg_rast_pixel_put(t_vec4 *vec);
 void			ftg_rast_pixel_set(int x, int y, t_color *color);
 void			ftg_rast_pixel_set_blend_func_rgb(t_color *color, t_color *src, t_color *dst, t_ftg_enum mode);
@@ -314,6 +330,11 @@ struct					s_ftg_ctx
 	t_ftg_enum			color_array_type;
 	t_ftg_sizei			color_array_stride;
 	const t_ftg_void	*color_array_pointer;
+	t_ftg_boolean		texture_coord_array;
+	t_ftg_int			texture_coord_array_size;
+	t_ftg_enum			texture_coord_array_type;
+	t_ftg_sizei			texture_coord_array_stride;
+	const t_ftg_void	*texture_coord_array_pointer;
 	t_ftg_texture		**textures;
 	t_ftg_uint			textures_capacity;
 	t_ftg_uint			texture_binding_1d;
