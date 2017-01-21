@@ -6,7 +6,7 @@
 #    By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 06:50:12 by acazuc            #+#    #+#              #
-#    Updated: 2017/01/21 13:16:39 by acazuc           ###   ########.fr        #
+#    Updated: 2017/01/21 14:21:53 by acazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS_NAME = main.c \
 			ftg/depth/ftg_depth_range.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec_color.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec_vertex.c \
+			ftg/draw_arrays/ftg_draw_arrays_get_vec_texture_coord.c \
 			ftg/draw_arrays/ftg_draw_arrays_get_vec.c \
 			ftg/draw_arrays/ftg_draw_arrays_line_strip.c \
 			ftg/draw_arrays/ftg_draw_arrays_lines.c \
@@ -83,6 +84,7 @@ SRCS_NAME = main.c \
 			ftg/rast/ftg_rast_line.c \
 			ftg/rast/ftg_rast_pixel_put.c \
 			ftg/rast/ftg_rast_pixel_set.c \
+			ftg/rast/ftg_rast_triangle_truncate.c \
 			ftg/rast/ftg_rast_triangle.c \
 			ftg/rast/ftg_rast_vertex.c \
 			ftg/rast/ftg_rast_watch_vertex.c \

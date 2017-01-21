@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 22:32:21 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:32:29 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/21 13:30:26 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ void	ftg_draw_arrays_get_vec(t_vec4 *vec, t_ftg_int pos)
 		vec->color.blue = 1;
 		vec->color.alpha = 1;
 	}
-	vec->u = 1;
-	vec->v = 1;
+	if (g_ctx->texture_coord_array)
+	{
+		ftg_draw_arrays_get_vec_texture_coord(vec, pos);
+	}
+	else
+	{
+		vec->u = 0;
+		vec->v = 0;
+	}
 }

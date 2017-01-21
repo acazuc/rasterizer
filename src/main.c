@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/09 10:53:39 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/20 16:52:12 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/21 14:11:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int				main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ftg_clear(FTG_DEPTH_BUFFER_BIT | FTG_COLOR_BUFFER_BIT);
 		ftg_load_identity();
+		env.posy = 0.5;
 		ftg_rotated(env.rotx, 1, 0, 0);
 		ftg_rotated(-env.roty, 0, 1, 0);
 		ftg_translated(-env.posx, -env.posy, env.posz);
@@ -159,7 +160,7 @@ int				main()
 		ftg_draw_arrays(FTG_LINES, 0, 3);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors2);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex2);
-		//ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
+		ftg_draw_arrays(FTG_TRIANGLES, 0, 1);
 		ftg_color_pointer(3, FTG_FLOAT, 0, colors3);
 		ftg_vertex_pointer(3, FTG_DOUBLE, 0, vertex3);
 		//ftg_draw_arrays(FTG_QUADS, 0, 1);

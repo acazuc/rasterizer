@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 22:25:03 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/03 22:25:21 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/21 14:24:46 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 {
 	t_vec4	step1;
 	t_vec4	step2;
-	t_vec4	tmp_v;
+	t_vec4	tmp_v1;
+	t_vec4	tmp_v2;
 	t_vec4	n1;
 	t_vec4	n2;
 	double	tmp;
@@ -33,23 +34,19 @@ static void		_render_bottom_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	n2 = *v1;
 	if (step2.x < step1.x)
 	{
-		tmp_v = step1;
+		tmp_v1 = step1;
 		step1 = step2;
-		step2 = tmp_v;
+		step2 = tmp_v1;
 	}
 	for (int y = v1->y; y <= v2->y; ++y)
 	{
 		for (int x = n1.x; x <= n2.x; ++x)
 		{
 			tmp = (x - n1.x) / (n2.x - n1.x);
-			tmp_v.x = x;
-			tmp_v.y = y;
-			tmp_v.z = (1 - tmp) * n1.z + tmp * n2.z;
-			tmp_v.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
-			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
-			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
-			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			ftg_rast_pixel_put(&tmp_v);
+			vec4_mul(&tmp_v1, &n1, 1 - tmp);
+			vec4_mul(&tmp_v2, &n2, tmp);
+			vec4_add(&tmp_v1, &tmp_v1, &tmp_v2);
+			ftg_rast_pixel_put(&tmp_v1);
 		}
 		vec4_add(&n1, &n1, &step1);
 		vec4_add(&n2, &n2, &step2);
@@ -60,7 +57,8 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 {
 	t_vec4	step1;
 	t_vec4	step2;
-	t_vec4	tmp_v;
+	t_vec4	tmp_v1;
+	t_vec4	tmp_v2;
 	t_vec4	n1;
 	t_vec4	n2;
 	double	tmp;
@@ -75,23 +73,19 @@ static void		_render_top_flat(t_vec4 *v1, t_vec4 *v2, t_vec4 *v3)
 	n2 = *v3;
 	if (step1.x < step2.x)
 	{
-		tmp_v = step1;
+		tmp_v1 = step1;
 		step1 = step2;
-		step2 = tmp_v;
+		step2 = tmp_v1;
 	}
 	for (int y = v3->y; y >= v1->y; --y)
 	{
 		for (int x = n1.x; x <= n2.x; ++x)
 		{
 			tmp = (x - n1.x) / (n2.x - n1.x);
-			tmp_v.x = x;
-			tmp_v.y = y;
-			tmp_v.z = (1 - tmp) * n1.z + tmp * n2.z;
-			tmp_v.color.red = (1 - tmp) * n1.color.red + tmp * n2.color.red;
-			tmp_v.color.green = (1 - tmp) * n1.color.green + tmp * n2.color.green;
-			tmp_v.color.blue = (1 - tmp) * n1.color.blue + tmp * n2.color.blue;
-			tmp_v.color.alpha = (1 - tmp) * n1.color.alpha + tmp * n2.color.alpha;
-			ftg_rast_pixel_put(&tmp_v);
+			vec4_mul(&tmp_v1, &n1, 1 - tmp);
+			vec4_mul(&tmp_v2, &n2, tmp);
+			vec4_add(&tmp_v1, &tmp_v1, &tmp_v2);
+			ftg_rast_pixel_put(&tmp_v1);
 		}
 		vec4_sub(&n1, &n1, &step1);
 		vec4_sub(&n2, &n2, &step2);
@@ -143,6 +137,8 @@ void			ftg_rast_triangle(t_vec4 *p1, t_vec4 *p2, t_vec4 *p3)
 {
 	t_vec4	*points[3];
 
+	if (ftg_rast_triangle_truncate(p1, p2, p3))
+		return ;
 	points[0] = p1;
 	points[1] = p2;
 	points[2] = p3;
